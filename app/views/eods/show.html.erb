@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @eod.date %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @eod.user %>
+</p>
+
+<%= link_to 'Edit', edit_eod_path(@eod) %> |
+<%= link_to 'Back', eods_path %>

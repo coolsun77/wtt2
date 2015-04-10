@@ -1,0 +1,31 @@
+<table class="table">
+      <thead>
+  <tr><th>周一</th><th>周二</th><th>周三</th><th>周四</th><th>周五</th><th>周六</th><th>周日</th></tr>
+    </thead>
+    <tbody>
+<% @month.each_slice(7) do |week| %>
+<tr >
+    <%      week.map do |day| %>
+    <%    @eod = Eod.find_by(Date: day, user_id: @user.id) %> 
+         <%   if @eod %>
+                <td class="success" > 
+                <%= form_for :eod, url: new_user_eod_path(@user) do |f| %>          
+                <input type="hidden" name="eod[Date]" id="eod_Date" value ="<%= day %>"/>
+                <input type="submit" name="commit" value= "<%= day %>" />
+                <% end %>
+          <%    else %> 
+                <td class="warning" > 
+                <%= form_for :eod, url: new_user_eod_path(@user) do |f| %>  
+                 <input type="hidden" name="eod[Date]" id="eod_Date" value ="<%= day %>"/>
+                <input type="submit" name="commit" value= "<%= day %>" />
+                <%    end %> 
+
+          </td>
+    <% end %>
+         
+   <%    end %>   
+</tr> 
+   <%    end %>
+</tbody>
+
+ </table>

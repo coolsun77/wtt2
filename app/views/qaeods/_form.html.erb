@@ -1,0 +1,21 @@
+<%= form_for(@qaeod) do |f| %>
+  <% if @qaeod.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@qaeod.errors.count, "error") %> prohibited this qaeod from being saved:</h2>
+
+      <ul>
+      <% @qaeod.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :eod_id %><br>
+    <%= f.text_field :eod_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
