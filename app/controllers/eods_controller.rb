@@ -1,5 +1,4 @@
 class EodsController < ApplicationController
-  before_action :set_eod, only: [:show, :edit, :update, :destroy]
 
   # GET /eods
   # GET /eods.json
@@ -10,6 +9,8 @@ class EodsController < ApplicationController
   # GET /eods/1
   # GET /eods/1.json
   def show
+      @user = User.find(params[:user_id])
+      @eod = Eod.find_by(params[:id]) 
   end
 
   # GET /eods/new
@@ -18,33 +19,31 @@ class EodsController < ApplicationController
 
       if Eod.find_by(date: @edate, user_id: params[:id]) 
          @eod= Eod.find_by(date: @edate, user_id: params[:id]) 
+         @user = @eod.user
        #  @qaeod = Qaeod.find_by(eod_id: @eod.id)
          render 'show'
       else
       @user = User.find(params[:id])
-      @eod = Eod.new(:user=>@user, :date =>@edate )
-      @qaeod = Qaeod.new
+      @eod = @user.eods.new(:user=>@user, :date =>@edate )
+      
     end
   end
 
   # GET /eods/1/edit
   def edit
+     @user = User.find(params[:user_id])
+     @eod = Eod.find_by(params[:id]) 
   end
 
   # POST /eods
   # POST /eods.json
   def create
-    @eod = Eod.new(eod_params)
+    @user = User.find(params[:user_id])
+    @eod = @user.eods.create(eod_params)
+  #  redirect_to user_eod_path(@user,@eod)
+    render 'show'
 
-    respond_to do |format|
-      if @eod.save
-        format.html { redirect_to user_eod_path(@eod,@eod.user), notice: 'User was successfully created.' }
-        format.json { render :show, status: :created, location: @eod }
-      else
-        format.html { render :new }
-        format.json { render json: @eod.errors, status: :unprocessable_entity }
-      end
-    end
+
   end
 
   # PATCH/PUT /eods/1

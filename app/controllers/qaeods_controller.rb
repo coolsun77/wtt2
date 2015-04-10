@@ -24,10 +24,11 @@ class QaeodsController < ApplicationController
   # POST /qaeods
   # POST /qaeods.json
   def create
-
+  @user = User.find(params[:user_id])
   @eod = Eod.find(params[:eod_id])
     @qaeod = @eod.qaeods.create(qaeod_params)
-    redirect_to user_eod_path(@eod, @eod.user)
+   # render plain: params.inspect
+    redirect_to user_eod_path(@user, @eod)
     
   end
 
