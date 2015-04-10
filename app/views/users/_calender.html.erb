@@ -6,17 +6,17 @@
 <% @month.each_slice(7) do |week| %>
 <tr >
     <%      week.map do |day| %>
-    <%    @eod = Eod.find_by(Date: day, user_id: @user.id) %> 
+    <%    @eod = Eod.find_by(date: day, user_id: @user.id) %> 
          <%   if @eod %>
                 <td class="success" > 
                 <%= form_for :eod, url: new_user_eod_path(@user) do |f| %>          
-                <input type="hidden" name="eod[Date]" id="eod_Date" value ="<%= day %>"/>
+                <input type="hidden" name="eod[date]" id="eod_date" value ="<%= day %>"/>
                 <input type="submit" name="commit" value= "<%= day %>" />
                 <% end %>
           <%    else %> 
                 <td class="warning" > 
                 <%= form_for :eod, url: new_user_eod_path(@user) do |f| %>  
-                 <input type="hidden" name="eod[Date]" id="eod_Date" value ="<%= day %>"/>
+                 <input type="hidden" name="eod[date]" id="eod_date" value ="<%= day %>"/>
                 <input type="submit" name="commit" value= "<%= day %>" />
                 <%    end %> 
 

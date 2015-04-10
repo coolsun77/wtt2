@@ -4,7 +4,15 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+       if session[:user_name] 
+        if @user = User.find_by(name: session[:user_name] ) 
+          redirect_to @user
+        else render plain: "请联系ps管理员".inspect
+        end
+      else 
+      self.win_sso  
+      @users = User.all
+    end
   end
 
   # GET /users/1
@@ -72,6 +80,18 @@ class UsersController < ApplicationController
       format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def win_sso
+       if head = request.env["HTTP_COOKIE"].to_s
+          if head =~/(user_name=)(\w+);/
+            user =$2
+            session[:user_name] = $2
+          #  render plain: user.inspect
+          else render 'login'
+          end
+        else render 'login'
+        end
   end
 
   private

@@ -1,0 +1,130 @@
+<div class="span12">
+
+<fieldset>
+
+<%= form_for @qaeod, url: qaeods_path(@eod, @qaeod) do |f| %>	
+
+<% if @eod.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@eod.errors.count, "error") %> prohibited
+        this eod from being saved:
+      </h2>
+      <ul>
+        <% @eod.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<DIV style="cursor:hand" onclick="isHidden('wow')">WoW</DIV>
+<div class="container-fluid" id="wow">
+<table class="table table-hover table-striped">
+
+   <thead>
+      <tr class="warning">
+         <th colspan="3" rowspan="1">QA</th>
+         <th>Hours</th>
+         <th colspan="2">Amount</th>
+         <th>Notes</th>
+      </tr>
+   </thead>
+   <tbody>
+      <tr class="warning">
+         <td rowspan="12"><span>WoW</span></td>
+         <td rowspan="6"><span>In-game</span></td>
+         <td><span>Pre-testing</span></td>
+        
+         <td><%= f.text_field :Pre_QA_H %></td>
+         <td colspan="2"><%= f.text_field :Pre_QA %></td>
+         <td><%= f.text_field :Pre_QA_N %></td>
+      </tr>
+      <tr class="warning">
+         <td><span>Review</span></td>
+         
+         <td><%= f.text_field :Review_H %></td>
+         <td colspan="2"><%= f.text_field :Review %></td>
+         <td><%= f.text_field :Review_N %></td>
+      </tr>
+      <tr class="warning">
+         <td><span>Testing</span></td>
+         
+         <td><%= f.text_field :QA_H %></td>
+         <td colspan="2"><%= f.text_field :QA %></td>
+         <td><%= f.text_field :QA_N %></td>
+      </tr>
+      <tr class="warning">
+         <td rowspan="2"><span>Bug Management</span></td>
+         
+         <td rowspan="2"><%= f.text_field :Bug_Management_H %></td>
+         <td>Report</td>
+         <td>Rtest</td>
+         <td rowspan="2"><%= f.text_field :Bug_Management_N %></td>
+      </tr>
+      <tr class="warning">
+       
+        <td> <%= f.text_field :Bug_Management_report %></td>
+         <td><%= f.text_field :Bug_Management_retest %></td>
+      </tr>
+      <tr class="warning">
+         <td><span>Audio Testing</span></td>
+         
+         <td><%= f.text_field :Audio_QA_H %></td>
+         <td colspan="2"><%= f.text_field :Audio_QA %></td>
+         <td><%= f.text_field :Audio_QA_N %></td>
+      </tr>
+      <tr class="warning">
+         <td rowspan="4"><span>Non-game</span></td>
+         <td><span>Review</span></td>
+         
+         <td><%= f.text_field :N_Review_H %></td>
+         <td colspan="2"><%= f.text_field :N_Review %></td>
+         <td><%= f.text_field :N_Review_N %></td>
+      </tr>
+      <tr class="warning">
+         <td><span>Testing</span></td>
+         
+         <td><%= f.text_field :N_QA_H %></td>
+         <td colspan="2"><%= f.text_field :N_QA %></td>
+         <td><%= f.text_field :N_QA_N %></td>
+      </tr>
+      <tr class="warning">
+         <td rowspan="2"><span>Bug Management</span></td>
+         
+         <td rowspan="2"><%= f.text_field :N_Bug_Management_H %></td>
+         <td>Report</td>
+         <td>Rtest</td>
+         <td rowspan="2"><%= f.text_field :N_Bug_Management_N %></td>
+      </tr>
+      <tr class="warning">
+        
+         <td><%= f.text_field :N_Bug_Management_report %></td>
+         <td><%= f.text_field :N_Bug_Management_retest %></td>
+      </tr>
+      <tr class="warning">
+         <td colspan="2"><span>Project Management</span></td>
+         
+         
+         <td><%= f.text_field :Project_Management_H %></td>
+         <td colspan="2"><%= f.text_field :Project_Management %></td>
+         <td><%= f.text_field :Project_Management_N %></td>
+      </tr>
+      <tr class="warning">
+         <td colspan="2"><span>Other</span></td>
+         
+         <td><%= f.text_field :Other_H %></td>
+         <td colspan="2"><%= f.text_field :Other %></td>
+         <td><%= f.text_field :Other_N %></td>
+      </tr>
+   </tbody>
+</table>
+</div>
+
+
+
+  <strong>Date:</strong>
+    <input type="text" name="eod[date]" id="eod_date" value=<%= @eod.date %>> 
+<%= f.submit %></fieldset>
+<% end %>
+</div>

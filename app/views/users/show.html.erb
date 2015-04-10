@@ -35,7 +35,7 @@
 <%= form_for :eod, url: new_user_eod_path(@user) do |f| %>   
 
 
-<input type="Date" name="eod[Date]" id="eod_Date" value="<%= Date.today %>"/>
+<input type="Date" name="eod[date]" id="eod_date" value="<%= Date.today %>"/>
 <input type="submit" name="commit" value="Try Eod" />
 <%= render 'calender' %>
 <% end %>

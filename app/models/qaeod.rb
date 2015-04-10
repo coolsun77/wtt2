@@ -1,3 +1,3 @@
 class Qaeod < ActiveRecord::Base
-  belongs_to :eod
+	belongs_to :eod
 end

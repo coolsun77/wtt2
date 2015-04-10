@@ -1,18 +1,13 @@
 Rails.application.routes.draw do
-  resources :qaeods
-
-  resources :eods
 
   resources :games
-
+  resources :qaeods
   resources :users do
-    resources :eods do
-      resources :qaeods
-    end
+    resources :eods 
   end
 
   post 'users/:id/eods/new/' => 'eods#new' , as: :new
-
+  post 'users/:user_id/eods/:eod_id/qaeods/new' => 'qaeods#new' , as: :newqaeod
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -24,7 +24,10 @@ class QaeodsController < ApplicationController
   # POST /qaeods
   # POST /qaeods.json
   def create
-    @qaeod = Qaeod.new(qaeod_params)
+    @user = User.find_by(name: session[:user_name] ) 
+    @eod = @user.eods.create(eod_params)
+
+    @qaeod = @eod.qaeods.create(qaeod_params)
 
     respond_to do |format|
       if @qaeod.save
@@ -69,6 +72,10 @@ class QaeodsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def qaeod_params
-      params.require(:qaeod).permit(:eod_id)
+      params.require(:qaeod).permit!
+    end
+
+    def eod_params
+      params.require(:eod).permit!
     end
 end

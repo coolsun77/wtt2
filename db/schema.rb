@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150410005549) do
+ActiveRecord::Schema.define(version: 20150410061405) do
 
   create_table "eods", force: :cascade do |t|
     t.date     "date"
@@ -30,8 +30,41 @@ ActiveRecord::Schema.define(version: 20150410005549) do
 
   create_table "qaeods", force: :cascade do |t|
     t.integer  "eod_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+    t.decimal  "Pre_QA",                  default: 0.0
+    t.decimal  "Review",                  default: 0.0
+    t.decimal  "QA",                      default: 0.0
+    t.decimal  "Bug_Management_report",   default: 0.0
+    t.decimal  "Bug_Management_retest",   default: 0.0
+    t.decimal  "Audio_QA",                default: 0.0
+    t.decimal  "N_Review",                default: 0.0
+    t.decimal  "N_QA",                    default: 0.0
+    t.decimal  "N_Bug_Management_report", default: 0.0
+    t.decimal  "N_Bug_Management_retest", default: 0.0
+    t.decimal  "Project_Management",      default: 0.0
+    t.decimal  "Other",                   default: 0.0
+    t.decimal  "Pre_QA_H",                default: 0.0
+    t.decimal  "Review_H",                default: 0.0
+    t.decimal  "QA_H",                    default: 0.0
+    t.decimal  "Bug_Management_H",        default: 0.0
+    t.decimal  "Audio_QA_H",              default: 0.0
+    t.decimal  "N_Review_H",              default: 0.0
+    t.decimal  "N_QA_H",                  default: 0.0
+    t.decimal  "N_Bug_Management_H",      default: 0.0
+    t.decimal  "Project_Management_H",    default: 0.0
+    t.decimal  "Other_H",                 default: 0.0
+    t.string   "Pre_QA_N",                default: " "
+    t.string   "Review_N",                default: " "
+    t.string   "QA_N",                    default: " "
+    t.string   "Bug_Management_N",        default: " "
+    t.string   "Audio_QA_N",              default: " "
+    t.string   "N_Review_N",              default: " "
+    t.string   "N_QA_N",                  default: " "
+    t.string   "N_Bug_Management_N",      default: " "
+    t.string   "Project_Management_N",    default: " "
+    t.string   "Other_N",                 default: " "
+    t.integer  "game_id"
   end
 
   add_index "qaeods", ["eod_id"], name: "index_qaeods_on_eod_id"

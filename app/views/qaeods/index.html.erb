@@ -13,7 +13,6 @@
   <tbody>
     <% @qaeods.each do |qaeod| %>
       <tr>
-        <td><%= qaeod.eod %></td>
         <td><%= link_to 'Show', qaeod %></td>
         <td><%= link_to 'Edit', edit_qaeod_path(qaeod) %></td>
         <td><%= link_to 'Destroy', qaeod, method: :delete, data: { confirm: 'Are you sure?' } %></td>

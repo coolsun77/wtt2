@@ -14,7 +14,16 @@ class EodsController < ApplicationController
 
   # GET /eods/new
   def new
-    @eod = Eod.new
+    @edate = params[:eod][:date]
+
+      if Eod.find_by(date: @edate, user_id: params[:id]) 
+         @eod= Eod.find_by(date: @edate, user_id: params[:id]) 
+         render 'edit'
+      else
+      @user = User.find(params[:id])
+      @eod = Eod.new(:user=>@user, :date =>@edate )
+      @qaeod = Qaeod.new
+    end
   end
 
   # GET /eods/1/edit
@@ -24,17 +33,14 @@ class EodsController < ApplicationController
   # POST /eods
   # POST /eods.json
   def create
-    @eod = Eod.new(eod_params)
-
-    respond_to do |format|
-      if @eod.save
-        format.html { redirect_to @eod, notice: 'Eod was successfully created.' }
-        format.json { render :show, status: :created, location: @eod }
+   @user = User.find(params[:user_id])
+   @eod = @user.eods.create(eod_params)
+  
+     if  @eod.errors.any?
+      render 'new'
       else
-        format.html { render :new }
-        format.json { render json: @eod.errors, status: :unprocessable_entity }
+        redirect_to user_path(@user, @eod)
       end
-    end
   end
 
   # PATCH/PUT /eods/1
