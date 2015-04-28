@@ -22,7 +22,7 @@
 <%= form_for :user, url: login_path(@user) do |f| %>
 
  user
-<%= f.text_field :uname %></td>
+<%= f.text_field :name %></td>
 <input type="submit" name="commit" value="login" />
 <% end %>
 
@@ -31,12 +31,11 @@
  
     <tr>
       <td><%= link_to 'Show', users_path %></td>
-<<<<<<< HEAD
+
 
     </tr>
 </table>
-=======
->>>>>>> aa3b9591ba7ffbe655ee8ff318943ab50514c96b
+
 
     </tr>
 </table>

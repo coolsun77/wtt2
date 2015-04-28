@@ -1,0 +1,1257 @@
+<div class="span12">
+
+<fieldset>
+
+<%= form_for @eod, url: user_eod_path(@eod.user, @eod), method: :patch do |f| %>
+
+<% if @eod.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@eod.errors.count, "error") %> prohibited
+        this eod from being saved:
+      </h2>
+      <ul>
+        <% @eod.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<DIV style="cursor:hand" onclick="isHidden('wow')">WoW</DIV>
+<div class="container-fluid" id="wow">
+   <div class="row-fluid">
+      <div class="span12">
+         <table class="table table-hover table-striped">
+            <thead>
+               <tr class="warning">
+                  <th colspan="3" rowspan="1">
+                     Loc
+                  </th>
+                  <th>
+                     Hours
+                  </th>
+                  <th colspan="2">
+                     Amount
+                  </th>
+                  <th>
+                     Notes
+                  </th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr class="warning">
+                  <td rowspan="12">
+                     WoW
+                  </td>
+                  <td rowspan="7">
+                     In-game
+                  </td>
+                  <td>
+                     Familiarization
+                  </td>
+                  <td>
+                     <%= f.text_field :wowfamiliarization_H %>
+                  </td>
+                  <td colspan="2">
+                     <%= f.text_field :wowfamiliarization %>
+                  </td>
+                  <td>
+                     <%= f.text_field :wowfamiliarization_N %>
+                  </td>
+               </tr>
+               <tr class="warning">
+                  <td>
+                     Review
+                  </td>
+                  <td>
+                     <%= f.text_field :wowReview_H  %>
+                  </td>
+                  <td colspan="2">
+                     <%= f.text_field :wowReview  %>
+                  </td>
+                  <td>
+                     <%= f.text_field :wowReview_N  %>
+                  </td>
+               </tr>
+               <tr class="warning">
+                  <td>
+                     Translation
+                  </td>
+                  <td>
+                     <%= f.text_field :wowtranslation_H %>
+                  </td>
+                  <td colspan="2">
+                     <%= f.text_field :wowtranslation %>
+                  </td>
+                  <td>
+                     <%= f.text_field :wowtranslation_N  %>
+                  </td>
+               </tr>
+               <tr class="warning">
+                  <td>
+                     Bug-fixing
+                  </td>
+                  <td>
+                     <%= f.text_field :wowbugfix_H %>
+                  </td>
+                  <td colspan="2">
+                     <%= f.text_field :wowbugfix %>
+                  </td>
+                  <td>
+                     <%= f.text_field :wowbugfix_N  %>
+                  </td>
+               </tr>
+               <tr class="warning">
+                  <td>
+                     Audio-On-Site
+                  </td>
+                  <td>
+                     <%= f.text_field :wowaudioonsite_H %>
+                  </td>
+                  <td colspan="2">
+                     <%= f.text_field :wowaudioonsite %>
+                  </td>
+                  <td>
+                     <%= f.text_field :wowaudioonsite_N  %>
+                  </td>
+               </tr>
+               <tr class="warning">
+                  <td>
+                     Audio-Delivery
+                  </td>
+                  <td>
+                     <%= f.text_field :wowaudiodelivery_H %>
+                  </td>
+                  <td colspan="2">
+                     <%= f.text_field :wowaudiodelivery %>
+                  </td>
+                  <td>
+                     <%= f.text_field :wowaudiodelivery_N  %>
+                  </td>
+               </tr>
+               <tr class="warning">
+                  <td>
+                     In-game Polishing
+                  </td>
+                  <td>
+                     <%= f.text_field :wowpolish_H %>
+                  </td>
+                  <td colspan="2">
+                     <%= f.text_field :wowpolish %>
+                  </td>
+                  <td>
+                     <%= f.text_field :wowpolish_N  %>
+                  </td>
+               </tr>
+               <tr class="warning">
+                  <td rowspan="3">
+                     Non-game
+                  </td>
+                  <td>
+                     Review
+                  </td>
+                  <td>
+                     <%= f.text_field :wowN_Review_H  %>
+                  </td>
+                  <td colspan="2">
+                     <%= f.text_field :wowN_Review  %>
+                  </td>
+                  <td>
+                     <%= f.text_field :wowN_Review_N  %>
+                  </td>
+               </tr>
+               <tr class="warning">
+                  <td>
+                     Translation
+                  </td>
+                  <td>
+                     <%= f.text_field :wowN_translation_H %>
+                  </td>
+                  <td colspan="2">
+                     <%= f.text_field :wowN_translation %>
+                  </td>
+                  <td>
+                     <%= f.text_field :wowN_translation_N  %>
+                  </td>
+               </tr>
+               <tr class="warning">
+                  <td>
+                     Bug Fixing
+                  </td>
+                  <td>
+                     <%= f.text_field :wowN_bugfix_H %>
+                  </td>
+                  <td colspan="2">
+                     <%= f.text_field :wowN_bugfix  %>
+                  </td>
+                  <td>
+                     <%= f.text_field :wowN_bugfix_N  %>
+                  </td>
+               </tr>
+               <tr class="warning">
+                  <td colspan="2">
+                     Project Management
+                  </td>
+                  <td>
+                     <%= f.text_field :wowProject_Management_H  %>
+                  </td>
+                  <td colspan="2">
+                     <%= f.text_field :wowProject_Management  %>
+                  </td>
+                  <td>
+                     <%= f.text_field :wowProject_Management_N  %>
+                  </td>
+               </tr>
+               <tr class="warning">
+                  <td colspan="2">
+                     Other
+                  </td>
+                  <td>
+                     <%= f.text_field :wowOther_H  %>
+                  </td>
+                  <td colspan="2">
+                     <%= f.text_field :wowOther  %>
+                  </td>
+                  <td>
+                     <%= f.text_field :wowOther_N  %>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </div>
+</div>
+
+
+<DIV style="cursor:hand" onclick="isHidden('SC2')">SC2</DIV>
+<div class="container-fluid" id="SC2">
+   <div class="row-fluid">
+      <div class="span12">
+         <table class="table table-hover table-striped">
+            <thead>
+               <tr class="warning">
+                  <th colspan="3" rowspan="1">
+                     Loc
+                  </th>
+                  <th>
+                     Hours
+                  </th>
+                  <th colspan="2">
+                     Amount
+                  </th>
+                  <th>
+                     Notes
+                  </th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr class="warning">
+                  <td rowspan="12">
+                     SC2
+                  </td>
+                  <td rowspan="7">
+                     In-game
+                  </td>
+                  <td>
+                     Familiarization
+                  </td>
+                  <td>
+                     <%= f.text_field :sc2familiarization_H %>
+                  </td>
+                  <td colspan="2">
+                     <%= f.text_field :sc2familiarization %>
+                  </td>
+                  <td>
+                     <%= f.text_field :sc2familiarization_N %>
+                  </td>
+               </tr>
+               <tr class="warning">
+                  <td>
+                     Review
+                  </td>
+                  <td>
+                     <%= f.text_field :sc2Review_H  %>
+                  </td>
+                  <td colspan="2">
+                     <%= f.text_field :sc2Review  %>
+                  </td>
+                  <td>
+                     <%= f.text_field :sc2Review_N  %>
+                  </td>
+               </tr>
+               <tr class="warning">
+                  <td>
+                     Translation
+                  </td>
+                  <td>
+                     <%= f.text_field :sc2translation_H %>
+                  </td>
+                  <td colspan="2">
+                     <%= f.text_field :sc2translation %>
+                  </td>
+                  <td>
+                     <%= f.text_field :sc2translation_N  %>
+                  </td>
+               </tr>
+               <tr class="warning">
+                  <td>
+                     Bug-fixing
+                  </td>
+                  <td>
+                     <%= f.text_field :sc2bugfix_H %>
+                  </td>
+                  <td colspan="2">
+                     <%= f.text_field :sc2bugfix %>
+                  </td>
+                  <td>
+                     <%= f.text_field :sc2bugfix_N  %>
+                  </td>
+               </tr>
+               <tr class="warning">
+                  <td>
+                     Audio-On-Site
+                  </td>
+                  <td>
+                     <%= f.text_field :sc2audioonsite_H %>
+                  </td>
+                  <td colspan="2">
+                     <%= f.text_field :sc2audioonsite %>
+                  </td>
+                  <td>
+                     <%= f.text_field :sc2audioonsite_N  %>
+                  </td>
+               </tr>
+               <tr class="warning">
+                  <td>
+                     Audio-Delivery
+                  </td>
+                  <td>
+                     <%= f.text_field :sc2audiodelivery_H %>
+                  </td>
+                  <td colspan="2">
+                     <%= f.text_field :sc2audiodelivery %>
+                  </td>
+                  <td>
+                     <%= f.text_field :sc2audiodelivery_N  %>
+                  </td>
+               </tr>
+               <tr class="warning">
+                  <td>
+                     In-game Polishing
+                  </td>
+                  <td>
+                     <%= f.text_field :sc2polish_H %>
+                  </td>
+                  <td colspan="2">
+                     <%= f.text_field :sc2polish %>
+                  </td>
+                  <td>
+                     <%= f.text_field :sc2polish_N  %>
+                  </td>
+               </tr>
+               <tr class="warning">
+                  <td rowspan="3">
+                     Non-game
+                  </td>
+                  <td>
+                     Review
+                  </td>
+                  <td>
+                     <%= f.text_field :sc2N_Review_H  %>
+                  </td>
+                  <td colspan="2">
+                     <%= f.text_field :sc2N_Review  %>
+                  </td>
+                  <td>
+                     <%= f.text_field :sc2N_Review_N  %>
+                  </td>
+               </tr>
+               <tr class="warning">
+                  <td>
+                     Translation
+                  </td>
+                  <td>
+                     <%= f.text_field :sc2N_translation_H %>
+                  </td>
+                  <td colspan="2">
+                     <%= f.text_field :sc2N_translation %>
+                  </td>
+                  <td>
+                     <%= f.text_field :sc2N_translation_N  %>
+                  </td>
+               </tr>
+               <tr class="warning">
+                  <td>
+                     Bug Fixing
+                  </td>
+                  <td>
+                     <%= f.text_field :sc2N_bugfix_H %>
+                  </td>
+                  <td colspan="2">
+                     <%= f.text_field :sc2N_bugfix  %>
+                  </td>
+                  <td>
+                     <%= f.text_field :sc2N_bugfix_N  %>
+                  </td>
+               </tr>
+               <tr class="warning">
+                  <td colspan="2">
+                     Project Management
+                  </td>
+                  <td>
+                     <%= f.text_field :sc2Project_Management_H  %>
+                  </td>
+                  <td colspan="2">
+                     <%= f.text_field :sc2Project_Management  %>
+                  </td>
+                  <td>
+                     <%= f.text_field :sc2Project_Management_N  %>
+                  </td>
+               </tr>
+               <tr class="warning">
+                  <td colspan="2">
+                     Other
+                  </td>
+                  <td>
+                     <%= f.text_field :sc2Other_H  %>
+                  </td>
+                  <td colspan="2">
+                     <%= f.text_field :sc2Other  %>
+                  </td>
+                  <td>
+                     <%= f.text_field :sc2Other_N  %>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </div>
+</div>
+
+<DIV style="cursor:hand" onclick="isHidden('HS')">HS</DIV>
+<div class="container-fluid" id="HS">
+   <div class="row-fluid">
+      <div class="span12">
+         <table class="table table-hover table-striped">
+            <thead>
+               <tr class="warning">
+                  <th colspan="3" rowspan="1">
+                     Loc
+                  </th>
+                  <th>
+                     Hours
+                  </th>
+                  <th colspan="2">
+                     Amount
+                  </th>
+                  <th>
+                     Notes
+                  </th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr class="warning">
+                  <td rowspan="12">
+                     HearthStone
+                  </td>
+                  <td rowspan="7">
+                     In-game
+                  </td>
+                  <td>
+                     Familiarization
+                  </td>
+                  <td>
+                     <%= f.text_field :HSfamiliarization_H %>
+                  </td>
+                  <td colspan="2">
+                     <%= f.text_field :HSfamiliarization %>
+                  </td>
+                  <td>
+                     <%= f.text_field :HSfamiliarization_N %>
+                  </td>
+               </tr>
+               <tr class="warning">
+                  <td>
+                     Review
+                  </td>
+                  <td>
+                     <%= f.text_field :HSReview_H  %>
+                  </td>
+                  <td colspan="2">
+                     <%= f.text_field :HSReview  %>
+                  </td>
+                  <td>
+                     <%= f.text_field :HSReview_N  %>
+                  </td>
+               </tr>
+               <tr class="warning">
+                  <td>
+                     Translation
+                  </td>
+                  <td>
+                     <%= f.text_field :HStranslation_H %>
+                  </td>
+                  <td colspan="2">
+                     <%= f.text_field :HStranslation %>
+                  </td>
+                  <td>
+                     <%= f.text_field :HStranslation_N  %>
+                  </td>
+               </tr>
+               <tr class="warning">
+                  <td>
+                     Bug-fixing
+                  </td>
+                  <td>
+                     <%= f.text_field :HSbugfix_H %>
+                  </td>
+                  <td colspan="2">
+                     <%= f.text_field :HSbugfix %>
+                  </td>
+                  <td>
+                     <%= f.text_field :HSbugfix_N  %>
+                  </td>
+               </tr>
+               <tr class="warning">
+                  <td>
+                     Audio-On-Site
+                  </td>
+                  <td>
+                     <%= f.text_field :HSaudioonsite_H %>
+                  </td>
+                  <td colspan="2">
+                     <%= f.text_field :HSaudioonsite %>
+                  </td>
+                  <td>
+                     <%= f.text_field :HSaudioonsite_N  %>
+                  </td>
+               </tr>
+               <tr class="warning">
+                  <td>
+                     Audio-Delivery
+                  </td>
+                  <td>
+                     <%= f.text_field :HSaudiodelivery_H %>
+                  </td>
+                  <td colspan="2">
+                     <%= f.text_field :HSaudiodelivery %>
+                  </td>
+                  <td>
+                     <%= f.text_field :HSaudiodelivery_N  %>
+                  </td>
+               </tr>
+               <tr class="warning">
+                  <td>
+                     In-game Polishing
+                  </td>
+                  <td>
+                     <%= f.text_field :HSpolish_H %>
+                  </td>
+                  <td colspan="2">
+                     <%= f.text_field :HSpolish %>
+                  </td>
+                  <td>
+                     <%= f.text_field :HSpolish_N  %>
+                  </td>
+               </tr>
+               <tr class="warning">
+                  <td rowspan="3">
+                     Non-game
+                  </td>
+                  <td>
+                     Review
+                  </td>
+                  <td>
+                     <%= f.text_field :HSN_Review_H  %>
+                  </td>
+                  <td colspan="2">
+                     <%= f.text_field :HSN_Review  %>
+                  </td>
+                  <td>
+                     <%= f.text_field :HSN_Review_N  %>
+                  </td>
+               </tr>
+               <tr class="warning">
+                  <td>
+                     Translation
+                  </td>
+                  <td>
+                     <%= f.text_field :HSN_translation_H %>
+                  </td>
+                  <td colspan="2">
+                     <%= f.text_field :HSN_translation %>
+                  </td>
+                  <td>
+                     <%= f.text_field :HSN_translation_N  %>
+                  </td>
+               </tr>
+               <tr class="warning">
+                  <td>
+                     Bug Fixing
+                  </td>
+                  <td>
+                     <%= f.text_field :HSN_bugfix_H %>
+                  </td>
+                  <td colspan="2">
+                     <%= f.text_field :HSN_bugfix  %>
+                  </td>
+                  <td>
+                     <%= f.text_field :HSN_bugfix_N  %>
+                  </td>
+               </tr>
+               <tr class="warning">
+                  <td colspan="2">
+                     Project Management
+                  </td>
+                  <td>
+                     <%= f.text_field :HSProject_Management_H  %>
+                  </td>
+                  <td colspan="2">
+                     <%= f.text_field :HSProject_Management  %>
+                  </td>
+                  <td>
+                     <%= f.text_field :HSProject_Management_N  %>
+                  </td>
+               </tr>
+               <tr class="warning">
+                  <td colspan="2">
+                     Other
+                  </td>
+                  <td>
+                     <%= f.text_field :HSOther_H  %>
+                  </td>
+                  <td colspan="2">
+                     <%= f.text_field :HSOther  %>
+                  </td>
+                  <td>
+                     <%= f.text_field :HSOther_N  %>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </div>
+</div>
+
+<DIV style="cursor:hand" onclick="isHidden('Hero')">Hero</DIV>
+<div class="container-fluid" id="Hero">
+   <div class="row-fluid">
+      <div class="span12">
+         <table class="table table-hover table-striped">
+            <thead>
+               <tr class="warning">
+                  <th colspan="3" rowspan="1">
+                     Loc
+                  </th>
+                  <th>
+                     Hours
+                  </th>
+                  <th colspan="2">
+                     Amount
+                  </th>
+                  <th>
+                     Notes
+                  </th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr class="warning">
+                  <td rowspan="12">
+                     Hero
+                  </td>
+                  <td rowspan="7">
+                     In-game
+                  </td>
+                  <td>
+                     Familiarization
+                  </td>
+                  <td>
+                     <%= f.text_field :Herofamiliarization_H %>
+                  </td>
+                  <td colspan="2">
+                     <%= f.text_field :Herofamiliarization %>
+                  </td>
+                  <td>
+                     <%= f.text_field :Herofamiliarization_N %>
+                  </td>
+               </tr>
+               <tr class="warning">
+                  <td>
+                     Review
+                  </td>
+                  <td>
+                     <%= f.text_field :HeroReview_H  %>
+                  </td>
+                  <td colspan="2">
+                     <%= f.text_field :HeroReview  %>
+                  </td>
+                  <td>
+                     <%= f.text_field :HeroReview_N  %>
+                  </td>
+               </tr>
+               <tr class="warning">
+                  <td>
+                     Translation
+                  </td>
+                  <td>
+                     <%= f.text_field :Herotranslation_H %>
+                  </td>
+                  <td colspan="2">
+                     <%= f.text_field :Herotranslation %>
+                  </td>
+                  <td>
+                     <%= f.text_field :Herotranslation_N  %>
+                  </td>
+               </tr>
+               <tr class="warning">
+                  <td>
+                     Bug-fixing
+                  </td>
+                  <td>
+                     <%= f.text_field :Herobugfix_H %>
+                  </td>
+                  <td colspan="2">
+                     <%= f.text_field :Herobugfix %>
+                  </td>
+                  <td>
+                     <%= f.text_field :Herobugfix_N  %>
+                  </td>
+               </tr>
+               <tr class="warning">
+                  <td>
+                     Audio-On-Site
+                  </td>
+                  <td>
+                     <%= f.text_field :Heroaudioonsite_H %>
+                  </td>
+                  <td colspan="2">
+                     <%= f.text_field :Heroaudioonsite %>
+                  </td>
+                  <td>
+                     <%= f.text_field :Heroaudioonsite_N  %>
+                  </td>
+               </tr>
+               <tr class="warning">
+                  <td>
+                     Audio-Delivery
+                  </td>
+                  <td>
+                     <%= f.text_field :Heroaudiodelivery_H %>
+                  </td>
+                  <td colspan="2">
+                     <%= f.text_field :Heroaudiodelivery %>
+                  </td>
+                  <td>
+                     <%= f.text_field :Heroaudiodelivery_N  %>
+                  </td>
+               </tr>
+               <tr class="warning">
+                  <td>
+                     In-game Polishing
+                  </td>
+                  <td>
+                     <%= f.text_field :Heropolish_H %>
+                  </td>
+                  <td colspan="2">
+                     <%= f.text_field :Heropolish %>
+                  </td>
+                  <td>
+                     <%= f.text_field :Heropolish_N  %>
+                  </td>
+               </tr>
+               <tr class="warning">
+                  <td rowspan="3">
+                     Non-game
+                  </td>
+                  <td>
+                     Review
+                  </td>
+                  <td>
+                     <%= f.text_field :HeroN_Review_H  %>
+                  </td>
+                  <td colspan="2">
+                     <%= f.text_field :HeroN_Review  %>
+                  </td>
+                  <td>
+                     <%= f.text_field :HeroN_Review_N  %>
+                  </td>
+               </tr>
+               <tr class="warning">
+                  <td>
+                     Translation
+                  </td>
+                  <td>
+                     <%= f.text_field :HeroN_translation_H %>
+                  </td>
+                  <td colspan="2">
+                     <%= f.text_field :HeroN_translation %>
+                  </td>
+                  <td>
+                     <%= f.text_field :HeroN_translation_N  %>
+                  </td>
+               </tr>
+               <tr class="warning">
+                  <td>
+                     Bug Fixing
+                  </td>
+                  <td>
+                     <%= f.text_field :HeroN_bugfix_H %>
+                  </td>
+                  <td colspan="2">
+                     <%= f.text_field :HeroN_bugfix  %>
+                  </td>
+                  <td>
+                     <%= f.text_field :HeroN_bugfix_N  %>
+                  </td>
+               </tr>
+               <tr class="warning">
+                  <td colspan="2">
+                     Project Management
+                  </td>
+                  <td>
+                     <%= f.text_field :HeroProject_Management_H  %>
+                  </td>
+                  <td colspan="2">
+                     <%= f.text_field :HeroProject_Management  %>
+                  </td>
+                  <td>
+                     <%= f.text_field :HeroProject_Management_N  %>
+                  </td>
+               </tr>
+               <tr class="warning">
+                  <td colspan="2">
+                     Other
+                  </td>
+                  <td>
+                     <%= f.text_field :HeroOther_H  %>
+                  </td>
+                  <td colspan="2">
+                     <%= f.text_field :HeroOther  %>
+                  </td>
+                  <td>
+                     <%= f.text_field :HeroOther_N  %>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </div>
+</div>
+
+<DIV style="cursor:hand" onclick="isHidden('D3')">D3</DIV>
+<div class="container-fluid" id="D3">
+   <div class="row-fluid">
+      <div class="span12">
+         <table class="table table-hover table-striped">
+            <thead>
+               <tr class="warning">
+                  <th colspan="3" rowspan="1">
+                     Loc
+                  </th>
+                  <th>
+                     Hours
+                  </th>
+                  <th colspan="2">
+                     Amount
+                  </th>
+                  <th>
+                     Notes
+                  </th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr class="warning">
+                  <td rowspan="12">
+                     D3
+                  </td>
+                  <td rowspan="7">
+                     In-game
+                  </td>
+                  <td>
+                     Familiarization
+                  </td>
+                  <td>
+                     <%= f.text_field :D3familiarization_H %>
+                  </td>
+                  <td colspan="2">
+                     <%= f.text_field :D3familiarization %>
+                  </td>
+                  <td>
+                     <%= f.text_field :D3familiarization_N %>
+                  </td>
+               </tr>
+               <tr class="warning">
+                  <td>
+                     Review
+                  </td>
+                  <td>
+                     <%= f.text_field :D3Review_H  %>
+                  </td>
+                  <td colspan="2">
+                     <%= f.text_field :D3Review  %>
+                  </td>
+                  <td>
+                     <%= f.text_field :D3Review_N  %>
+                  </td>
+               </tr>
+               <tr class="warning">
+                  <td>
+                     Translation
+                  </td>
+                  <td>
+                     <%= f.text_field :D3translation_H %>
+                  </td>
+                  <td colspan="2">
+                     <%= f.text_field :D3translation %>
+                  </td>
+                  <td>
+                     <%= f.text_field :D3translation_N  %>
+                  </td>
+               </tr>
+               <tr class="warning">
+                  <td>
+                     Bug-fixing
+                  </td>
+                  <td>
+                     <%= f.text_field :D3bugfix_H %>
+                  </td>
+                  <td colspan="2">
+                     <%= f.text_field :D3bugfix %>
+                  </td>
+                  <td>
+                     <%= f.text_field :D3bugfix_N  %>
+                  </td>
+               </tr>
+               <tr class="warning">
+                  <td>
+                     Audio-On-Site
+                  </td>
+                  <td>
+                     <%= f.text_field :D3audioonsite_H %>
+                  </td>
+                  <td colspan="2">
+                     <%= f.text_field :D3audioonsite %>
+                  </td>
+                  <td>
+                     <%= f.text_field :D3audioonsite_N  %>
+                  </td>
+               </tr>
+               <tr class="warning">
+                  <td>
+                     Audio-Delivery
+                  </td>
+                  <td>
+                     <%= f.text_field :D3audiodelivery_H %>
+                  </td>
+                  <td colspan="2">
+                     <%= f.text_field :D3audiodelivery %>
+                  </td>
+                  <td>
+                     <%= f.text_field :D3audiodelivery_N  %>
+                  </td>
+               </tr>
+               <tr class="warning">
+                  <td>
+                     In-game Polishing
+                  </td>
+                  <td>
+                     <%= f.text_field :D3polish_H %>
+                  </td>
+                  <td colspan="2">
+                     <%= f.text_field :D3polish %>
+                  </td>
+                  <td>
+                     <%= f.text_field :D3polish_N  %>
+                  </td>
+               </tr>
+               <tr class="warning">
+                  <td rowspan="3">
+                     Non-game
+                  </td>
+                  <td>
+                     Review
+                  </td>
+                  <td>
+                     <%= f.text_field :D3N_Review_H  %>
+                  </td>
+                  <td colspan="2">
+                     <%= f.text_field :D3N_Review  %>
+                  </td>
+                  <td>
+                     <%= f.text_field :D3N_Review_N  %>
+                  </td>
+               </tr>
+               <tr class="warning">
+                  <td>
+                     Translation
+                  </td>
+                  <td>
+                     <%= f.text_field :D3N_translation_H %>
+                  </td>
+                  <td colspan="2">
+                     <%= f.text_field :D3N_translation %>
+                  </td>
+                  <td>
+                     <%= f.text_field :D3N_translation_N  %>
+                  </td>
+               </tr>
+               <tr class="warning">
+                  <td>
+                     Bug Fixing
+                  </td>
+                  <td>
+                     <%= f.text_field :D3N_bugfix_H %>
+                  </td>
+                  <td colspan="2">
+                     <%= f.text_field :D3N_bugfix  %>
+                  </td>
+                  <td>
+                     <%= f.text_field :D3N_bugfix_N  %>
+                  </td>
+               </tr>
+               <tr class="warning">
+                  <td colspan="2">
+                     Project Management
+                  </td>
+                  <td>
+                     <%= f.text_field :D3Project_Management_H  %>
+                  </td>
+                  <td colspan="2">
+                     <%= f.text_field :D3Project_Management  %>
+                  </td>
+                  <td>
+                     <%= f.text_field :D3Project_Management_N  %>
+                  </td>
+               </tr>
+               <tr class="warning">
+                  <td colspan="2">
+                     Other
+                  </td>
+                  <td>
+                     <%= f.text_field :D3Other_H  %>
+                  </td>
+                  <td colspan="2">
+                     <%= f.text_field :D3Other  %>
+                  </td>
+                  <td>
+                     <%= f.text_field :D3Other_N  %>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </div>
+</div>
+
+<DIV style="cursor:hand" onclick="isHidden('OW')">OW</DIV>
+<div class="container-fluid" id="OW">
+   <div class="row-fluid">
+      <div class="span12">
+         <table class="table table-hover table-striped">
+            <thead>
+               <tr class="warning">
+                  <th colspan="3" rowspan="1">
+                     Loc
+                  </th>
+                  <th>
+                     Hours
+                  </th>
+                  <th colspan="2">
+                     Amount
+                  </th>
+                  <th>
+                     Notes
+                  </th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr class="warning">
+                  <td rowspan="12">
+                     OverWatch
+                  </td>
+                  <td rowspan="7">
+                     In-game
+                  </td>
+                  <td>
+                     Familiarization
+                  </td>
+                  <td>
+                     <%= f.text_field :OWfamiliarization_H %>
+                  </td>
+                  <td colspan="2">
+                     <%= f.text_field :OWfamiliarization %>
+                  </td>
+                  <td>
+                     <%= f.text_field :OWfamiliarization_N %>
+                  </td>
+               </tr>
+               <tr class="warning">
+                  <td>
+                     Review
+                  </td>
+                  <td>
+                     <%= f.text_field :OWReview_H  %>
+                  </td>
+                  <td colspan="2">
+                     <%= f.text_field :OWReview  %>
+                  </td>
+                  <td>
+                     <%= f.text_field :OWReview_N  %>
+                  </td>
+               </tr>
+               <tr class="warning">
+                  <td>
+                     Translation
+                  </td>
+                  <td>
+                     <%= f.text_field :OWtranslation_H %>
+                  </td>
+                  <td colspan="2">
+                     <%= f.text_field :OWtranslation %>
+                  </td>
+                  <td>
+                     <%= f.text_field :OWtranslation_N  %>
+                  </td>
+               </tr>
+               <tr class="warning">
+                  <td>
+                     Bug-fixing
+                  </td>
+                  <td>
+                     <%= f.text_field :OWbugfix_H %>
+                  </td>
+                  <td colspan="2">
+                     <%= f.text_field :OWbugfix %>
+                  </td>
+                  <td>
+                     <%= f.text_field :OWbugfix_N  %>
+                  </td>
+               </tr>
+               <tr class="warning">
+                  <td>
+                     Audio-On-Site
+                  </td>
+                  <td>
+                     <%= f.text_field :OWaudioonsite_H %>
+                  </td>
+                  <td colspan="2">
+                     <%= f.text_field :OWaudioonsite %>
+                  </td>
+                  <td>
+                     <%= f.text_field :OWaudioonsite_N  %>
+                  </td>
+               </tr>
+               <tr class="warning">
+                  <td>
+                     Audio-Delivery
+                  </td>
+                  <td>
+                     <%= f.text_field :OWaudiodelivery_H %>
+                  </td>
+                  <td colspan="2">
+                     <%= f.text_field :OWaudiodelivery %>
+                  </td>
+                  <td>
+                     <%= f.text_field :OWaudiodelivery_N  %>
+                  </td>
+               </tr>
+               <tr class="warning">
+                  <td>
+                     In-game Polishing
+                  </td>
+                  <td>
+                     <%= f.text_field :OWpolish_H %>
+                  </td>
+                  <td colspan="2">
+                     <%= f.text_field :OWpolish %>
+                  </td>
+                  <td>
+                     <%= f.text_field :OWpolish_N  %>
+                  </td>
+               </tr>
+               <tr class="warning">
+                  <td rowspan="3">
+                     Non-game
+                  </td>
+                  <td>
+                     Review
+                  </td>
+                  <td>
+                     <%= f.text_field :OWN_Review_H  %>
+                  </td>
+                  <td colspan="2">
+                     <%= f.text_field :OWN_Review  %>
+                  </td>
+                  <td>
+                     <%= f.text_field :OWN_Review_N  %>
+                  </td>
+               </tr>
+               <tr class="warning">
+                  <td>
+                     Translation
+                  </td>
+                  <td>
+                     <%= f.text_field :OWN_translation_H %>
+                  </td>
+                  <td colspan="2">
+                     <%= f.text_field :OWN_translation %>
+                  </td>
+                  <td>
+                     <%= f.text_field :OWN_translation_N  %>
+                  </td>
+               </tr>
+               <tr class="warning">
+                  <td>
+                     Bug Fixing
+                  </td>
+                  <td>
+                     <%= f.text_field :OWN_bugfix_H %>
+                  </td>
+                  <td colspan="2">
+                     <%= f.text_field :OWN_bugfix  %>
+                  </td>
+                  <td>
+                     <%= f.text_field :OWN_bugfix_N  %>
+                  </td>
+               </tr>
+               <tr class="warning">
+                  <td colspan="2">
+                     Project Management
+                  </td>
+                  <td>
+                     <%= f.text_field :OWProject_Management_H  %>
+                  </td>
+                  <td colspan="2">
+                     <%= f.text_field :OWProject_Management  %>
+                  </td>
+                  <td>
+                     <%= f.text_field :OWProject_Management_N  %>
+                  </td>
+               </tr>
+               <tr class="warning">
+                  <td colspan="2">
+                     Other
+                  </td>
+                  <td>
+                     <%= f.text_field :OWOther_H  %>
+                  </td>
+                  <td colspan="2">
+                     <%= f.text_field :OWOther  %>
+                  </td>
+                  <td>
+                     <%= f.text_field :OWOther_N  %>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </div>
+</div>
+
+
+  <strong>Date:</strong>
+    <input type="text" name="eod[Date]" id="eod_Date" value=<%= @eod.Date %>> 
+<%= f.submit %></fieldset>
+<% end %>
+</div>

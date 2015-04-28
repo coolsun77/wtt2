@@ -4,15 +4,16 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
+
        if session[:user_name] 
-        if @user = User.find_by(name: session[:user_name] ) 
-          redirect_to @user
-        else render plain: "请联系ps管理员".inspect
-        end
-      else 
-      self.win_sso  
-      @users = User.all
-    end
+          if @user = User.find_by(name: session[:user_name] ) 
+            redirect_to @user
+          else render plain: "请联系ps管理员".inspect
+          end
+        else 
+        self.win_sso  
+        @users = User.all
+       end
   end
 
   # GET /users/1
@@ -82,12 +83,25 @@ class UsersController < ApplicationController
     end
   end
 
+  def login
+  # render plain: params[:user].inspect
+    @user = User.find_by(name: params[:user][:name]) 
+    if @user
+      session[:user_name] = params[:user][:name]
+        render plain: session[:user_name] .inspect
+      # redirect_to @user
+    else
+      redirect_to "/users"
+    end
+  #  render plain: @user.inspect
+  end
   def win_sso
        if head = request.env["HTTP_COOKIE"].to_s
+
           if head =~/(user_name=)(\w+);/
             user =$2
             session[:user_name] = $2
-          #  render plain: user.inspect
+          #  render plain: head.inspect
           else render 'login'
           end
         else render 'login'

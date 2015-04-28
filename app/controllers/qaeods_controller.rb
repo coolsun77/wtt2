@@ -24,20 +24,11 @@ class QaeodsController < ApplicationController
   # POST /qaeods
   # POST /qaeods.json
   def create
-    @user = User.find_by(name: session[:user_name] ) 
-    @eod = @user.eods.create(eod_params)
 
+  @eod = Eod.find(params[:eod_id])
     @qaeod = @eod.qaeods.create(qaeod_params)
-
-    respond_to do |format|
-      if @qaeod.save
-        format.html { redirect_to @qaeod, notice: 'Qaeod was successfully created.' }
-        format.json { render :show, status: :created, location: @qaeod }
-      else
-        format.html { render :new }
-        format.json { render json: @qaeod.errors, status: :unprocessable_entity }
-      end
-    end
+    redirect_to user_eod_path(@eod, @eod.user)
+    
   end
 
   # PATCH/PUT /qaeods/1
@@ -73,9 +64,5 @@ class QaeodsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def qaeod_params
       params.require(:qaeod).permit!
-    end
-
-    def eod_params
-      params.require(:eod).permit!
     end
 end

@@ -1,10 +1,14 @@
 Rails.application.routes.draw do
-
+post 'users/login/' => 'users#login' , as: :login
   resources :games
-  resources :qaeods
+ 
   resources :users do
-    resources :eods 
+    resources :eods do
+       resources :qaeods
+    end
   end
+
+ 
 
   post 'users/:id/eods/new/' => 'eods#new' , as: :new
   post 'users/:user_id/eods/:eod_id/qaeods/new' => 'qaeods#new' , as: :newqaeod

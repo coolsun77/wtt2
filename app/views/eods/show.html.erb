@@ -7,8 +7,13 @@
 
 <p>
   <strong>User:</strong>
-  <%= @eod.user %>
+  <%= @eod.user.name %>
 </p>
 
-<%= link_to 'Edit', edit_eod_path(@eod) %> |
-<%= link_to 'Back', eods_path %>
+<%= render @eod.qaeods %>
+
+<h2>Add a project:</h2>
+<%= render 'qaeods/form' %>
+
+<%= link_to 'Edit', edit_user_eod_path(@eod,@eod.user) %> |
+<%= link_to 'Back', user_path %>

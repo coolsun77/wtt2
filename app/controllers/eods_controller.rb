@@ -18,7 +18,8 @@ class EodsController < ApplicationController
 
       if Eod.find_by(date: @edate, user_id: params[:id]) 
          @eod= Eod.find_by(date: @edate, user_id: params[:id]) 
-         render 'edit'
+       #  @qaeod = Qaeod.find_by(eod_id: @eod.id)
+         render 'show'
       else
       @user = User.find(params[:id])
       @eod = Eod.new(:user=>@user, :date =>@edate )
@@ -33,27 +34,28 @@ class EodsController < ApplicationController
   # POST /eods
   # POST /eods.json
   def create
-   @user = User.find(params[:user_id])
-   @eod = @user.eods.create(eod_params)
-  
-     if  @eod.errors.any?
-      render 'new'
+    @eod = Eod.new(eod_params)
+
+    respond_to do |format|
+      if @eod.save
+        format.html { redirect_to user_eod_path(@eod,@eod.user), notice: 'User was successfully created.' }
+        format.json { render :show, status: :created, location: @eod }
       else
-        redirect_to user_path(@user, @eod)
+        format.html { render :new }
+        format.json { render json: @eod.errors, status: :unprocessable_entity }
       end
+    end
   end
 
   # PATCH/PUT /eods/1
   # PATCH/PUT /eods/1.json
   def update
-    respond_to do |format|
-      if @eod.update(eod_params)
-        format.html { redirect_to @eod, notice: 'Eod was successfully updated.' }
-        format.json { render :show, status: :ok, location: @eod }
-      else
-        format.html { render :edit }
-        format.json { render json: @eod.errors, status: :unprocessable_entity }
-      end
+    @qaeod = Qaeod.find(params[:id])
+ 
+    if @qaeod.update(qaeod_params)
+      redirect_to @eod.user
+    else
+      render 'edit'
     end
   end
 
@@ -75,6 +77,10 @@ class EodsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def eod_params
-      params.require(:eod).permit(:date, :user_id)
+      params.require(:eod).permit!
+    end
+
+     def qaeod_params
+      params.require(:qaeod).permit!
     end
 end
