@@ -13,13 +13,21 @@
                 <input type="hidden" name="eod[date]" id="eod_date" value ="<%= day %>"/>
                 <input type="submit" name="commit" value= "<%= day %>" />
                 <% end %>
-          <%    else %> 
-                <td class="warning" > 
-                <%= form_for :eod, url: new_user_eod_path(@user) do |f| %>  
-                 <input type="hidden" name="eod[date]" id="eod_date" value ="<%= day %>"/>
-                <input type="submit" name="commit" value= "<%= day %>" />
-                <%    end %> 
-
+          <%    else days = (day - Date.today).to_i  %>
+                 <%    if   (days < -3) %> 
+                          <td class="error" > 
+                          <%= form_for :eod, url: new_user_eod_path(@user) do |f| %>  
+                           <input type="hidden" name="eod[date]" id="eod_date" value ="<%= day %>"/>
+                          <input type="submit" name="commit" value= "<%= day %>" />
+                          <% end %>
+                          <% else %>
+                          <td class="warning" > 
+                          <%= form_for :eod, url: new_user_eod_path(@user) do |f| %>  
+                           <input type="hidden" name="eod[date]" id="eod_date" value ="<%= day %>"/>
+                          <input type="submit" name="commit" value= "<%= day %>" />
+                          <% end %>
+                   <% end %> 
+             
           </td>
     <% end %>
          

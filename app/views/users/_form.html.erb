@@ -19,7 +19,12 @@
  
   <p>
     <%= f.label :role %><br>
-    <%= f.text_field :role %>
+      <select  name="user[role]" id="user_role">
+      <option value="volvo">QA</option>
+      <option value="saab">Admin</option>
+      <option value="fiat">Loc</option>
+      </select>
+
   </p>
     <%= f.submit %>
   </div>

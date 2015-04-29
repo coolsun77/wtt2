@@ -16,7 +16,6 @@ class EodsController < ApplicationController
   # GET /eods/new
   def new
     @edate = params[:eod][:date]
-
       if Eod.find_by(date: @edate, user_id: params[:id]) 
          @eod= Eod.find_by(date: @edate, user_id: params[:id]) 
          @user = @eod.user
