@@ -20,11 +20,14 @@ class EodsController < ApplicationController
          @eod= Eod.find_by(date: @edate, user_id: params[:id]) 
          @user = @eod.user
        #  @qaeod = Qaeod.find_by(eod_id: @eod.id)
-         render 'show'
+         render 'edit'
       else
       @user = User.find(params[:id])
       @eod = @user.eods.new(:user=>@user, :date =>@edate )
-      
+      6.times { @eod.qaeods.build}
+      6.times { @eod.loceods.build}
+#      self.create
+#@qaeod = @eod.new
     end
   end
 
@@ -40,7 +43,8 @@ class EodsController < ApplicationController
     @user = User.find(params[:user_id])
     @eod = @user.eods.create(eod_params)
   #  redirect_to user_eod_path(@user,@eod)
-    render 'show'
+ #   render 'show'
+    redirect_to @eod.user
 
 
   end
@@ -48,9 +52,9 @@ class EodsController < ApplicationController
   # PATCH/PUT /eods/1
   # PATCH/PUT /eods/1.json
   def update
-    @qaeod = Qaeod.find(params[:id])
+     @eod = Eod.find(params[:id])
  
-    if @qaeod.update(qaeod_params)
+    if @eod.update(eod_params)
       redirect_to @eod.user
     else
       render 'edit'

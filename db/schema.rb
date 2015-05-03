@@ -11,13 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150410061405) do
+ActiveRecord::Schema.define(version: 20150503172405) do
 
   create_table "eods", force: :cascade do |t|
     t.date     "date"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.boolean  "miss",       default: false
   end
 
   add_index "eods", ["user_id"], name: "index_eods_on_user_id"
@@ -27,6 +28,51 @@ ActiveRecord::Schema.define(version: 20150410061405) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "loceods", force: :cascade do |t|
+    t.integer  "eod_id"
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.decimal  "familiarization",      default: 0.0
+    t.decimal  "Review",               default: 0.0
+    t.decimal  "translation",          default: 0.0
+    t.decimal  "bugfix",               default: 0.0
+    t.decimal  "audioonsite",          default: 0.0
+    t.decimal  "audiodelivery",        default: 0.0
+    t.decimal  "N_Review",             default: 0.0
+    t.decimal  "N_translation",        default: 0.0
+    t.decimal  "N_bugfix",             default: 0.0
+    t.decimal  "polish",               default: 0.0
+    t.decimal  "Project_Management",   default: 0.0
+    t.decimal  "Other",                default: 0.0
+    t.decimal  "familiarization_H",    default: 0.0
+    t.decimal  "Review_H",             default: 0.0
+    t.decimal  "translation_H",        default: 0.0
+    t.decimal  "bugfix_H",             default: 0.0
+    t.decimal  "audiodelivery_H",      default: 0.0
+    t.decimal  "N_Review_H",           default: 0.0
+    t.decimal  "N_translation_H",      default: 0.0
+    t.decimal  "N_bugfix_H",           default: 0.0
+    t.decimal  "Project_Management_H", default: 0.0
+    t.decimal  "Other_H",              default: 0.0
+    t.string   "familiarization_N",    default: " "
+    t.string   "translation_N",        default: " "
+    t.string   "Review_N",             default: " "
+    t.string   "bugfix_N",             default: " "
+    t.string   "audiodelivery_N",      default: " "
+    t.string   "N_Review_N",           default: " "
+    t.string   "N_translation_N",      default: " "
+    t.string   "N_bugfix_N",           default: " "
+    t.decimal  "audioonsite_H",        default: 0.0
+    t.string   "audioonsite_N",        default: " "
+    t.decimal  "polish_H",             default: 0.0
+    t.string   "polish_N",             default: " "
+    t.string   "Project_Management_N", default: " "
+    t.string   "Other_N",              default: " "
+    t.integer  "game_id"
+  end
+
+  add_index "loceods", ["eod_id"], name: "index_loceods_on_eod_id"
 
   create_table "qaeods", force: :cascade do |t|
     t.integer  "eod_id"

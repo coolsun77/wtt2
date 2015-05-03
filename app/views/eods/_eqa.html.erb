@@ -1,26 +1,91 @@
-<%= form_for @eod, url: user_eod_path(@eod.user,@eod), method: :patch do |f| %>
- 
-  <% if @eod.errors.any? %>
-    <div id="error_explanation">
-      <h2>
-        <%= pluralize(@eod.errors.count, "error") %> prohibited
-        this eod from being saved:
-      </h2>
-      <ul>
-        <% @eod.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
- 
-  <p>
-    <%= f.label :date %><br>
-    <%= f.text_field :date %>
-  </p>
- 
-  <p>
-    <%= f.submit %>
-  </p>
- 
+<%= form_for @eod, url: user_eod_path(@eod.user, @eod), method: :patch do |e| %>
+  projects:
+<%  projects = ["WoW","SC2","HearthStone","OverWatch","Diablo3","Heroes"]  %>
+     <%  i=0  %>
+  <ul>
+    <%= e.fields_for :qaeods do |f| %>
+
+      <li>
+            <DIV style="cursor:hand" onclick="isHidden('<%= projects[i] %>')"><input type="checkbox" /><%= projects[i] %></DIV>
+<div class="container-fluid" id="<%= projects[i] %>" style="display:none">
+<table class="table table-bordered" contenteditable="true">
+  <thead>
+    <tr class="warning">
+      <th colspan="3" rowspan="1">QA</th>
+      <th>Hours</th>
+      <th colspan="2" style="width: 24%;" >Amount</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="warning">
+      <td rowspan="12"><span><%= projects[i] %><input type="hidden" name="eod[qaeods_attributes][0][game_id]" id="eod_qaeods_attributes_0_game_id" value=<%= projects[i] %> /></span></td>
+      <td rowspan="6"><span>In-game</span></td>
+      <td><span>Pre-testing</span></td>
+      <td><%= f.text_field :Pre_QA_H %></td>
+      <td colspan="2" style="text-align: center;"><%= f.text_field :Pre_QA %></td>
+    </tr>
+    <tr class="warning">
+      <td><span>Review</span></td>
+      <td><%= f.text_field :Review_H %></td>
+      <td colspan="2" style="text-align: center;"><%= f.text_field :Review %></td>
+    </tr>
+    <tr class="warning">
+      <td><span>Testing</span></td>
+      <td><%= f.text_field :QA_H %></td>
+      <td colspan="2" style="text-align: center;"><%= f.text_field :QA %></td>
+    </tr>
+    <tr class="warning">
+      <td rowspan="2"><span>Bug Management</span></td>
+      <td rowspan="2" style="vertical-align: middle;"><%= f.text_field :Bug_Management_H %></td>
+      <td>Report</td>
+      <td>Rtest</td>
+    </tr>
+    <tr class="warning">
+      <td style="width: 5%;"><%= f.text_field :Bug_Management_report %></td>
+      <td style="width: 5%;"><%= f.text_field :Bug_Management_retest %></td>
+    </tr>
+    <tr class="warning">
+      <td><span>Audio Testing</span></td>
+      <td><%= f.text_field :Audio_QA_H %></td>
+      <td colspan="2" style="text-align: center;"><%= f.text_field :Audio_QA %></td>
+    </tr>
+    <tr class="warning">
+      <td rowspan="4"><span>Non-game</span></td>
+      <td><span>Review</span></td>
+      <td><%= f.text_field :N_Review_H %></td>
+      <td colspan="2" style="text-align: center;"><%= f.text_field :N_Review %></td>
+    </tr>
+    <tr class="warning">
+      <td><span>Testing</span></td>
+      <td><%= f.text_field :N_QA_H %></td>
+      <td colspan="2" style="text-align: center;"><%= f.text_field :N_QA %></td>
+    </tr>
+    <tr class="warning">
+      <td rowspan="2"><span>Bug Management</span></td>
+      <td rowspan="2" style="vertical-align: middle;"><%= f.text_field :N_Bug_Management_H %></td>
+      <td>Report</td>
+      <td>Rtest</td>
+    </tr>
+    <tr class="warning">
+      <td style="width: 5%;"><%= f.text_field :N_Bug_Management_report %></td>
+      <td style="width: 5%;"><%= f.text_field :N_Bug_Management_retest %></td>
+    </tr>
+    <tr class="warning">
+      <td colspan="2"><span>Project Management</span></td>
+      <td><%= f.text_field :Project_Management_H %></td>
+      <td colspan="2" style="text-align: center;"><%= f.text_field :Project_Management %></td>
+    </tr>
+    <tr class="warning">
+      <td colspan="2"><span>Other</span></td>
+      <td><%= f.text_field :Other_H %></td>
+      <td colspan="2" style="text-align: center;"><%= f.text_field :Other %></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+ <% i = i + 1 %>
+      </li>
+    <% end %>
+  </ul>
+   <%= e.submit %>
 <% end %>

@@ -1,11 +1,36 @@
-<%= form_for @eod, url: user_eod_path(@eod.user, @eod), method: :patch do |e| %>
-  projects:
+<%= form_for ([@user,@eod]) do |e| %>
+<% if @eod.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@eod.errors.count, "error") %> prohibited
+        this eod from being saved:
+      </h2>
+      <ul>
+        <% @eod.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+<input type="hidden" name="eod[date]" id="eod_date" value=<%= @eod.date %>> 
+<% mdays = (@eod.date - Date.today).to_i  %>
+<%    if   (mdays < -3) %> 
+<input type="hidden" name="eod[miss]" id="eod_miss" value=1> 
+<%  else %> 
+<input type="hidden" name="eod[miss]" id="eod_miss" value=0> 
+<% end %> 
+
+
+
+ projects:
 <%  projects = ["WoW","SC2","HearthStone","OverWatch","Diablo3","Heroes"]  %>
      <%  i=0  %>
   <ul>
     <%= e.fields_for :loceods do |f| %>
 
-          <li>
+      <li>
 
  <DIV style="cursor:hand" onclick="isHidden('<%= projects[i] %>')"><input type="checkbox" /><%= projects[i] %></DIV>
 <div class="container-fluid" id="<%= projects[i] %>" style="display:none">

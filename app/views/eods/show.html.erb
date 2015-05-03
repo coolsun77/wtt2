@@ -39,7 +39,9 @@
 
 <%= render @eod.qaeods %>
 
-<h2>Add a project:</h2>
+<h2>Add wow:</h2>
+<%= render 'qaeods/form' %>
+<h2>Add SC2:</h2>
 <%= render 'qaeods/form' %>
 
 <%= link_to 'Edit', edit_user_eod_path(@eod.user,@eod) %>

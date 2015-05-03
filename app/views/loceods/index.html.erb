@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Loceods</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Eod</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @loceods.each do |loceod| %>
+      <tr>
+        <td><%= loceod.eod %></td>
+        <td><%= link_to 'Show', loceod %></td>
+        <td><%= link_to 'Edit', edit_loceod_path(loceod) %></td>
+        <td><%= link_to 'Destroy', loceod, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Loceod', new_loceod_path %>

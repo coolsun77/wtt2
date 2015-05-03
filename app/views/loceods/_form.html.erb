@@ -1,0 +1,21 @@
+<%= form_for(@loceod) do |f| %>
+  <% if @loceod.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@loceod.errors.count, "error") %> prohibited this loceod from being saved:</h2>
+
+      <ul>
+      <% @loceod.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :eod_id %><br>
+    <%= f.text_field :eod_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -26,7 +26,8 @@
    <body>
       <script src="https://code.jquery.com/jquery.js"></script>
       
-
+  <div class="container">
+   <div class="row">
 <h1>New Eod</h1>
 
     
@@ -37,6 +38,8 @@
    <% if @user.role == "Loc" %>
         <%= render 'loc' %> 
    <% end %>
+
+
 
 
 <%= link_to 'Back', users_path %>

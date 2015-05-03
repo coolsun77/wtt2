@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
+  resources :loceods
+
 post 'users/login/' => 'users#login' , as: :login
   resources :games
  
   resources :users do
     resources :eods do
        resources :qaeods
+       resources :loceods
     end
   end
 
