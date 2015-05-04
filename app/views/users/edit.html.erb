@@ -23,7 +23,11 @@
  
   <p>
     <%= f.label :role %><br>
-    <%= f.text_area :role %>
+      <select  name="user[role]" id="user_role">
+      <option value="QA">QA</option>
+      <option value="Admin">Admin</option>
+      <option value="Loc">Loc</option>
+      </select>
   </p>
  
   <p>

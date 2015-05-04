@@ -1,0 +1,77 @@
+  <%
+ 		wowqatime = Qaeod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 1).sum("Pre_QA_H") + Qaeod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 1).sum("Review_H") +  Qaeod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 1).sum("QA_H") +  Qaeod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 1).sum("Bug_Management_H") + Qaeod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 1).sum("Audio_QA_H") + Qaeod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 1).sum("N_Review_H") +  Qaeod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 1).sum("N_QA_H") +  Qaeod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 1).sum("N_Bug_Management_H") +  Qaeod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 1).sum("Project_Management_H") +  Qaeod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 1).sum("Other_H")
+		wowloctime = Loceod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 1).sum("familiarization_H") + Loceod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 1).sum("Review_H") + Loceod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 1).sum("translation_H") + Loceod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 1).sum("bugfix_H") + Loceod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 1).sum("audiodelivery_H") + Loceod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 1).sum("N_Review_H") + Loceod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 1).sum("N_translation_H") + Loceod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 1).sum("N_bugfix_H") + Loceod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 1).sum("Project_Management_H") + Loceod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 1).sum("Other_H")
+		wowtime = wowqatime + wowloctime
+
+		sc2qatime = Qaeod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 2).sum("Pre_QA_H") + Qaeod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 2).sum("Review_H") +  Qaeod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 2).sum("QA_H") +  Qaeod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 2).sum("Bug_Management_H") + Qaeod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 2).sum("Audio_QA_H") + Qaeod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 2).sum("N_Review_H") +  Qaeod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 2).sum("N_QA_H") +  Qaeod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 2).sum("N_Bug_Management_H") +  Qaeod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 2).sum("Project_Management_H") +  Qaeod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 2).sum("Other_H")
+		sc2loctime = Loceod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 2).sum("familiarization_H") + Loceod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 2).sum("Review_H") + Loceod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 2).sum("translation_H") + Loceod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 2).sum("bugfix_H") + Loceod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 2).sum("audiodelivery_H") + Loceod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 2).sum("N_Review_H") + Loceod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 2).sum("N_translation_H") + Loceod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 2).sum("N_bugfix_H") + Loceod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 2).sum("Project_Management_H") + Loceod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 2).sum("Other_H")
+		sc2time = sc2qatime + sc2loctime
+
+		hsqatime = Qaeod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 3).sum("Pre_QA_H") + Qaeod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 3).sum("Review_H") +  Qaeod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 3).sum("QA_H") +  Qaeod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 3).sum("Bug_Management_H") + Qaeod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 3).sum("Audio_QA_H") + Qaeod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 3).sum("N_Review_H") +  Qaeod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 3).sum("N_QA_H") +  Qaeod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 3).sum("N_Bug_Management_H") +  Qaeod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 3).sum("Project_Management_H") +  Qaeod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 3).sum("Other_H")
+		hsloctime = Loceod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 3).sum("familiarization_H") + Loceod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 3).sum("Review_H") + Loceod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 3).sum("translation_H") + Loceod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 3).sum("bugfix_H") + Loceod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 3).sum("audiodelivery_H") + Loceod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 3).sum("N_Review_H") + Loceod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 3).sum("N_translation_H") + Loceod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 3).sum("N_bugfix_H") + Loceod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 3).sum("Project_Management_H") + Loceod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 3).sum("Other_H")
+		hstime = hsqatime + hsloctime
+
+		owqatime = Qaeod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 4).sum("Pre_QA_H") + Qaeod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 4).sum("Review_H") +  Qaeod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 4).sum("QA_H") +  Qaeod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 4).sum("Bug_Management_H") + Qaeod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 4).sum("Audio_QA_H") + Qaeod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 4).sum("N_Review_H") +  Qaeod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 4).sum("N_QA_H") +  Qaeod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 4).sum("N_Bug_Management_H") +  Qaeod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 4).sum("Project_Management_H") +  Qaeod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 4).sum("Other_H")
+		owloctime = Loceod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 4).sum("familiarization_H") + Loceod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 4).sum("Review_H") + Loceod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 4).sum("translation_H") + Loceod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 4).sum("bugfix_H") + Loceod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 4).sum("audiodelivery_H") + Loceod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 4).sum("N_Review_H") + Loceod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 4).sum("N_translation_H") + Loceod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 4).sum("N_bugfix_H") + Loceod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 4).sum("Project_Management_H") + Loceod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 4).sum("Other_H")
+		owtime = owqatime + owloctime
+
+		d3qatime = Qaeod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 5).sum("Pre_QA_H") + Qaeod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 5).sum("Review_H") +  Qaeod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 5).sum("QA_H") +  Qaeod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 5).sum("Bug_Management_H") + Qaeod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 5).sum("Audio_QA_H") + Qaeod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 5).sum("N_Review_H") +  Qaeod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 5).sum("N_QA_H") +  Qaeod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 5).sum("N_Bug_Management_H") +  Qaeod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 5).sum("Project_Management_H") +  Qaeod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 5).sum("Other_H")
+		d3loctime = Loceod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 5).sum("familiarization_H") + Loceod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 5).sum("Review_H") + Loceod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 5).sum("translation_H") + Loceod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 5).sum("bugfix_H") + Loceod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 5).sum("audiodelivery_H") + Loceod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 5).sum("N_Review_H") + Loceod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 5).sum("N_translation_H") + Loceod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 5).sum("N_bugfix_H") + Loceod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 5).sum("Project_Management_H") + Loceod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 5).sum("Other_H")
+		d3time = d3qatime + d3loctime
+
+
+		heroqatime = Qaeod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 6).sum("Pre_QA_H") + Qaeod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 6).sum("Review_H") +  Qaeod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 6).sum("QA_H") +  Qaeod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 6).sum("Bug_Management_H") + Qaeod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 6).sum("Audio_QA_H") + Qaeod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 6).sum("N_Review_H") +  Qaeod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 6).sum("N_QA_H") +  Qaeod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 6).sum("N_Bug_Management_H") +  Qaeod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 6).sum("Project_Management_H") +  Qaeod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 6).sum("Other_H")
+		heroloctime = Loceod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 6).sum("familiarization_H") + Loceod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 6).sum("Review_H") + Loceod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 6).sum("translation_H") + Loceod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 6).sum("bugfix_H") + Loceod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 6).sum("audiodelivery_H") + Loceod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 6).sum("N_Review_H") + Loceod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 6).sum("N_translation_H") + Loceod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 6).sum("N_bugfix_H") + Loceod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 6).sum("Project_Management_H") + Loceod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 6).sum("Other_H")
+		herotime = heroqatime + heroloctime
+
+
+
+
+
+   %>
+
+   
+
+<table class="table" contenteditable="true">
+	<tbody>
+		<tr class="info">
+			<td>WoW</td>
+			<td>Hearthstone</td>
+			<td>SCII</td>
+			<td>heros</td>
+			<td>DIII</td>
+			<td>Overwatch</td>
+		</tr>
+		<tr>
+			<td><%= wowtime %></td>
+			<td><%= hstime %></td>
+			<td><%= sc2time %></td>
+			<td><%= herotime %></td>
+			<td><%= d3time %></td>
+			<td><%= owtime %></td>
+		</tr>
+	</tbody>
+</table>
+
+ <table>
+ <% @users = User.all %>
+
+
+ <% @users.each do |user| %>
+    <tr>
+      <td><%= user.name %></td>
+      <td><%= user.role %></td>
+      <td><%= link_to 'Show', user_path(user) %></td>
+      <td><%= link_to 'Edit', edit_user_path(user) %></td>
+    </tr>
+  <% end %>
+  </table>
+
+
+
+
+
+
+
+
+

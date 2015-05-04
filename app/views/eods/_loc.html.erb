@@ -53,7 +53,7 @@
             </thead>
             <tbody>
                <tr class="warning">
-                  <td rowspan="12"><span><%= projects[i] %><input type="hidden" name="eod[qaeods_attributes][0][game_id]" id="eod_qaeods_attributes_0_game_id" value=<%= projects[i] %> /></span></td>
+                  <td rowspan="12"><span><%= projects[i] %><input type="hidden" name="eod[loceods_attributes][<%=i%>][game_id]" id="eod_loceods_attributes_<%=i%>_game_id" value=<%=i+1%> /></span></td>
                   <td rowspan="7">
                      In-game
                   </td>
