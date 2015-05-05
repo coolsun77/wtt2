@@ -25,12 +25,61 @@
 
 
  projects:
-<%  projects = ["WoW","SC2","HearthStone","OverWatch","Diablo3","Heroes"]  %>
+<%  projects = ["Web","WoW","SC2","HearthStone","OverWatch","Diablo3","Heroes"]  %>
      <%  i=0  %>
   <ul>
     <%= e.fields_for :loceods do |f| %>
 
       <li>
+
+          <% if i == 0 %>
+           <DIV style="cursor:hand" onclick="isHidden('<%= projects[i] %>')"><input type="checkbox" /><%= projects[i] %></DIV>
+<div class="container-fluid" id="<%= projects[i] %>" style="display:none">
+ <table class="table table-hover table-striped">
+   <thead>
+      <tr class="warning">
+         <th colspan="2" rowspan="1">Loc</th>
+         <th>Hours</th>
+         <th colspan="2">Amount</th>
+         <th>Notes</th>
+      </tr>
+   </thead>
+   <tbody>
+      <tr class="warning">
+         <td rowspan="5"><span>Web<input id="eod_loceods_attributes_<%=i%>_game_id" name="eod[loceods_attributes][<%=i%>][game_id]" type="hidden" value=0 ></span></td>
+         <td>Familiarization</td>
+         <td><%= f.text_field :familiarization_H %></td>
+         <td colspan="2"><%= f.text_field :familiarization %></td>
+         <td><%= f.text_field :familiarization_N %></td>
+      </tr>
+      <tr class="warning">
+         <td>Review</td>
+         <td><%= f.text_field :Review_H %></td>
+         <td colspan="2"><%= f.text_field :Review %></td>
+         <td><%= f.text_field :Review_N %></td>
+      </tr>
+      <tr class="warning">
+         <td>Translation</td>
+         <td><%= f.text_field :translation_H %></td>
+         <td colspan="2"><%= f.text_field :translation %></td>
+         <td><%= f.text_field :translation_N %></td>
+      </tr>
+      <tr class="warning">
+         <td>Bug-fixing</td>
+         <td><%= f.text_field :bugfix_H %></td>
+         <td colspan="2"><%= f.text_field :bugfix %></td>
+         <td><%= f.text_field :bugfix_N %></td>
+      </tr>
+      <tr class="warning">
+         <td colspan="1">Project Management</td>
+         <td><%= f.text_field :Project_Management_H %></td>
+         <td colspan="2"><%= f.text_field :Project_Management %></td>
+         <td><%= f.text_field :Project_Management_N %></td>
+      </tr>
+   </tbody>
+</table>
+
+            <% else %>
 
  <DIV style="cursor:hand" onclick="isHidden('<%= projects[i] %>')"><input type="checkbox" /><%= projects[i] %></DIV>
 <div class="container-fluid" id="<%= projects[i] %>" style="display:none">
@@ -53,7 +102,7 @@
             </thead>
             <tbody>
                <tr class="warning">
-                  <td rowspan="12"><span><%= projects[i] %><input type="hidden" name="eod[loceods_attributes][<%=i%>][game_id]" id="eod_loceods_attributes_<%=i%>_game_id" value=<%=i+1%> /></span></td>
+                  <td rowspan="12"><span><%= projects[i] %><input type="hidden" name="eod[loceods_attributes][<%=i%>][game_id]" id="eod_loceods_attributes_<%=i%>_game_id" value=<%=i%> /></span></td>
                   <td rowspan="7">
                      In-game
                   </td>
@@ -229,6 +278,9 @@
                </tr>
             </tbody>
          </table>
+
+
+   <% end %>
       </div>
    <% i = i + 1 %>
       </li>
