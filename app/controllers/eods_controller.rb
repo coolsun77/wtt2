@@ -24,8 +24,8 @@ class EodsController < ApplicationController
       else
       @user = User.find(params[:id])
       @eod = @user.eods.new(:user=>@user, :date =>@edate )
-      7.times { @eod.qaeods.build}
-      7.times { @eod.loceods.build}
+      9.times { @eod.qaeods.build}
+      9.times { @eod.loceods.build}
 #      self.create
 #@qaeod = @eod.new
     end

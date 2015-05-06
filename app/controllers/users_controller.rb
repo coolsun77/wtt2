@@ -8,7 +8,7 @@ class UsersController < ApplicationController
        if session[:user_name] 
           if @user = User.find_by(name: session[:user_name] ) 
             redirect_to @user
-          else render plain: "请联系ps管理员".inspect
+          else render plain: "your login is session[:user_name],please contact system admin".inspect
           end
         else 
         self.win_sso  

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150503172405) do
+ActiveRecord::Schema.define(version: 20150506085045) do
 
   create_table "eods", force: :cascade do |t|
     t.date     "date"
@@ -70,6 +70,22 @@ ActiveRecord::Schema.define(version: 20150503172405) do
     t.string   "Project_Management_N", default: " "
     t.string   "Other_N",              default: " "
     t.integer  "game_id"
+    t.decimal  "mis_meeting",          default: 0.0
+    t.decimal  "mis_training",         default: 0.0
+    t.decimal  "mis_others",           default: 0.0
+    t.decimal  "ab_sickleave",         default: 0.0
+    t.decimal  "ab_shiftleave",        default: 0.0
+    t.decimal  "ab_annualleave",       default: 0.0
+    t.decimal  "ab_holiday",           default: 0.0
+    t.decimal  "ab_others",            default: 0.0
+    t.string   "mis_meeting_N",        default: " "
+    t.string   "mis_training_N",       default: " "
+    t.string   "mis_others_N",         default: " "
+    t.string   "ab_sickleave_N",       default: " "
+    t.string   "ab_shiftleave_N",      default: " "
+    t.string   "ab_annualleave_N",     default: " "
+    t.string   "ab_holiday_N",         default: " "
+    t.string   "ab_others_N",          default: " "
   end
 
   add_index "loceods", ["eod_id"], name: "index_loceods_on_eod_id"
@@ -111,6 +127,22 @@ ActiveRecord::Schema.define(version: 20150503172405) do
     t.string   "Project_Management_N",    default: " "
     t.string   "Other_N",                 default: " "
     t.integer  "game_id"
+    t.decimal  "mis_meeting",             default: 0.0
+    t.decimal  "mis_training",            default: 0.0
+    t.decimal  "mis_others",              default: 0.0
+    t.decimal  "ab_sickleave",            default: 0.0
+    t.decimal  "ab_shiftleave",           default: 0.0
+    t.decimal  "ab_annualleave",          default: 0.0
+    t.decimal  "ab_holiday",              default: 0.0
+    t.decimal  "ab_others",               default: 0.0
+    t.string   "mis_meeting_N",           default: " "
+    t.string   "mis_training_N",          default: " "
+    t.string   "mis_others_N",            default: " "
+    t.string   "ab_sickleave_N",          default: " "
+    t.string   "ab_shiftleave_N",         default: " "
+    t.string   "ab_annualleave_N",        default: " "
+    t.string   "ab_holiday_N",            default: " "
+    t.string   "ab_others_N",             default: " "
   end
 
   add_index "qaeods", ["eod_id"], name: "index_qaeods_on_eod_id"
