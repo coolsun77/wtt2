@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150506085045) do
+ActiveRecord::Schema.define(version: 20150507094719) do
 
   create_table "eods", force: :cascade do |t|
     t.date     "date"
@@ -86,6 +86,12 @@ ActiveRecord::Schema.define(version: 20150506085045) do
     t.string   "ab_annualleave_N",     default: " "
     t.string   "ab_holiday_N",         default: " "
     t.string   "ab_others_N",          default: " "
+    t.decimal  "vpp",                  default: 0.0
+    t.decimal  "vpp_H",                default: 0.0
+    t.decimal  "N_vpp",                default: 0.0
+    t.decimal  "N_vpp_H",              default: 0.0
+    t.string   "vpp_N",                default: " "
+    t.string   "N_vpp_N",              default: " "
   end
 
   add_index "loceods", ["eod_id"], name: "index_loceods_on_eod_id"
@@ -143,6 +149,28 @@ ActiveRecord::Schema.define(version: 20150506085045) do
     t.string   "ab_annualleave_N",        default: " "
     t.string   "ab_holiday_N",            default: " "
     t.string   "ab_others_N",             default: " "
+    t.decimal  "vpp",                     default: 0.0
+    t.decimal  "vpp_H",                   default: 0.0
+    t.decimal  "N_vpp",                   default: 0.0
+    t.decimal  "N_vpp_H",                 default: 0.0
+    t.decimal  "bug_audio",               default: 0.0
+    t.decimal  "bug_text",                default: 0.0
+    t.decimal  "bug_fastfix",             default: 0.0
+    t.decimal  "bug_functional",          default: 0.0
+    t.string   "vpp_N",                   default: " "
+    t.string   "N_vpp_N",                 default: " "
+    t.decimal  "bug_audio_N"
+    t.decimal  "bug_text_N"
+    t.decimal  "bug_fastfix_N"
+    t.decimal  "bug_functional_N"
+    t.decimal  "N_bug_audio",             default: 0.0
+    t.decimal  "N_bug_text",              default: 0.0
+    t.decimal  "N_bug_fastfix",           default: 0.0
+    t.decimal  "N_bug_functional",        default: 0.0
+    t.decimal  "N_bug_audio_N"
+    t.decimal  "N_bug_text_N"
+    t.decimal  "N_bug_fastfix_N"
+    t.decimal  "N_bug_functional_N"
   end
 
   add_index "qaeods", ["eod_id"], name: "index_qaeods_on_eod_id"
