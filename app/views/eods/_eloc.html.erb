@@ -1,12 +1,15 @@
 <%= form_for @eod, url: user_eod_path(@eod.user, @eod), method: :patch do |e| %>
   projects:
-<%  projects = ["Web","WoW","SC2","HearthStone","OverWatch","Diablo3","Heroes"]  %>
+projects:
+<%  projects = ["web","WoW","SC2","HearthStone","OverWatch","Diablo3","Heroes","Miscellaneous","Absence"]  %>
      <%  i=0  %>
   <ul>
     <%= e.fields_for :loceods do |f| %>
 
-          <li>
-<% if i == 0 %>
+      <li>
+
+          <% case i %>
+            <% when 0 %>
            <DIV style="cursor:hand" onclick="isHidden('<%= projects[i] %>')"><input type="checkbox" /><%= projects[i] %></DIV>
 <div class="container-fluid" id="<%= projects[i] %>" style="display:none">
  <table class="table table-hover table-striped">
@@ -52,6 +55,68 @@
       </tr>
    </tbody>
 </table>
+
+      <% when 7 %>
+   <DIV style="cursor:hand" onclick="isHidden('<%= projects[i] %>')"><input type="checkbox" /><%= projects[i] %></DIV>
+         <div class="container-fluid" id="<%= projects[i] %>" style="display:none">
+      <table class="table table-bordered" contenteditable="true">
+         <thead>
+            <tr class="warning">
+               <th colspan="2" rowspan="1"><span style="font-weight: normal;">QA</span></th>
+               <th><span style="font-weight: normal;">Hours</span></th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr class="warning">
+               <td rowspan="3"><%=projects[i]%><span><input id="eod_qaeods_attributes_<%=i%>_game_id" name="eod[qaeods_attributes][<%=i%>][game_id]" type="hidden" value="<%=i%>" /></span></td>
+               <td>Meeting</td>
+               <td><%= f.text_field :mis_meeting%></td>
+            </tr>
+            <tr class="warning">
+               <td>Training</td>
+               <td><%= f.text_field :mis_training%></td>
+            </tr>
+            <tr class="warning">
+               <td>Others</td>
+               <td><%= f.text_field :mis_others%></td>
+            </tr>
+         </tbody>
+      </table>
+                           
+   <% when 8 %>
+    <DIV style="cursor:hand" onclick="isHidden('<%= projects[i] %>')"><input type="checkbox" /><%= projects[i] %></DIV>
+      <div class="container-fluid" id="<%= projects[i] %>" style="display:none">
+      <table class="table table-bordered" contenteditable="true">
+            <thead>
+               <tr class="warning">
+                  <th colspan="2" rowspan="1"><span style="font-weight: normal;">QA</span></th>
+                  <th><span style="font-weight: normal;">Hours</span></th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr class="warning">
+                  <td colspan="1" rowspan="5"><%=projects[i]%><span><input id="eod_qaeods_attributes_<%=i%>_game_id" name="eod[qaeods_attributes][<%=i%>][game_id]" type="hidden" value="<%=i%>" /></span></td>
+                  <td>Sick Leave</td>
+                  <td><%= f.text_field :ab_sickleave%></td>
+               </tr>
+               <tr class="warning">
+                  <td>Shift Leave</td>
+                  <td><%= f.text_field :ab_shiftleave%></td>
+               </tr>
+               <tr class="warning">
+                  <td>Annual Leave</td>
+                  <td><%= f.text_field :ab_annualleave%></td>
+               </tr>
+               <tr class="warning">
+                  <td>Holiday</td>
+                  <td><%= f.text_field :ab_holiday%></td>
+               </tr>
+               <tr class="warning">
+                  <td>Others</td>
+                  <td><%= f.text_field :ab_others%></td>
+               </tr>
+            </tbody>
+         </table>
 
             <% else %>
  <DIV style="cursor:hand" onclick="isHidden('<%= projects[i] %>')"><input type="checkbox" /><%= projects[i] %></DIV>

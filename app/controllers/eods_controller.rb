@@ -35,6 +35,8 @@ class EodsController < ApplicationController
   def edit
      @user = User.find(params[:user_id])
      @eod = Eod.find_by(params[:id]) 
+     9.times { @eod.qaeods.build}
+      9.times { @eod.loceods.build}
   end
 
   # POST /eods
