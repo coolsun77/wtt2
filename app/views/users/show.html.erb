@@ -26,13 +26,17 @@
 
   <% else %>
 
-<%= form_for :eod, url: new_user_eod_path(@user) do |f| %>   
-
-
-<input type="Date" name="eod[date]" id="eod_date" value="<%= Date.today %>"/>
-<input type="submit" name="commit" value="Try Eod" />
-<%= render 'calender' %>
+<%= form_for :eod, url: user_path(@user) do |f| %>
+  <select  name="smonth" id="smonth">
+      <option value="03">March</option>
+      <option value="04">April</option>
+      <option value="05">May</option>
+      </select>
+<input type="submit" name="commit" value="Change Month" />
 <% end %>
+
+<%= render 'calender' %>
+
 <% end %>
  
 

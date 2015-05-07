@@ -86,13 +86,13 @@
       <table class="table table-bordered" contenteditable="true">
          <thead>
             <tr class="warning">
-               <th colspan="2" rowspan="1"><span style="font-weight: normal;">QA</span></th>
+               <th colspan="2" rowspan="1"><span style="font-weight: normal;">Loc</span></th>
                <th><span style="font-weight: normal;">Hours</span></th>
             </tr>
          </thead>
          <tbody>
             <tr class="warning">
-               <td rowspan="3"><%=projects[i]%><span><input id="eod_qaeods_attributes_<%=i%>_game_id" name="eod[qaeods_attributes][<%=i%>][game_id]" type="hidden" value="<%=i%>" /></span></td>
+               <td rowspan="3"><%=projects[i]%><span><input id="eod_loceods_attributes_<%=i%>_game_id" name="eod[loceods_attributes][<%=i%>][game_id]" type="hidden" value="<%=i%>" /></span></td>
                <td>Meeting</td>
                <td><%= f.text_field :mis_meeting%></td>
             </tr>
@@ -113,13 +113,13 @@
       <table class="table table-bordered" contenteditable="true">
             <thead>
                <tr class="warning">
-                  <th colspan="2" rowspan="1"><span style="font-weight: normal;">QA</span></th>
+                  <th colspan="2" rowspan="1"><span style="font-weight: normal;">Loc</span></th>
                   <th><span style="font-weight: normal;">Hours</span></th>
                </tr>
             </thead>
             <tbody>
                <tr class="warning">
-                  <td colspan="1" rowspan="5"><%=projects[i]%><span><input id="eod_qaeods_attributes_<%=i%>_game_id" name="eod[qaeods_attributes][<%=i%>][game_id]" type="hidden" value="<%=i%>" /></span></td>
+                  <td colspan="1" rowspan="5"><%=projects[i]%><span><input id="eod_loceods_attributes_<%=i%>_game_id" name="eod[loceods_attributes][<%=i%>][game_id]" type="hidden" value="<%=i%>" /></span></td>
                   <td>Sick Leave</td>
                   <td><%= f.text_field :ab_sickleave%></td>
                </tr>

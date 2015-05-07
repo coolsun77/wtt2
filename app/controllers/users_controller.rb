@@ -18,20 +18,19 @@ class UsersController < ApplicationController
 
   # GET /users/1
   # GET /users/1.json
-  def show
+  def show 
     @user = User.find(params[:id])  
-    @month = (Date.today.beginning_of_month.beginning_of_week..Date.today.end_of_month.end_of_week)
-      @daysD = []
-      @daysU = []
+    smonth = params[:smonth]
+    if smonth
+      sdate = "2015/" + smonth.to_s + "/01"
+      sdate = sdate.to_date
+    else 
+    sdate = Date.today
+    end
+    @month = (sdate.beginning_of_month.beginning_of_week..sdate.end_of_month.end_of_week)
+      
 
-      @month.each do |day|
-        @eod = Eod.find_by(Date: day) 
-        if @eod
-          @daysD << day
-        else
-            @daysU << day
-        end
-      end
+
   end
 
   # GET /users/new

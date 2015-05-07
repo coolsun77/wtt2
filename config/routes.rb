@@ -15,6 +15,7 @@ post 'users/login/' => 'users#login' , as: :login
 
   post 'users/:id/eods/new/' => 'eods#new' , as: :new
   post 'users/:user_id/eods/:eod_id/qaeods/new' => 'qaeods#new' , as: :newqaeod
+  post '/users/:id' => 'users#show' , as: :showuser
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
