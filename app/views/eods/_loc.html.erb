@@ -35,112 +35,124 @@
           <% case i %>
             <% when 0 %>
            <DIV style="cursor:hand" onclick="isHidden('<%= projects[i] %>')"><input type="checkbox" /><%= projects[i] %></DIV>
-<div class="container-fluid" id="<%= projects[i] %>" style="display:none">
- <table class="table table-hover table-striped">
-   <thead>
-      <tr class="warning">
-         <th colspan="2" rowspan="1">Loc</th>
-         <th>Hours</th>
-         <th colspan="2">Amount</th>
-         <th>Notes</th>
-      </tr>
-   </thead>
-   <tbody>
-      <tr class="warning">
-         <td rowspan="5"><span>Web<input id="eod_loceods_attributes_<%=i%>_game_id" name="eod[loceods_attributes][<%=i%>][game_id]" type="hidden" value=0 ></span></td>
-         <td>Familiarization</td>
-         <td><%= f.text_field :familiarization_H %></td>
-         <td colspan="2"><%= f.text_field :familiarization %></td>
-         <td><%= f.text_field :familiarization_N %></td>
-      </tr>
-      <tr class="warning">
-         <td>Review</td>
-         <td><%= f.text_field :Review_H %></td>
-         <td colspan="2"><%= f.text_field :Review %></td>
-         <td><%= f.text_field :Review_N %></td>
-      </tr>
-      <tr class="warning">
-         <td>Translation</td>
-         <td><%= f.text_field :translation_H %></td>
-         <td colspan="2"><%= f.text_field :translation %></td>
-         <td><%= f.text_field :translation_N %></td>
-      </tr>
-      <tr class="warning">
-         <td>Bug-fixing</td>
-         <td><%= f.text_field :bugfix_H %></td>
-         <td colspan="2"><%= f.text_field :bugfix %></td>
-         <td><%= f.text_field :bugfix_N %></td>
-      </tr>
-      <tr class="warning">
-         <td colspan="1">Project Management</td>
-         <td><%= f.text_field :Project_Management_H %></td>
-         <td colspan="2"><%= f.text_field :Project_Management %></td>
-         <td><%= f.text_field :Project_Management_N %></td>
-      </tr>
-   </tbody>
-</table>
+               <div class="container-fluid" id="<%= projects[i] %>" style="display:none">
+               <table class="table table-hover table-striped">
+                  <thead>
+                     <tr class="warning">
+                        <th colspan="2" rowspan="1">Loc</th>
+                        <th>Hours</th>
+                        <th colspan="2">Amount</th>
+                        <th>Notes</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr class="warning">
+                        <td rowspan="5"><span>Web<input id="eod_loceods_attributes_<%=i%>_game_id" name="eod[loceods_attributes][<%=i%>][game_id]" type="hidden" value=0 ></span></td>
+                        <td>Familiarization</td>
+                        <td><%= f.text_field :familiarization_H %></td>
+                        <td colspan="2"><%= f.text_field :familiarization %></td>
+                        <td><%= f.text_field :familiarization_N %></td>
+                     </tr>
+                     <tr class="warning">
+                        <td>Review</td>
+                        <td><%= f.text_field :Review_H %></td>
+                        <td colspan="2"><%= f.text_field :Review %></td>
+                        <td><%= f.text_field :Review_N %></td>
+                     </tr>
+                     <tr class="warning">
+                        <td>Translation</td>
+                        <td><%= f.text_field :translation_H %></td>
+                        <td colspan="2"><%= f.text_field :translation %></td>
+                        <td><%= f.text_field :translation_N %></td>
+                     </tr>
+                     <tr class="warning">
+                        <td>Bug-fixing</td>
+                        <td><%= f.text_field :bugfix_H %></td>
+                        <td colspan="2"><%= f.text_field :bugfix %></td>
+                        <td><%= f.text_field :bugfix_N %></td>
+                     </tr>
+                     <tr class="warning">
+                        <td colspan="1">Project Management</td>
+                        <td><%= f.text_field :Project_Management_H %></td>
+                        <td colspan="2"><%= f.text_field :Project_Management %></td>
+                        <td><%= f.text_field :Project_Management_N %></td>
+                     </tr>
+                  </tbody>
+               </table>
 
       <% when 7 %>
    <DIV style="cursor:hand" onclick="isHidden('<%= projects[i] %>')"><input type="checkbox" /><%= projects[i] %></DIV>
          <div class="container-fluid" id="<%= projects[i] %>" style="display:none">
-      <table class="table table-bordered" contenteditable="true">
-         <thead>
-            <tr class="warning">
-               <th colspan="2" rowspan="1"><span style="font-weight: normal;">Loc</span></th>
-               <th><span style="font-weight: normal;">Hours</span></th>
-            </tr>
-         </thead>
-         <tbody>
-            <tr class="warning">
-               <td rowspan="3"><%=projects[i]%><span><input id="eod_loceods_attributes_<%=i%>_game_id" name="eod[loceods_attributes][<%=i%>][game_id]" type="hidden" value="<%=i%>" /></span></td>
-               <td>Meeting</td>
-               <td><%= f.text_field :mis_meeting%></td>
-            </tr>
-            <tr class="warning">
-               <td>Training</td>
-               <td><%= f.text_field :mis_training%></td>
-            </tr>
-            <tr class="warning">
-               <td>Others</td>
-               <td><%= f.text_field :mis_others%></td>
-            </tr>
-         </tbody>
-      </table>
+              <table class="table table-bordered" contenteditable="true">
+            <thead>
+               <tr class="warning">
+                  <th colspan="2" rowspan="1"><span style="font-weight: normal;">Loc</span></th>
+                  <th><span style="font-weight: normal;">Hours</span></th>
+                  <th><span style="font-weight: normal;">Notes</span></th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr class="warning">
+                  <td rowspan="3"><%=projects[i]%><span><input id="eod_loceods_attributes_<%=i%>_game_id" name="eod[loceods_attributes][<%=i%>][game_id]" type="hidden" value="<%=i%>" /></span></td>
+                  <td>Meeting</td>
+                  <td><%= f.text_field :mis_meeting%></td>
+                  <td><%= f.text_field :mis_meeting_N%></td>
+               </tr>
+               <tr class="warning">
+                  <td>Training</td>
+                  <td><%= f.text_field :mis_training%></td>
+                  <td><span style="background-color: rgb(252, 248, 227);"><%= f.text_field :mis_training_N%></span></td>
+               </tr>
+               <tr class="warning">
+                  <td>Others</td>
+                  <td><%= f.text_field :mis_others%></td>
+                  <td><%= f.text_field :mis_others_N%></td>
+               </tr>
+            </tbody>
+         </table>
+
                            
    <% when 8 %>
     <DIV style="cursor:hand" onclick="isHidden('<%= projects[i] %>')"><input type="checkbox" /><%= projects[i] %></DIV>
       <div class="container-fluid" id="<%= projects[i] %>" style="display:none">
       <table class="table table-bordered" contenteditable="true">
-            <thead>
-               <tr class="warning">
-                  <th colspan="2" rowspan="1"><span style="font-weight: normal;">Loc</span></th>
-                  <th><span style="font-weight: normal;">Hours</span></th>
-               </tr>
-            </thead>
-            <tbody>
-               <tr class="warning">
-                  <td colspan="1" rowspan="5"><%=projects[i]%><span><input id="eod_loceods_attributes_<%=i%>_game_id" name="eod[loceods_attributes][<%=i%>][game_id]" type="hidden" value="<%=i%>" /></span></td>
-                  <td>Sick Leave</td>
-                  <td><%= f.text_field :ab_sickleave%></td>
-               </tr>
-               <tr class="warning">
-                  <td>Shift Leave</td>
-                  <td><%= f.text_field :ab_shiftleave%></td>
-               </tr>
-               <tr class="warning">
-                  <td>Annual Leave</td>
-                  <td><%= f.text_field :ab_annualleave%></td>
-               </tr>
-               <tr class="warning">
-                  <td>Holiday</td>
-                  <td><%= f.text_field :ab_holiday%></td>
-               </tr>
-               <tr class="warning">
-                  <td>Others</td>
-                  <td><%= f.text_field :ab_others%></td>
-               </tr>
-            </tbody>
-         </table>
+         <thead>
+            <tr class="warning">
+               <th colspan="2" rowspan="1"><span style="font-weight: normal;">Loc</span></th>
+               <th><span style="font-weight: normal;">Hours</span></th>
+               <th><span style="font-weight: normal;">Notes</span></th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr class="warning">
+               <td colspan="1" rowspan="5"><%=projects[i]%><span><input id="eod_loceods_attributes_<%=i%>_game_id" name="eod[loceods_attributes][<%=i%>][game_id]" type="hidden" value="<%=i%>" /></span></td>
+               <td>Sick Leave</td>
+               <td><%= f.text_field :ab_sickleave%></td>
+               <td><%= f.text_field :ab_sickleave_N%></td>
+            </tr>
+            <tr class="warning">
+               <td>Shift Leave</td>
+               <td><%= f.text_field :ab_shiftleave%></td>
+               <td><%= f.text_field :ab_shiftleave_N%></td>
+            </tr>
+            <tr class="warning">
+               <td>Annual Leave</td>
+               <td><%= f.text_field :ab_annualleave%></td>
+               <td><%= f.text_field :ab_annualleave_N%></td>
+            </tr>
+            <tr class="warning">
+               <td>Holiday</td>
+               <td><%= f.text_field :ab_holiday%></td>
+               <td><%= f.text_field :ab_holiday_N%></td>
+            </tr>
+            <tr class="warning">
+               <td>Others</td>
+               <td><%= f.text_field :ab_others%></td>
+               <td><%= f.text_field :ab_others_N%></td>
+            </tr>
+         </tbody>
+      </table>
+
 
             <% else %>
 
@@ -149,198 +161,103 @@
          <table class="table table-hover table-striped">
             <thead>
                <tr class="warning">
-                  <th colspan="3" rowspan="1">
-                     Loc
-                  </th>
-                  <th>
-                     Hours
-                  </th>
-                  <th colspan="2">
-                     Amount
-                  </th>
-                  <th>
-                     Notes
-                  </th>
+                  <th colspan="3" rowspan="1"><span style="font-weight: normal;">Loc</span></th>
+                  <th><span style="font-weight: normal;">Hours</span></th>
+                  <th colspan="2"><span style="font-weight: normal;">Amount</span></th>
+                  <th><span style="font-weight: normal;">Notes</span></th>
                </tr>
             </thead>
             <tbody>
                <tr class="warning">
-                  <td rowspan="12"><span><%= projects[i] %><input type="hidden" name="eod[loceods_attributes][<%=i%>][game_id]" id="eod_loceods_attributes_<%=i%>_game_id" value=<%=i%> /></span></td>
-                  <td rowspan="7">
-                     In-game
-                  </td>
-                  <td>
-                     Familiarization
-                  </td>
-                  <td>
-                     <%= f.text_field :familiarization_H %>
-                  </td>
-                  <td colspan="2">
-                     <%= f.text_field :familiarization %>
-                  </td>
-                  <td>
-                     <%= f.text_field :familiarization_N %>
-                  </td>
+                  <td rowspan="14"><span><%= projects[i] %><input id="eod_loceods_attributes_<%=i%>_game_id" name="eod[loceods_attributes][<%=i%>][game_id]" type="hidden" value="<%=i%>" /></span></td>
+                  <td colspan="1" rowspan="8">In-game</td>
+                  <td>Familiarization</td>
+                  <td><%= f.text_field :familiarization_H %></td>
+                  <td colspan="2"><%= f.text_field :familiarization %></td>
+                  <td><%= f.text_field :familiarization_N %></td>
                </tr>
                <tr class="warning">
-                  <td>
-                     Review
-                  </td>
-                  <td>
-                     <%= f.text_field :Review_H  %>
-                  </td>
-                  <td colspan="2">
-                     <%= f.text_field :Review  %>
-                  </td>
-                  <td>
-                     <%= f.text_field :Review_N  %>
-                  </td>
+                  <td>Review</td>
+                  <td><%= f.text_field :Review_H %></td>
+                  <td colspan="2"><%= f.text_field :Review %></td>
+                  <td><%= f.text_field :Review_N %></td>
                </tr>
                <tr class="warning">
-                  <td>
-                     Translation
-                  </td>
-                  <td>
-                     <%= f.text_field :translation_H %>
-                  </td>
-                  <td colspan="2">
-                     <%= f.text_field :translation %>
-                  </td>
-                  <td>
-                     <%= f.text_field :translation_N  %>
-                  </td>
+                  <td>Translation</td>
+                  <td><%= f.text_field :translation_H %></td>
+                  <td colspan="2"><%= f.text_field :translation %></td>
+                  <td><%= f.text_field :translation_N %></td>
                </tr>
                <tr class="warning">
-                  <td>
-                     Bug-fixing
-                  </td>
-                  <td>
-                     <%= f.text_field :bugfix_H %>
-                  </td>
-                  <td colspan="2">
-                     <%= f.text_field :bugfix %>
-                  </td>
-                  <td>
-                     <%= f.text_field :bugfix_N  %>
-                  </td>
+                  <td>Bug-fixing</td>
+                  <td><%= f.text_field :bugfix_H %></td>
+                  <td colspan="2"><%= f.text_field :bugfix %></td>
+                  <td><%= f.text_field :bugfix_N %></td>
                </tr>
                <tr class="warning">
-                  <td>
-                     Audio-On-Site
-                  </td>
-                  <td>
-                     <%= f.text_field :audioonsite_H %>
-                  </td>
-                  <td colspan="2">
-                     <%= f.text_field :audioonsite %>
-                  </td>
-                  <td>
-                     <%= f.text_field :audioonsite_N  %>
-                  </td>
+                  <td>Audio-On-Site</td>
+                  <td><%= f.text_field :audioonsite_H %></td>
+                  <td colspan="2"><%= f.text_field :audioonsite %></td>
+                  <td><%= f.text_field :audioonsite_N %></td>
                </tr>
                <tr class="warning">
-                  <td>
-                     Audio-Delivery
-                  </td>
-                  <td>
-                     <%= f.text_field :audiodelivery_H %>
-                  </td>
-                  <td colspan="2">
-                     <%= f.text_field :audiodelivery %>
-                  </td>
-                  <td>
-                     <%= f.text_field :audiodelivery_N  %>
-                  </td>
+                  <td>Audio-Delivery</td>
+                  <td><%= f.text_field :audiodelivery_H %></td>
+                  <td colspan="2"><%= f.text_field :audiodelivery %></td>
+                  <td><%= f.text_field :audiodelivery_N %></td>
                </tr>
                <tr class="warning">
-                  <td>
-                     In-game Polishing
-                  </td>
-                  <td>
-                     <%= f.text_field :polish_H %>
-                  </td>
-                  <td colspan="2">
-                     <%= f.text_field :polish %>
-                  </td>
-                  <td>
-                     <%= f.text_field :polish_N  %>
-                  </td>
+                  <td>In-game Polishing</td>
+                  <td><%= f.text_field :polish_H %></td>
+                  <td colspan="2"><%= f.text_field :polish %></td>
+                  <td><%= f.text_field :polish_N %></td>
                </tr>
                <tr class="warning">
-                  <td rowspan="3">
-                     Non-game
-                  </td>
-                  <td>
-                     Review
-                  </td>
-                  <td>
-                     <%= f.text_field :N_Review_H  %>
-                  </td>
-                  <td colspan="2">
-                     <%= f.text_field :N_Review  %>
-                  </td>
-                  <td>
-                     <%= f.text_field :N_Review_N  %>
-                  </td>
+                  <td>vpp</td>
+                  <td><%= f.text_field :vpp_H%></td>
+                  <td colspan="2"><%= f.text_field :vpp%></td>
+                  <td><%= f.text_field :vpp_N%></td>
                </tr>
                <tr class="warning">
-                  <td>
-                     Translation
-                  </td>
-                  <td>
-                     <%= f.text_field :N_translation_H %>
-                  </td>
-                  <td colspan="2">
-                     <%= f.text_field :N_translation %>
-                  </td>
-                  <td>
-                     <%= f.text_field :N_translation_N  %>
-                  </td>
+                  <td colspan="1" rowspan="4">Non-game</td>
+                  <td>Review</td>
+                  <td><%= f.text_field :N_Review_H %></td>
+                  <td colspan="2"><%= f.text_field :N_Review %></td>
+                  <td><%= f.text_field :N_Review_N %></td>
                </tr>
                <tr class="warning">
-                  <td>
-                     Bug Fixing
-                  </td>
-                  <td>
-                     <%= f.text_field :N_bugfix_H %>
-                  </td>
-                  <td colspan="2">
-                     <%= f.text_field :N_bugfix  %>
-                  </td>
-                  <td>
-                     <%= f.text_field :N_bugfix_N  %>
-                  </td>
+                  <td>Translation</td>
+                  <td><%= f.text_field :N_translation_H %></td>
+                  <td colspan="2"><%= f.text_field :N_translation %></td>
+                  <td><%= f.text_field :N_translation_N %></td>
                </tr>
                <tr class="warning">
-                  <td colspan="2">
-                     Project Management
-                  </td>
-                  <td>
-                     <%= f.text_field :Project_Management_H  %>
-                  </td>
-                  <td colspan="2">
-                     <%= f.text_field :Project_Management  %>
-                  </td>
-                  <td>
-                     <%= f.text_field :Project_Management_N  %>
-                  </td>
+                  <td>Bug Fixing</td>
+                  <td><%= f.text_field :N_bugfix_H %></td>
+                  <td colspan="2"><%= f.text_field :N_bugfix %></td>
+                  <td><%= f.text_field :N_bugfix_N %></td>
                </tr>
                <tr class="warning">
-                  <td colspan="2">
-                     Other
-                  </td>
-                  <td>
-                     <%= f.text_field :Other_H  %>
-                  </td>
-                  <td colspan="2">
-                     <%= f.text_field :Other  %>
-                  </td>
-                  <td>
-                     <%= f.text_field :Other_N  %>
-                  </td>
+                  <td>vpp</td>
+                  <td><%= f.text_field :N_vpp_H%></td>
+                  <td colspan="2"><%= f.text_field :N_vpp%></td>
+                  <td><%= f.text_field :N_vpp_N%></td>
+               </tr>
+               <tr class="warning">
+                  <td colspan="2">Project Management</td>
+                  <td><%= f.text_field :Project_Management_H %></td>
+                  <td colspan="2"><%= f.text_field :Project_Management %></td>
+                  <td><%= f.text_field :Project_Management_N %></td>
+               </tr>
+               <tr class="warning">
+                  <td colspan="2">Other</td>
+                  <td><%= f.text_field :Other_H %></td>
+                  <td colspan="2"><%= f.text_field :Other %></td>
+                  <td><%= f.text_field :Other_N %></td>
                </tr>
             </tbody>
          </table>
+
 
 
    <% end %>
