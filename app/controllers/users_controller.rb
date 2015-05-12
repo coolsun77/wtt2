@@ -87,8 +87,8 @@ class UsersController < ApplicationController
     @user = User.find_by(name: params[:user][:name]) 
     if @user
       session[:user_name] = params[:user][:name]
-        render plain: session[:user_name] .inspect
-      # redirect_to @user
+    #   render plain: session[:user_name] .inspect
+       redirect_to @user
     else
       redirect_to "/users"
     end

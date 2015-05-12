@@ -1,6 +1,6 @@
 <table class="table">
       <thead>
-  <tr><th>周一</th><th>周二</th><th>周三</th><th>周四</th><th>周五</th><th>周六</th><th>周日</th></tr>
+  <tr><th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th><th>Saturday</th><th>Sunday</th></tr>
     </thead>
     <tbody>
 <% @month.each_slice(7) do |week| %>
@@ -23,18 +23,20 @@
           <% end %> 
           <%    else days = (day - Date.today).to_i  %>
 
-                             <%    if   (days < -3) %> 
-                                      <td class="error" bgcolor = "#FF0000"> 
-                                      <%= form_for :eod, url: new_user_eod_path(@user) do |f| %>  
-                                       <input type="hidden" name="eod[date]" id="eod_date" value ="<%= day %>"/>
-                                      <input type="submit" name="commit" value= "<%= day %>" />
-                                      <% end %>
-                                      <% else %>
+                             <%    if   (days >= -3 or [6,7].include?(day.cwday) ) %> 
                                       <td class="warning" > 
                                       <%= form_for :eod, url: new_user_eod_path(@user) do |f| %>  
                                        <input type="hidden" name="eod[date]" id="eod_date" value ="<%= day %>"/>
                                       <input type="submit" name="commit" value= "<%= day %>" />
                                       <% end %>
+                                      
+                                      <% else %>
+                                      <td class="error" bgcolor = "#FF0000"> 
+                                      <%= form_for :eod, url: new_user_eod_path(@user) do |f| %>  
+                                       <input type="hidden" name="eod[date]" id="eod_date" value ="<%= day %>"/>
+                                      <input type="submit" name="commit" value= "<%= day %>" />
+                                      <% end %>
+                                      
                                <% end %> 
           <% end %>      
           </td>
