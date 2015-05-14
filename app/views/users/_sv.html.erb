@@ -40,13 +40,13 @@
     qaweb = qaprojects[:qawebtime]
     qaab = qaprojects[:qaab]
     qatotal = qagameobj + qameeting + qatraining + qaothers + qaweb + qaab
-    qagameobjp = (qagameobj/qatotal*100).round(2)
-    qameetingp = (qameeting/qatotal*100).round(2)
-    qatrainingp = (qatraining/qatotal*100).round(2)
-    qaothersp = (qaothers/qatotal*100).round(2)
-    qawebp = (qaweb/qatotal*100).round(2)
+    qagameobjp = (qagameobj/qatotal*100).round(1)
+    qameetingp = (qameeting/qatotal*100).round(1)
+    qatrainingp = (qatraining/qatotal*100).round(1)
+    qaothersp = (qaothers/qatotal*100).round(1)
+    qawebp = (qaweb/qatotal*100).round(1)
     #qaabp = number_to_percentage(qaab/qatotal*100, precision: 2)
-    qaabp = (qaab/qatotal*100).round(2)
+    qaabp = (qaab/qatotal*100).round(1)
 
 
 
@@ -136,13 +136,11 @@
 </table>
 
 
- <!DOCTYPE HTML>
 
 
-    <script type="text/javascript" src="http://10.130.195.5:3002/assets/jquery.min-a9689ff9492a0628d9e5f19829537602.js?body=1"></script>
-    <style type="text/css">
-${demo.css}
-    </style>
+<div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+
+  
     <script type="text/javascript">
 $(function () {
     $('#container').highcharts({
@@ -174,17 +172,17 @@ $(function () {
             type: 'pie',
             name: 'QA Overview',
             data: [
-                ['Game Projects',   45.0],
-                ['web',       26.8],
+                ['Game Projects',   <%=qagameobjp%>],
                 {
-                    name: 'D3',
-                    y: 12.8,
+                    name: 'web',
+                    y: <%=qawebp%>,
                     sliced: true,
                     selected: true
                 },
-                ['WoW',    8.5],
-                ['SC2',     6.2],
-                ['Others',   0.7]
+                ['Meeting',    <%=qameetingp%>],
+                ['Training',    <%=qatrainingp%>],
+                ['Absence',  <%=qaabp%>],
+                ['Others',  <%=qaothersp%>],
             ]
         }]
     });
@@ -193,10 +191,10 @@ $(function () {
 
     </script>
 
-<script src="http://10.130.195.5:3002/assets/highcharts-90c3b584de0ba3446ad9182ad58d4a5f.js?body=1"></script>
-<script src="http://10.130.195.5:3002/assets/exporting-6e5b49f244f2837449bde19f5c098f90.js?body=1"></script>
 
-<div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+
+
 
 
 testtesttest
+
