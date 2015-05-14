@@ -1,7 +1,7 @@
   <%
 
-  		qaprojects = { qawebtime: 0, qaWoWtime: 0, qasc2time: 0, qahstime: 0, qaoverwatchtime: 0, qad3time: 0, qaherotime: 0}
-  		qatasks = ["Pre_QA_H","Review_H", "QA_H", "Bug_Management_H","Audio_QA_H","N_Review_H", "N_QA_H", "N_Bug_Management_H", "Project_Management_H", "Other_H"]
+  		qaprojects = { qawebtime: 0, qaWoWtime: 0, qasc2time: 0, qahstime: 0, qaoverwatchtime: 0, qad3time: 0, qaherotime: 0, qamis: 0, qaab: 0}
+  		qatasks = ["Pre_QA_H","Review_H", "QA_H", "Bug_Management_H","Audio_QA_H","N_Review_H", "N_QA_H", "N_Bug_Management_H", "Project_Management_H", "Other_H","mis_meeting","mis_training","mis_others","ab_sickleave","ab_shiftleave","ab_annualleave","ab_holiday","ab_others","vpp_H","N_vpp_H"]
   		
 		i=0
   		qaprojects.each do |key,value|
@@ -12,8 +12,8 @@
   		end
 
 
-  		locprojects = {locwebtime: 0, locWoWtime: 0, locsc2time: 0, lochstime: 0, locoverwatchtime: 0, locd3time: 0, locherotime: 0}
-  		loctasks = ["familiarization_H","Review_H","translation_H","bugfix_H","audiodelivery_H","N_Review_H","N_translation_H","N_bugfix_H","Project_Management_H","Other_H"]
+  		locprojects = {locwebtime: 0, locWoWtime: 0, locsc2time: 0, lochstime: 0, locoverwatchtime: 0, locd3time: 0, locherotime: 0, locmis: 0, locab: 0}
+  		loctasks = ["familiarization_H","Review_H","translation_H","bugfix_H","audiodelivery_H","N_Review_H","N_translation_H","N_bugfix_H","Project_Management_H","Other_H","mis_meeting","mis_training","mis_others","ab_sickleave","ab_shiftleave","ab_annualleave","ab_holiday","ab_others","vpp_H","N_vpp_H"]
   		
 
 		i=0
@@ -28,9 +28,28 @@
  		wowtime = qaprojects[:qaWoWtime] + locprojects[:locWoWtime]
  		sc2time =  qaprojects[:qasc2time] + locprojects[:locsc2time]
  		herotime = qaprojects[:qaherotime] + locprojects[:locherotime]
- 		d3time = qaprojects[:qawebtime] + locprojects[:locd3time]
+ 		d3time = qaprojects[:qad3time] + locprojects[:locd3time]
  		owtime = qaprojects[:qaoverwatchtime] + locprojects[:locoverwatchtime]
  		hstime = qaprojects[:qahstime] + locprojects[:lochstime]
+
+
+    qagameobj = qaprojects[:qaWoWtime] + qaprojects[:qasc2time] + qaprojects[:qaherotime] + qaprojects[:qad3time] + qaprojects[:qaoverwatchtime] + qaprojects[:qahstime]
+    qameeting = Qaeod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 7).sum("mis_meeting")
+    qatraining = Qaeod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 7).sum("mis_training")
+    qaothers = Qaeod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 7).sum("mis_others")
+    qaweb = qaprojects[:qawebtime]
+    qaab = qaprojects[:qaab]
+    qatotal = qagameobj + qameeting + qatraining + qaothers + qaweb + qaab
+    qagameobjp = (qagameobj/qatotal*100).round(2)
+    qameetingp = (qameeting/qatotal*100).round(2)
+    qatrainingp = (qatraining/qatotal*100).round(2)
+    qaothersp = (qaothers/qatotal*100).round(2)
+    qawebp = (qaweb/qatotal*100).round(2)
+    #qaabp = number_to_percentage(qaab/qatotal*100, precision: 2)
+    qaabp = (qaab/qatotal*100).round(2)
+
+
+
    %>
 
    
@@ -76,47 +95,108 @@
 
 <table class="table" contenteditable="true">
    <thead>
-      <tr>
-         <th>&nbsp;</th>
+      <tr >
+         <th>QA</th>
          <th><span style="font-weight: normal;">Hours</span></th>
          <th><span style="font-weight: normal;">%</span></th>
       </tr>
    </thead>
    <tbody>
-      <tr>
+      <tr class="info">
          <td>Game Projects</td>
-         <td>TB - Monthly</td>
-         <td>01/04/2012</td>
+         <td><%=qagameobj%></td>
+         <td><%=qagameobjp%>%</td>
       </tr>
       <tr class="info">
-         <td>Web&nbsp;</td>
-         <td>TB - Monthly</td>
-         <td>01/04/2012</td>
+         <td>Web</td>
+         <td><%=qaweb%></td>
+         <td><%=qawebp%>%</td>
       </tr>
       <tr class="info">
          <td>Meeting</td>
-         <td>TB - Monthly</td>
-         <td>02/04/2012</td>
+         <td><%=qameeting%></td>
+         <td><%=qameetingp%>%</td>
       </tr>
       <tr class="info">
          <td>Training</td>
-         <td>TB - Monthly</td>
-         <td>03/04/2012</td>
+         <td><%=qatraining%></td>
+         <td><%=qatrainingp%>%</td>
       </tr>
       <tr class="info">
          <td>Absence</td>
-         <td>TB - Monthly</td>
-         <td>04/04/2012</td>
+         <td><%=qaab%></td>
+         <td><%=qaabp%>%</td>
       </tr>
       <tr class="info">
          <td>Other</td>
-         <td>&nbsp;</td>
-         <td>&nbsp;</td>
+         <td><%=qaothers%></td>
+         <td><%=qaothersp%>%</td>
       </tr>
    </tbody>
 </table>
 
 
+ <!DOCTYPE HTML>
 
 
+    <script type="text/javascript" src="http://10.130.195.5:3002/assets/jquery.min-a9689ff9492a0628d9e5f19829537602.js?body=1"></script>
+    <style type="text/css">
+${demo.css}
+    </style>
+    <script type="text/javascript">
+$(function () {
+    $('#container').highcharts({
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false
+        },
+        title: {
+            text: 'QA Overview'
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                    style: {
+                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                    }
+                }
+            }
+        },
+        series: [{
+            type: 'pie',
+            name: 'QA Overview',
+            data: [
+                ['Game Projects',   45.0],
+                ['web',       26.8],
+                {
+                    name: 'D3',
+                    y: 12.8,
+                    sliced: true,
+                    selected: true
+                },
+                ['WoW',    8.5],
+                ['SC2',     6.2],
+                ['Others',   0.7]
+            ]
+        }]
+    });
+});
 
+
+    </script>
+
+<script src="http://10.130.195.5:3002/assets/highcharts-90c3b584de0ba3446ad9182ad58d4a5f.js?body=1"></script>
+<script src="http://10.130.195.5:3002/assets/exporting-6e5b49f244f2837449bde19f5c098f90.js?body=1"></script>
+
+<div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+
+
+testtesttest
