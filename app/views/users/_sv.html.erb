@@ -2,12 +2,16 @@
 
   		qaprojects = { qawebtime: 0, qaWoWtime: 0, qasc2time: 0, qahstime: 0, qaoverwatchtime: 0, qad3time: 0, qaherotime: 0, qamis: 0, qaab: 0}
   		qatasks = ["Pre_QA_H","Review_H", "QA_H", "Bug_Management_H","Audio_QA_H","N_Review_H", "N_QA_H", "N_Bug_Management_H", "Project_Management_H", "Other_H","mis_meeting","mis_training","mis_others","ab_sickleave","ab_shiftleave","ab_annualleave","ab_holiday","ab_others","vpp_H","N_vpp_H"]
-  		
-		i=0
+  	
+      eod = Eod.where(date: Date.today.beginning_of_month..Date.today.end_of_month)
+       
+    i=0
   		qaprojects.each do |key,value|
   			qatasks.each do |qt|
-  				qaprojects[key] = qaprojects[key] + Qaeod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: i).sum(qt)
-  			end
+          eod.each do |e|
+  				qaprojects[key] = qaprojects[key] + Qaeod.where(eod_id: e.id, game_id: i).sum(qt)
+  			  end
+        end
   			i=i+1
   		end
 
@@ -19,8 +23,10 @@
 		i=0
   		locprojects.each do |key, value|
   			loctasks.each do |lt|
-  				locprojects[key] = locprojects[key] + Loceod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: i).sum(lt) 
-  			end
+          eod.each do |e|
+  				locprojects[key] = locprojects[key] + Loceod.where(eod_id: e.id, game_id: i).sum(lt) 
+  			  end
+        end
   			i=i+1
   		end
 
@@ -52,7 +58,13 @@
 
    %>
 
-   
+ <%  
+    eod = Eod.where(date: Date.today.beginning_of_month..Date.today.end_of_month)
+    eod.each do |e|
+%>
+    <%=e.id%>
+    <% end %>
+
 
 <table class="table" contenteditable="true">
 	<tbody>
@@ -66,7 +78,7 @@
 			<td>Web</td>
 		</tr>
 		<tr>
-			<td><%= i %></td>
+			<td><%= wowtime %></td>
 			<td><%= hstime %></td>
 			<td><%= sc2time %></td>
 			<td><%= herotime %></td>
@@ -77,21 +89,8 @@
 	</tbody>
 </table>
 
- <table>
- <% @users = User.all %>
 
-
- <% @users.each do |user| %>
-    <tr>
-      <td><%= user.name %></td>
-      <td><%= user.role %></td>
-      <td><%= link_to 'Show', user_path(user) %></td>
-      <td><%= link_to 'Edit', edit_user_path(user) %></td>
-    </tr>
-  <% end %>
-  </table>
-
-
+<%= link_to 'users', userlist_path %>
 
 <table class="table" contenteditable="true">
    <thead>
@@ -191,10 +190,4 @@ $(function () {
 
     </script>
 
-
-
-
-
-
-testtesttest
 
