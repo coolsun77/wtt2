@@ -58,12 +58,7 @@
 
    %>
 
- <%  
-    eod = Eod.where(date: Date.today.beginning_of_month..Date.today.end_of_month)
-    eod.each do |e|
-%>
-    <%=e.id%>
-    <% end %>
+
 
 
 <table class="table" contenteditable="true">
