@@ -46,6 +46,7 @@
 	<tbody>
 		<tr class="warning">
 			<td rowspan="7"><span>Web<input id="eod_qaeods_attributes_0_game_id" name="eod[qaeods_attributes][0][game_id]" type="hidden" value="0" /></span></td>
+			  <input type="hidden" name="eod[qaeods_attributes][<%=i%>][date]" id="eod_qaeods_attributes_<%=i%>_date" value=<%= @eod.date %>> 
 			<td><span>Pre-testing</span></td>
 			<td><%= f.text_field :Pre_QA_H %></td>
 			<td colspan="2" style="text-align: center;"><%= f.text_field :Pre_QA %></td>
@@ -103,6 +104,7 @@
 			<tbody>
 				<tr class="warning">
 					<td rowspan="3"><%=projects[i]%><span><input id="eod_qaeods_attributes_<%=i%>_game_id" name="eod[qaeods_attributes][<%=i%>][game_id]" type="hidden" value="<%=i%>" /></span></td>
+					<input type="hidden" name="eod[qaeods_attributes][<%=i%>][date]" id="eod_qaeods_attributes_<%=i%>_date" value=<%= @eod.date %>> 
 					<td>Meeting</td>
 					<td><%= f.text_field :mis_meeting%></td>
 					<td><span style="background-color: rgb(252, 248, 227);"><%= f.text_field :mis_meeting_N%></span></td>
@@ -135,6 +137,7 @@
 			<tbody>
 				<tr class="warning">
 					<td colspan="1" rowspan="5"><%=projects[i]%><span><input id="eod_qaeods_attributes_<%=i%>_game_id" name="eod[qaeods_attributes][<%=i%>][game_id]" type="hidden" value="<%=i%>" /></span></td>
+					<input type="hidden" name="eod[qaeods_attributes][<%=i%>][date]" id="eod_qaeods_attributes_<%=i%>_date" value=<%= @eod.date %>> 
 					<td>Sick Leave</td>
 					<td><%= f.text_field :ab_sickleave%></td>
 					<td><span style="background-color: rgb(252, 248, 227);"><%= f.text_field :ab_sickleave_N%></span></td>
@@ -182,6 +185,7 @@
 	<tbody>
 		<tr class="warning">
 			<td rowspan="18"><span><%= projects[i] %><input id="eod_qaeods_attributes_<%=i%>_game_id" name="eod[qaeods_attributes][<%=i%>][game_id]" type="hidden" value="<%=i%>" /></span></td>
+			<input type="hidden" name="eod[qaeods_attributes][<%=i%>][date]" id="eod_qaeods_attributes_<%=i%>_date" value=<%= @eod.date %>> 
 			<td rowspan="9"><span>In-game</span></td>
 			<td><span>Pre-testing</span></td>
 			<td><%= f.text_field :Pre_QA_H %></td>

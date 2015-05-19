@@ -112,12 +112,29 @@ class UsersController < ApplicationController
         end
   end
 
+#  def updateeod
+ #     @users = User.all
+ #     @users.each do |u|
+ #       u.eods.each do |e|
+          #@qaeods = Qaeod.where(eod_id: e.id)
+          #@qaeods.each do |q|
+#          @loceods = Loceod.where(eod_id: e.id)
+ #         @loceods.each do |q|
+#            @loceod = q.update(:date =>e.date )         
+#          end
+ #       end 
+  #    end
+ #   end
+
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
     end
 
+    
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
     params.require(:user).permit(:name, :role)

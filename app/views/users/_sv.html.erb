@@ -3,14 +3,11 @@
   		qaprojects = { qawebtime: 0, qaWoWtime: 0, qasc2time: 0, qahstime: 0, qaoverwatchtime: 0, qad3time: 0, qaherotime: 0, qamis: 0, qaab: 0}
   		qatasks = ["Pre_QA_H","Review_H", "QA_H", "Bug_Management_H","Audio_QA_H","N_Review_H", "N_QA_H", "N_Bug_Management_H", "Project_Management_H", "Other_H","mis_meeting","mis_training","mis_others","ab_sickleave","ab_shiftleave","ab_annualleave","ab_holiday","ab_others","vpp_H","N_vpp_H"]
   	
-      eod = Eod.where(date: Date.today.beginning_of_month..Date.today.end_of_month)
        
     i=0
   		qaprojects.each do |key,value|
   			qatasks.each do |qt|
-          eod.each do |e|
-  				qaprojects[key] = qaprojects[key] + Qaeod.where(eod_id: e.id, game_id: i).sum(qt)
-  			  end
+  				qaprojects[key] = qaprojects[key] + Qaeod.where(date: Date.today.beginning_of_month..Date.today.end_of_month, game_id: i).sum(qt)
         end
   			i=i+1
   		end
@@ -23,9 +20,7 @@
 		i=0
   		locprojects.each do |key, value|
   			loctasks.each do |lt|
-          eod.each do |e|
-  				locprojects[key] = locprojects[key] + Loceod.where(eod_id: e.id, game_id: i).sum(lt) 
-  			  end
+  				locprojects[key] = locprojects[key] + Loceod.where(date: Date.today.beginning_of_month..Date.today.end_of_month, game_id: i).sum(lt) 
         end
   			i=i+1
   		end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150507094719) do
+ActiveRecord::Schema.define(version: 20150519040135) do
 
   create_table "eods", force: :cascade do |t|
     t.date     "date"
@@ -92,6 +92,7 @@ ActiveRecord::Schema.define(version: 20150507094719) do
     t.float    "N_vpp_H",              limit: 24,  default: 0.0
     t.string   "vpp_N",                limit: 255, default: " "
     t.string   "N_vpp_N",              limit: 255, default: " "
+    t.date     "date"
   end
 
   add_index "loceods", ["eod_id"], name: "index_loceods_on_eod_id", using: :btree
@@ -171,6 +172,7 @@ ActiveRecord::Schema.define(version: 20150507094719) do
     t.string   "N_bug_text_N",            limit: 255, default: " "
     t.string   "N_bug_fastfix_N",         limit: 255, default: " "
     t.string   "N_bug_functional_N",      limit: 255, default: " "
+    t.date     "date"
   end
 
   add_index "qaeods", ["eod_id"], name: "index_qaeods_on_eod_id", using: :btree

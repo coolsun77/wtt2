@@ -48,6 +48,7 @@
                   <tbody>
                      <tr class="warning">
                         <td rowspan="5"><span>Web<input id="eod_loceods_attributes_<%=i%>_game_id" name="eod[loceods_attributes][<%=i%>][game_id]" type="hidden" value=0 ></span></td>
+                        <input type="hidden" name="eod[loceods_attributes][<%=i%>][date]" id="eod_loceods_attributes_<%=i%>_date" value=<%= @eod.date %>> 
                         <td>Familiarization</td>
                         <td><%= f.text_field :familiarization_H %></td>
                         <td colspan="2"><%= f.text_field :familiarization %></td>
@@ -94,6 +95,7 @@
             <tbody>
                <tr class="warning">
                   <td rowspan="3"><%=projects[i]%><span><input id="eod_loceods_attributes_<%=i%>_game_id" name="eod[loceods_attributes][<%=i%>][game_id]" type="hidden" value="<%=i%>" /></span></td>
+                  <input type="hidden" name="eod[loceods_attributes][<%=i%>][date]" id="eod_loceods_attributes_<%=i%>_date" value=<%= @eod.date %>> 
                   <td>Meeting</td>
                   <td><%= f.text_field :mis_meeting%></td>
                   <td><%= f.text_field :mis_meeting_N%></td>
@@ -126,6 +128,7 @@
          <tbody>
             <tr class="warning">
                <td colspan="1" rowspan="5"><%=projects[i]%><span><input id="eod_loceods_attributes_<%=i%>_game_id" name="eod[loceods_attributes][<%=i%>][game_id]" type="hidden" value="<%=i%>" /></span></td>
+               <input type="hidden" name="eod[loceods_attributes][<%=i%>][date]" id="eod_loceods_attributes_<%=i%>_date" value=<%= @eod.date %>> 
                <td>Sick Leave</td>
                <td><%= f.text_field :ab_sickleave%></td>
                <td><%= f.text_field :ab_sickleave_N%></td>
@@ -170,6 +173,7 @@
             <tbody>
                <tr class="warning">
                   <td rowspan="14"><span><%= projects[i] %><input id="eod_loceods_attributes_<%=i%>_game_id" name="eod[loceods_attributes][<%=i%>][game_id]" type="hidden" value="<%=i%>" /></span></td>
+                  <input type="hidden" name="eod[loceods_attributes][<%=i%>][date]" id="eod_loceods_attributes_<%=i%>_date" value=<%= @eod.date %>> 
                   <td colspan="1" rowspan="8">In-game</td>
                   <td>Familiarization</td>
                   <td><%= f.text_field :familiarization_H %></td>
