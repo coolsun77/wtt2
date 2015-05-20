@@ -47,6 +47,8 @@ class UsersController < ApplicationController
   def edit
   end
 
+  def report
+  end
   # POST /users
   # POST /users.json
   def create

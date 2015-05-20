@@ -11,14 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150519040135) do
+ActiveRecord::Schema.define(version: 20150519100540) do
 
   create_table "eods", force: :cascade do |t|
     t.date     "date"
     t.integer  "user_id",    limit: 4
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
-    t.boolean  "miss",       limit: 1, default: false
+    t.datetime "created_at",                                          null: false
+    t.datetime "updated_at",                                          null: false
+    t.boolean  "miss",       limit: 1,                default: false
+    t.decimal  "sumott",               precision: 10, default: 0
   end
 
   add_index "eods", ["user_id"], name: "index_eods_on_user_id", using: :btree
