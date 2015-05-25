@@ -57,12 +57,12 @@ class EodsController < ApplicationController
      when "QA"         
         qaeods_attributes = params[:eod][:qaeods_attributes]
         qaeods_attributes.each do |key, value|
-          sumott = sumott + value[:Pre_QA_H].to_i + value[:Review_H].to_i  + value[:QA_H].to_i + value[:Bug_Management_H].to_i + value[:Audio_QA_H].to_i + value[:N_Review_H].to_i + value[:N_QA_H].to_i + value[:N_Bug_Management_H].to_i + value[:Project_Management_H].to_i + value[:Other_H].to_i + value[:mis_meeting].to_i +  value[:mis_training].to_i + value[:mis_others].to_i + value[:ab_sickleave].to_i + value[:ab_shiftleave].to_i + value[:ab_annualleave].to_i + value[:ab_holiday].to_i + value[:ab_others].to_i + value[:vpp_H].to_i  +  value[:N_vpp_H].to_i       
+          sumott = sumott + value[:Pre_QA_H].to_f + value[:Review_H].to_f  + value[:QA_H].to_f + value[:Bug_Management_H].to_f + value[:Audio_QA_H].to_f + value[:N_Review_H].to_f + value[:N_QA_H].to_f + value[:N_Bug_Management_H].to_f + value[:Project_Management_H].to_f + value[:Other_H].to_f + value[:mis_meeting].to_f +  value[:mis_training].to_f + value[:mis_others].to_f + value[:ab_sickleave].to_f + value[:ab_shiftleave].to_f + value[:ab_annualleave].to_f + value[:ab_holiday].to_f + value[:ab_others].to_f + value[:vpp_H].to_f  +  value[:N_vpp_H].to_f       
         end
       when "Loc"  
         loceods_attributes = params[:eod][:loceods_attributes]
         loceods_attributes.each do |key, value|
-          sumott = sumott + value[:familiarization_H].to_i + value[:Review_H].to_i + value[:translation_H].to_i + value[:bugfix_H].to_i + value[:audiodelivery_H].to_i + value[:N_Review_H].to_i + value[:N_translation_H].to_i + value[:N_bugfix_H].to_i + value[:Project_Management_H].to_i + value[:Other_H].to_i + value[:vpp_H].to_i + value[:N_vpp_H].to_i + value[:mis_meeting].to_i + value[:mis_training].to_i + value[:mis_others].to_i + value[:ab_sickleave].to_i + value[:ab_shiftleave].to_i + value[:ab_annualleave].to_i + value[:ab_holiday].to_i + value[:ab_others].to_i + value[:audioonsite_H].to_i + value[:polish_H].to_i
+          sumott = sumott + value[:familiarization_H].to_f + value[:Review_H].to_f + value[:translation_H].to_f + value[:bugfix_H].to_f + value[:audiodelivery_H].to_f + value[:N_Review_H].to_f + value[:N_translation_H].to_f + value[:N_bugfix_H].to_f + value[:Project_Management_H].to_f + value[:Other_H].to_f + value[:vpp_H].to_f + value[:N_vpp_H].to_f + value[:mis_meeting].to_f + value[:mis_training].to_f + value[:mis_others].to_f + value[:ab_sickleave].to_f + value[:ab_shiftleave].to_f + value[:ab_annualleave].to_f + value[:ab_holiday].to_f + value[:ab_others].to_f + value[:audioonsite_H].to_f + value[:polish_H].to_f
         end
     end
     params[:eod][:sumott] = sumott
@@ -91,12 +91,12 @@ class EodsController < ApplicationController
        when "QA"         
           qaeods_attributes = params[:eod][:qaeods_attributes]
           qaeods_attributes.each do |key, value|
-            sumott = sumott + value[:Pre_QA_H].to_i + value[:Review_H].to_i  + value[:QA_H].to_i + value[:Bug_Management_H].to_i + value[:Audio_QA_H].to_i + value[:N_Review_H].to_i + value[:N_QA_H].to_i + value[:N_Bug_Management_H].to_i + value[:Project_Management_H].to_i + value[:Other_H].to_i + value[:mis_meeting].to_i +  value[:mis_training].to_i + value[:mis_others].to_i + value[:ab_sickleave].to_i + value[:ab_shiftleave].to_i + value[:ab_annualleave].to_i + value[:ab_holiday].to_i + value[:ab_others].to_i + value[:vpp_H].to_i  +  value[:N_vpp_H].to_i       
+            sumott = sumott + value[:Pre_QA_H].to_f + value[:Review_H].to_f  + value[:QA_H].to_f + value[:Bug_Management_H].to_f + value[:Audio_QA_H].to_f + value[:N_Review_H].to_f + value[:N_QA_H].to_f + value[:N_Bug_Management_H].to_f + value[:Project_Management_H].to_f + value[:Other_H].to_f + value[:mis_meeting].to_f +  value[:mis_training].to_f + value[:mis_others].to_f + value[:ab_sickleave].to_f + value[:ab_shiftleave].to_f + value[:ab_annualleave].to_f + value[:ab_holiday].to_f + value[:ab_others].to_f + value[:vpp_H].to_f  +  value[:N_vpp_H].to_f       
           end
         when "Loc"  
           loceods_attributes = params[:eod][:loceods_attributes]
           loceods_attributes.each do |key, value|
-            sumott = sumott + value[:familiarization_H].to_i + value[:Review_H].to_i + value[:translation_H].to_i + value[:bugfix_H].to_i + value[:audiodelivery_H].to_i + value[:N_Review_H].to_i + value[:N_translation_H].to_i + value[:N_bugfix_H].to_i + value[:Project_Management_H].to_i + value[:Other_H].to_i + value[:vpp_H].to_i + value[:N_vpp_H].to_i + value[:mis_meeting].to_i + value[:mis_training].to_i + value[:mis_others].to_i + value[:ab_sickleave].to_i + value[:ab_shiftleave].to_i + value[:ab_annualleave].to_i + value[:ab_holiday].to_i + value[:ab_others].to_i
+            sumott = sumott + value[:familiarization_H].to_f + value[:Review_H].to_f + value[:translation_H].to_f + value[:bugfix_H].to_f + value[:audiodelivery_H].to_f + value[:N_Review_H].to_f + value[:N_translation_H].to_f + value[:N_bugfix_H].to_f + value[:Project_Management_H].to_f + value[:Other_H].to_f + value[:vpp_H].to_f + value[:N_vpp_H].to_f + value[:mis_meeting].to_f + value[:mis_training].to_f + value[:mis_others].to_f + value[:ab_sickleave].to_f + value[:ab_shiftleave].to_f + value[:ab_annualleave].to_f + value[:ab_holiday].to_f + value[:ab_others].to_f
           end
       end
     params[:eod][:sumott] = sumott

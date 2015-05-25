@@ -41,15 +41,47 @@
     qaweb = qaprojects[:qawebtime]
     qaab = qaprojects[:qaab]
     qatotal = qagameobj + qameeting + qatraining + qaothers + qaweb + qaab
-    qagameobjp = (qagameobj/qatotal*100).round(1)
+
+
+    locgameobj = locprojects[:locWoWtime] + locprojects[:locsc2time] + locprojects[:locherotime] + locprojects[:locd3time] + locprojects[:locoverwatchtime] + locprojects[:lochstime]
+    locmeeting = Qaeod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 7).sum("mis_meeting")
+    loctraining = Qaeod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 7).sum("mis_training")
+    locothers = Qaeod.where(created_at: Date.today.beginning_of_month..Date.today.end_of_month, game_id: 7).sum("mis_others")
+    locweb = locprojects[:locwebtime]
+    locab = locprojects[:locab]
+    loctotal = locgameobj + locmeeting + loctraining + locothers + locweb + locab
+
+    pstotal = qatotal + loctotal
+    loctotalp =  (loctotal/pstotal*100).round(1)
+    qatotalp = (qatotal/pstotal*100).round(1)
+
+
+   # qagameobjp = (qagameobj/qatotal*100).round(1)
     qameetingp = (qameeting/qatotal*100).round(1)
     qatrainingp = (qatraining/qatotal*100).round(1)
     qaothersp = (qaothers/qatotal*100).round(1)
     qawebp = (qaweb/qatotal*100).round(1)
     #qaabp = number_to_percentage(qaab/qatotal*100, precision: 2)
     qaabp = (qaab/qatotal*100).round(1)
+    qawowtimep = (qaprojects[:qaWoWtime]/qatotal*100).round(1)
+    qahstimep = (qaprojects[:qahstime]/qatotal*100).round(1)
+    qasc2timep = (qaprojects[:qasc2time]/qatotal*100).round(1)
+    qaherotimep = ( qaprojects[:qaherotime]/qatotal*100).round(1)
+    qad3timep = (qaprojects[:qad3time]/qatotal*100).round(1)
+    qaowtimep = (qaprojects[:qaoverwatchtime]/qatotal*100).round(1)
 
 
+    locmeetingp = (locmeeting/loctotal*100).round(1)
+    loctrainingp = (loctraining/loctotal*100).round(1)
+    locothersp = (locothers/loctotal*100).round(1)
+    locwebp = (locweb/loctotal*100).round(1)
+    locabp = (locab/loctotal*100).round(1)
+    locwowtimep = (locprojects[:locWoWtime]/loctotal*100).round(1)
+    lochstimep = (locprojects[:lochstime]/loctotal*100).round(1)
+    locsc2timep = (locprojects[:locsc2time]/loctotal*100).round(1)
+    locherotimep = ( locprojects[:locherotime]/loctotal*100).round(1)
+    locd3timep = (locprojects[:locd3time]/loctotal*100).round(1)
+    locowtimep = (locprojects[:locoverwatchtime]/loctotal*100).round(1)
 
    %>
 
@@ -79,9 +111,6 @@
 	</tbody>
 </table>
 
-
-<%= link_to 'users', userlist_path %>
-
 <table class="table" contenteditable="true">
    <thead>
       <tr >
@@ -92,10 +121,40 @@
    </thead>
    <tbody>
       <tr class="info">
-         <td>Game Projects</td>
-         <td><%=qagameobj%></td>
-         <td><%=qagameobjp%>%</td>
+         <td>WoW</td>
+         <td><%=qaprojects[:qaWoWtime]%></td>
+         <td><%=qawowtimep%>%</td>
       </tr>
+      <tr class="info">
+         <td>Hearthstone</td>
+         <td><%=qaprojects[:qahstime]%></td>
+         <td><%=qahstimep%>%</td>
+      </tr>
+      <tr class="info">
+         <td>SCII</td>
+         <td><%=qaprojects[:qasc2time]%></td>
+         <td><%=qasc2timep%>%</td>
+      </tr>
+      <tr class="info">
+         <td>heros</td>
+         <td><%=qaprojects[:qaherotime]%></td>
+         <td><%=qaherotimep%>%</td>
+      </tr>
+      <tr class="info">
+         <td>DIII</td>
+         <td><%=qaprojects[:qad3time]%></td>
+         <td><%=qad3timep%>%</td>
+      </tr>
+      <tr class="info">
+         <td>Overwatch</td>
+         <td><%=qaprojects[:qaoverwatchtime]%></td>
+         <td><%=qaowtimep%>%</td>
+      </tr>
+    
+
+
+
+
       <tr class="info">
          <td>Web</td>
          <td><%=qaweb%></td>
@@ -127,12 +186,12 @@
 
 
 
-<div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+<div id="containerqa" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
 
   
     <script type="text/javascript">
 $(function () {
-    $('#container').highcharts({
+    $('#containerqa').highcharts({
         chart: {
             plotBackgroundColor: null,
             plotBorderWidth: null,
@@ -161,7 +220,12 @@ $(function () {
             type: 'pie',
             name: 'QA Overview',
             data: [
-                ['Game Projects',   <%=qagameobjp%>],
+                 ['WoW',   <%=qawowtimep%>],
+                ['Hearthstone',   <%=qahstimep%>],
+                ['SCII',   <%=qasc2timep%>],
+                ['heros',   <%=qaherotimep%>],
+                ['DIII',   <%=qad3timep%>],
+                ['Overwatch',   <%=qaowtimep%>],
                 {
                     name: 'web',
                     y: <%=qawebp%>,
@@ -177,7 +241,210 @@ $(function () {
     });
 });
 
+    </script>
+
+
+
+<table class="table" contenteditable="true">
+   <thead>
+      <tr >
+         <th>Loc</th>
+         <th><span style="font-weight: normal;">Hours</span></th>
+         <th><span style="font-weight: normal;">%</span></th>
+      </tr>
+   </thead>
+   <tbody>
+      <tr class="info">
+         <td>WoW</td>
+         <td><%=locprojects[:locWoWtime]%></td>
+         <td><%=locwowtimep%>%</td>
+      </tr>
+      <tr class="info">
+         <td>Hearthstone</td>
+         <td><%=locprojects[:lochstime]%></td>
+         <td><%=lochstimep%>%</td>
+      </tr>
+      <tr class="info">
+         <td>SCII</td>
+         <td><%=locprojects[:locsc2time]%></td>
+         <td><%=locsc2timep%>%</td>
+      </tr>
+      <tr class="info">
+         <td>heros</td>
+         <td><%=locprojects[:locherotime]%></td>
+         <td><%=locherotimep%>%</td>
+      </tr>
+      <tr class="info">
+         <td>DIII</td>
+         <td><%=locprojects[:locd3time]%></td>
+         <td><%=locd3timep%>%</td>
+      </tr>
+      <tr class="info">
+         <td>Overwatch</td>
+         <td><%=locprojects[:locoverwatchtime]%></td>
+         <td><%=locowtimep%>%</td>
+      </tr>
+    
+
+
+
+
+      <tr class="info">
+         <td>Web</td>
+         <td><%=locweb%></td>
+         <td><%=locwebp%>%</td>
+      </tr>
+      <tr class="info">
+         <td>Meeting</td>
+         <td><%=locmeeting%></td>
+         <td><%=locmeetingp%>%</td>
+      </tr>
+      <tr class="info">
+         <td>Training</td>
+         <td><%=loctraining%></td>
+         <td><%=loctrainingp%>%</td>
+      </tr>
+      <tr class="info">
+         <td>Absence</td>
+         <td><%=locab%></td>
+         <td><%=locabp%>%</td>
+      </tr>
+      <tr class="info">
+         <td>Other</td>
+         <td><%=locothers%></td>
+         <td><%=locothersp%>%</td>
+      </tr>
+   </tbody>
+</table>
+<div id="containerloc" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+
+
+
+ <script type="text/javascript">
+$(function () {
+    $('#containerloc').highcharts({
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false
+        },
+        title: {
+            text: 'Loc Overview'
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                    style: {
+                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                    }
+                }
+            }
+        },
+        series: [{
+            type: 'pie',
+            name: 'Loc Overview',
+            data: [
+                 ['WoW',   <%=locwowtimep%>],
+                ['Hearthstone',   <%=lochstimep%>],
+                ['SCII',   <%=locsc2timep%>],
+                ['heros',   <%=locherotimep%>],
+                ['DIII',   <%=locd3timep%>],
+                ['Overwatch',   <%=locowtimep%>],
+                {
+                    name: 'web',
+                    y: <%=locwebp%>,
+                    sliced: true,
+                    selected: true
+                },
+                ['Meeting',    <%=locmeetingp%>],
+                ['Training',    <%=loctrainingp%>],
+                ['Absence',  <%=locabp%>],
+                ['Others',  <%=locothersp%>],
+            ]
+        }]
+    });
+});
+
 
     </script>
 
 
+<table class="table" contenteditable="true">
+  <thead>
+    <tr class="info">
+      <th>LOC vs QA</th>
+      <th>Hours</th>
+      <th>%</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Loc</td>
+      <td><%=loctotal%></td>
+      <td><%=loctotalp%>%</td>
+    </tr>
+    <tr class="info">
+      <td>QA</td>
+      <td><%=qatotal%></td>
+      <td><%=qatotalp%>%</td>
+    </tr>
+  </tbody>
+</table>
+
+<div id="containerlocqa" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+
+
+
+ <script type="text/javascript">
+$(function () {
+    $('#containerlocqa').highcharts({
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false
+        },
+        title: {
+            text: 'LOC vs QA'
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                    style: {
+                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                    }
+                }
+            }
+        },
+        series: [{
+            type: 'pie',
+            name: 'LOC vs QA',
+            data: [
+                ['QA',    <%=qatotalp%>],
+                {
+                    name: 'Loc',
+                    y: <%=loctotalp%>,
+                    sliced: true,
+                    selected: true
+                },
+               
+    
+            ]
+        }]
+    });
+});
+
+    </script>
