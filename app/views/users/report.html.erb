@@ -14,7 +14,7 @@
 
 
   		locprojects = {locwebtime: 0, locWoWtime: 0, locsc2time: 0, lochstime: 0, locoverwatchtime: 0, locd3time: 0, locherotime: 0, locmis: 0, locab: 0}
-  		loctasks = ["familiarization_H","Review_H","translation_H","bugfix_H","audiodelivery_H","N_Review_H","N_translation_H","N_bugfix_H","Project_Management_H","Other_H","mis_meeting","mis_training","mis_others","ab_sickleave","ab_shiftleave","ab_annualleave","ab_holiday","ab_others","vpp_H","N_vpp_H"]
+  		loctasks = ["familiarization_H","Review_H","translation_H","bugfix_H","audiodelivery_H", "audioonsite_H" ,"polish_H" ,"N_Review_H","N_translation_H","N_bugfix_H","Project_Management_H","Other_H","mis_meeting","mis_training","mis_others","ab_sickleave","ab_shiftleave","ab_annualleave","ab_holiday","ab_others","vpp_H","N_vpp_H"]
   		
 
 		i=0
@@ -83,33 +83,63 @@
     locd3timep = (locprojects[:locd3time]/loctotal*100).round(1)
     locowtimep = (locprojects[:locoverwatchtime]/loctotal*100).round(1)
 
+
+    psgameobj = qagameobj + locgameobj
+    fwowtime = qaprojects[:qaWoWtime] + locprojects[:locWoWtime]
+    fhstime = qaprojects[:qahstime] + locprojects[:lochstime]
+    fsc2time =  qaprojects[:qasc2time] + locprojects[:locsc2time]
+    fherotime =  qaprojects[:qaherotime] + locprojects[:locherotime]
+    fd3time = qaprojects[:qad3time] + locprojects[:locd3time]
+    fowtime =  qaprojects[:qaoverwatchtime] + locprojects[:locoverwatchtime]
+    fwowtimep = (fwowtime /psgameobj*100).round(1)
+    fhstimep = (fhstime /psgameobj*100).round(1)
+    fsc2timep = (fsc2time /psgameobj*100).round(1)
+    fherotimep = (fherotime /psgameobj*100).round(1)
+    fd3timep = (fd3time/psgameobj*100).round(1)
+    fowtimep = (fowtime/psgameobj*100).round(1)
+
+ 
    %>
 
 
-
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span12">
 
 <table class="table" contenteditable="true">
-	<tbody>
-		<tr class="info">
-			<td>WoW</td>
-			<td>Hearthstone</td>
-			<td>SCII</td>
-			<td>heros</td>
-			<td>DIII</td>
-			<td>Overwatch</td>
-			<td>Web</td>
-		</tr>
-		<tr>
-			<td><%= wowtime %></td>
-			<td><%= hstime %></td>
-			<td><%= sc2time %></td>
-			<td><%= herotime %></td>
-			<td><%= d3time %></td>
-			<td><%= owtime %></td>
-			<td><%= webtime %></td>
-		</tr>
-	</tbody>
+  <thead>
+    <tr>
+      <th>Finance Monthly Report</th>
+      <th>WoW</th>
+      <th>Hearthstone</th>
+      <th>SCII</th>
+      <th>heros</th>
+      <th>DIII</th>
+      <th>Overwatch</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="info">
+      <td>hours</td>
+      <td><%= wowtime %></td>
+      <td><%= hstime %></td>
+      <td><%= sc2time %></td>
+      <td><%= herotime %></td>
+      <td><%= d3time %></td>
+      <td><%= owtime %></td>
+    </tr>
+    <tr class="info">
+      <td>Percentage</td>
+      <td><%= fwowtimep %>%</td>
+      <td><%= fhstimep %>%</td>
+      <td><%= fsc2timep %>%</td>
+      <td><%= fherotimep %>%</td>
+      <td><%= fd3timep %>%</td>
+      <td><%= fowtimep %>%</td>
+    </tr>
+  </tbody>
 </table>
+
 
 <table class="table" contenteditable="true">
    <thead>
@@ -220,15 +250,15 @@ $(function () {
             type: 'pie',
             name: 'QA Overview',
             data: [
-                 ['WoW',   <%=qawowtimep%>],
+                 ['web',   <%=qawebp%>],
                 ['Hearthstone',   <%=qahstimep%>],
                 ['SCII',   <%=qasc2timep%>],
                 ['heros',   <%=qaherotimep%>],
                 ['DIII',   <%=qad3timep%>],
                 ['Overwatch',   <%=qaowtimep%>],
                 {
-                    name: 'web',
-                    y: <%=qawebp%>,
+                    name: 'WoW',
+                    y: <%=qawowtimep%>,
                     sliced: true,
                     selected: true
                 },
@@ -351,15 +381,15 @@ $(function () {
             type: 'pie',
             name: 'Loc Overview',
             data: [
-                 ['WoW',   <%=locwowtimep%>],
+                 ['web',   <%=locwebp%>],
                 ['Hearthstone',   <%=lochstimep%>],
                 ['SCII',   <%=locsc2timep%>],
                 ['heros',   <%=locherotimep%>],
                 ['DIII',   <%=locd3timep%>],
                 ['Overwatch',   <%=locowtimep%>],
                 {
-                    name: 'web',
-                    y: <%=locwebp%>,
+                    name: 'WoW',
+                    y: <%= locwowtimep%>,
                     sliced: true,
                     selected: true
                 },
@@ -385,7 +415,7 @@ $(function () {
     </tr>
   </thead>
   <tbody>
-    <tr>
+    <tr class="info">
       <td>Loc</td>
       <td><%=loctotal%></td>
       <td><%=loctotalp%>%</td>
@@ -448,3 +478,159 @@ $(function () {
 });
 
     </script>
+
+
+
+
+<%
+qaingameprojects = { qawebtime: 0, qaWoWtime: 0, qasc2time: 0, qahstime: 0, qaoverwatchtime: 0, qad3time: 0, qaherotime: 0}
+qanongameprojects = { qawebtime: 0, qaWoWtime: 0, qasc2time: 0, qahstime: 0, qaoverwatchtime: 0, qad3time: 0, qaherotime: 0}
+      qaingametasks = ["Pre_QA_H","Review_H", "QA_H", "Bug_Management_H","Audio_QA_H","vpp_H","Project_Management_H"]
+      qanongametasks = ["N_Review_H", "N_QA_H", "N_Bug_Management_H","N_vpp_H"]
+
+
+     
+    i=0
+      qaingameprojects.each do |key,value|
+        qaingametasks.each do |qt|
+          qaingameprojects[key] = qaingameprojects[key] + Qaeod.where(date: Date.today.beginning_of_month..Date.today.end_of_month, game_id: i).sum(qt)
+        end
+        i=i+1
+      end
+
+    qaingame = 0
+    qaingameprojects.each do |key,value|
+      qaingame = qaingame + value
+    end
+
+
+    i=0
+      qanongameprojects.each do |key,value|
+        qanongametasks.each do |qt|
+          qanongameprojects[key] = qanongameprojects[key] + Qaeod.where(date: Date.today.beginning_of_month..Date.today.end_of_month, game_id: i).sum(qt)
+        end
+        i=i+1
+      end
+
+    qanongame = 0
+    qanongameprojects.each do |key,value|
+      qanongame = qanongame + value
+    end
+
+
+  
+      locingameprojects = {locwebtime: 0, locWoWtime: 0, locsc2time: 0, lochstime: 0, locoverwatchtime: 0, locd3time: 0, locherotime: 0}
+      locnongameprojects = {locwebtime: 0, locWoWtime: 0, locsc2time: 0, lochstime: 0, locoverwatchtime: 0, locd3time: 0, locherotime: 0}
+      locingametasks = ["familiarization_H","Review_H","translation_H","bugfix_H","audiodelivery_H", "audioonsite_H" , "polish_H", "vpp_H" ,"Project_Management_H"]
+      locnongametasks = ["N_Review_H","N_translation_H","N_bugfix_H","N_vpp_H"]
+      
+
+    i=0
+      locingameprojects.each do |key, value|
+        locingametasks.each do |lt|
+          locingameprojects[key] = locingameprojects[key] + Loceod.where(date: Date.today.beginning_of_month..Date.today.end_of_month, game_id: i).sum(lt) 
+        end
+        i=i+1
+      end
+
+    locingame = 0
+    locingameprojects.each do |key,value|
+      locingame = locingame + value
+    end
+
+
+    i=0
+      locnongameprojects.each do |key, value|
+        locnongametasks.each do |lt|
+          locnongameprojects[key] = locnongameprojects[key] + Loceod.where(date: Date.today.beginning_of_month..Date.today.end_of_month, game_id: i).sum(lt) 
+        end
+        i=i+1
+      end
+    locnongame = 0
+    locnongameprojects.each do |key,value|
+      locnongame = locnongame + value
+    end
+
+    ingame = qaingame + locingame
+    nongame = locnongame + qanongame
+
+    ingamep = (ingame / (ingame + nongame)*100).round(1)
+    nongamep = (nongame / (ingame + nongame)*100).round(1)
+
+%>
+
+  <table class="table" contenteditable="true">
+  <thead>
+    <tr class="info">
+      <th>In-game vs Non-game </th>
+      <th>Hours</th>
+      <th>%</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="info">
+      <td>In-game</td>
+      <td><%=ingame%></td>
+      <td><%=ingamep%>%</td>
+    </tr>
+    <tr class="info">
+      <td>Non-game</td>
+      <td><%=nongame%></td>
+      <td><%=nongamep%>%</td>
+    </tr>
+  </tbody>
+</table>
+
+<div id="containerinornongame" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+
+
+
+ <script type="text/javascript">
+$(function () {
+    $('#containerinornongame').highcharts({
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false
+        },
+        title: {
+            text: 'In-game vs Non-game'
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                    style: {
+                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                    }
+                }
+            }
+        },
+        series: [{
+            type: 'pie',
+            name: 'In-game vs Non-game',
+            data: [
+                ['In-game',    <%=ingamep%>],
+                {
+                    name: 'Non-game',
+                    y: <%=nongamep%>,
+                    sliced: true,
+                    selected: true
+                },
+               
+    
+            ]
+        }]
+    });
+});
+
+    </script>
+    </div>
+  </div>
+</div>
