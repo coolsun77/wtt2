@@ -1,5 +1,19 @@
   
-
+<p>
+<strong>Users:</strong>
 <%= link_to '>users<', userlist_path %>
+</p>
+
 </br>
-<%= link_to '>reports<', report_path %>
+
+
+
+<p>
+<strong>Reports:</strong>
+<%= form_for :eod, url: report_path do |f| %>   
+<input type="Date" name="dateStart" id="dateStart" value="<%= Date.today.beginning_of_month %>"/>
+<input type="Date" name="dateEnd" id="dateEnd" value="<%= Date.today.end_of_month %>"/>
+<input type="submit" name="commit" value="Get Reports" />
+<% end %>
+</p>
+

@@ -48,6 +48,7 @@ class UsersController < ApplicationController
   end
 
   def report
+    #render plain: params[:dateStart].inspect
   end
   # POST /users
   # POST /users.json
