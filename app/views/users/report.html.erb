@@ -29,12 +29,30 @@
   		end
 
   		webtime = qaprojects[:qawebtime] + locprojects[:locwebtime]
+
  		wowtime = qaprojects[:qaWoWtime] + locprojects[:locWoWtime]
+    qawowp = (qaprojects[:qaWoWtime] / wowtime*100).round(1)
+    locwowp = (locprojects[:locWoWtime] / wowtime*100).round(1)
+
  		sc2time =  qaprojects[:qasc2time] + locprojects[:locsc2time]
+    qasc2p = (qaprojects[:qasc2time] / wowtime*100).round(1)
+    locsc2p = (locprojects[:locsc2time] / wowtime*100).round(1)
+
  		herotime = qaprojects[:qaherotime] + locprojects[:locherotime]
+    qaherop = (qaprojects[:qaherotime] / wowtime*100).round(1)
+    locherop = (locprojects[:locherotime] / wowtime*100).round(1)
+
  		d3time = qaprojects[:qad3time] + locprojects[:locd3time]
+    qad3p = (qaprojects[:qad3time] / wowtime*100).round(1)
+    locd3p = (locprojects[:locd3time] / wowtime*100).round(1)
+
  		owtime = qaprojects[:qaoverwatchtime] + locprojects[:locoverwatchtime]
+    qaowp = (qaprojects[:qaoverwatchtime] / wowtime*100).round(1)
+    locowp = (locprojects[:locoverwatchtime] / wowtime*100).round(1)
+
  		hstime = qaprojects[:qahstime] + locprojects[:lochstime]
+    qahsp = (qaprojects[:qahstime] / wowtime*100).round(1)
+    lochsp = (locprojects[:lochstime] / wowtime*100).round(1)
 
 
     qagameobj = qaprojects[:qaWoWtime] + qaprojects[:qasc2time] + qaprojects[:qaherotime] + qaprojects[:qad3time] + qaprojects[:qaoverwatchtime] + qaprojects[:qahstime]
@@ -186,6 +204,23 @@ qanongameprojects = { qawebtime: 0, qaWoWtime: 0, qasc2time: 0, qahstime: 0, qao
     locnongamep = (locnongame / (ingame + nongame)*100).round(1)
 
     locwowingamep = (locingameprojects[:locWoWtime] / pgame*100).round(1)
+    locsc2ingamep = (locingameprojects[:locsc2time] / pgame*100).round(1)
+    lochsingamep = (locingameprojects[:lochstime] / pgame*100).round(1)
+    locowingamep = (locingameprojects[:locoverwatchtime] / pgame*100).round(1)
+    locd3ingamep = (locingameprojects[:locd3time] / pgame*100).round(1)
+    locheroingamep = (locingameprojects[:locherotime] / pgame*100).round(1)
+
+
+    locwownongamep =  (locnongameprojects[:locWoWtime] / pgame*100).round(1)
+    locsc2nongamep =  (locnongameprojects[:locsc2time] / pgame*100).round(1)
+    lochsnongamep =  (locnongameprojects[:lochstime] / pgame*100).round(1)
+    locownongamep =  (locnongameprojects[:locoverwatchtime] / pgame*100).round(1)
+    locd3nongamep =  (locnongameprojects[:locd3time] / pgame*100).round(1)
+    locheronongamep =  (locnongameprojects[:locherotime] / pgame*100).round(1)
+
+
+
+
 
 %>
 
@@ -200,7 +235,7 @@ qanongameprojects = { qawebtime: 0, qaWoWtime: 0, qasc2time: 0, qahstime: 0, qao
 <table class="table" contenteditable="true">
   <thead>
     <tr class="info">
-      <th>Project: LOC vs QA </th>
+      <th>WoW: LOC vs QA </th>
       <th>Hours</th>
       <th>%</th>
     </tr>
@@ -208,36 +243,31 @@ qanongameprojects = { qawebtime: 0, qaWoWtime: 0, qasc2time: 0, qahstime: 0, qao
   <tbody>
     <tr class="info">
       <td>Loc</td>
-      <td><%=loctotal%></td>
-      <td><%=loctotalp%>%</td>
+      <td><%=locprojects[:locWoWtime]%></td>
+      <td><%=locwowp%>%</td>
     </tr>
     <tr class="info">
       <td>QA</td>
-      <td><%=qatotal%></td>
-      <td><%=qatotalp%>%</td>
-    </tr>
-    <tr class="info">
-      <td>locWoWtime</td>
-      <td><%=locingameprojects[:locWoWtime]%></td>
-      <td><%=locwowingamep%>%</td>
+      <td><%=qaprojects[:qaWoWtime]%></td>
+      <td><%=qawowp%>%</td>
     </tr>
   </tbody>
 </table>
 
-<div id="containerlocqa" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+<div id="containerwowlocqa" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
 
 
 
  <script type="text/javascript">
 $(function () {
-    $('#containerlocqa').highcharts({
+    $('#containerwowlocqa').highcharts({
         chart: {
             plotBackgroundColor: null,
             plotBorderWidth: null,
             plotShadow: false
         },
         title: {
-            text: 'Project: LOC vs QA    '
+            text: 'WoW: LOC vs QA    '
         },
         tooltip: {
             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -257,12 +287,12 @@ $(function () {
         },
         series: [{
             type: 'pie',
-            name: 'Project: LOC vs QA    ',
+            name: 'WoW: LOC vs QA    ',
             data: [
-                ['QA',    <%=qatotalp%>],
+                ['QA',    <%=qawowp%>],
                 {
                     name: 'Loc',
-                    y: <%=loctotalp%>,
+                    y: <%=locwowp%>,
                     sliced: true,
                     selected: true
                 },
@@ -276,9 +306,370 @@ $(function () {
     </script>
 
 
+<table class="table" contenteditable="true">
+  <thead>
+    <tr class="info">
+      <th>SC2: LOC vs QA </th>
+      <th>Hours</th>
+      <th>%</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="info">
+      <td>Loc</td>
+      <td><%=locprojects[:locsc2time]%></td>
+      <td><%=locsc2p%>%</td>
+    </tr>
+    <tr class="info">
+      <td>QA</td>
+      <td><%=qaprojects[:qasc2time]%></td>
+      <td><%=qasc2p%>%</td>
+    </tr>
+  </tbody>
+</table>
+
+<div id="containersc2locqa" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
 
 
 
+ <script type="text/javascript">
+$(function () {
+    $('#containersc2locqa').highcharts({
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false
+        },
+        title: {
+            text: 'SC2: LOC vs QA    '
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                    style: {
+                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                    }
+                }
+            }
+        },
+        series: [{
+            type: 'pie',
+            name: 'SC2: LOC vs QA    ',
+            data: [
+                ['QA',    <%=qasc2p%>],
+                {
+                    name: 'Loc',
+                    y: <%=locsc2p%>,
+                    sliced: true,
+                    selected: true
+                },
+               
+    
+            ]
+        }]
+    });
+});
+
+    </script>
+
+<table class="table" contenteditable="true">
+  <thead>
+    <tr class="info">
+      <th>hero: LOC vs QA </th>
+      <th>Hours</th>
+      <th>%</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="info">
+      <td>Loc</td>
+      <td><%=locprojects[:locherotime]%></td>
+      <td><%=locherop%>%</td>
+    </tr>
+    <tr class="info">
+      <td>QA</td>
+      <td><%=qaprojects[:qaherotime]%></td>
+      <td><%=qaherop%>%</td>
+    </tr>
+  </tbody>
+</table>
+
+<div id="containerherolocqa" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+
+
+
+ <script type="text/javascript">
+$(function () {
+    $('#containerherolocqa').highcharts({
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false
+        },
+        title: {
+            text: 'hero: LOC vs QA    '
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                    style: {
+                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                    }
+                }
+            }
+        },
+        series: [{
+            type: 'pie',
+            name: 'hero: LOC vs QA    ',
+            data: [
+                ['QA',    <%=qaherop%>],
+                {
+                    name: 'Loc',
+                    y: <%=locherop%>,
+                    sliced: true,
+                    selected: true
+                },
+               
+    
+            ]
+        }]
+    });
+});
+
+    </script>
+
+<table class="table" contenteditable="true">
+  <thead>
+    <tr class="info">
+      <th>d3: LOC vs QA </th>
+      <th>Hours</th>
+      <th>%</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="info">
+      <td>Loc</td>
+      <td><%=locprojects[:locd3time]%></td>
+      <td><%=locd3p%>%</td>
+    </tr>
+    <tr class="info">
+      <td>QA</td>
+      <td><%=qaprojects[:qad3time]%></td>
+      <td><%=qad3p%>%</td>
+    </tr>
+  </tbody>
+</table>
+
+<div id="containerd3locqa" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+
+
+
+ <script type="text/javascript">
+$(function () {
+    $('#containerd3locqa').highcharts({
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false
+        },
+        title: {
+            text: 'd3: LOC vs QA    '
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                    style: {
+                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                    }
+                }
+            }
+        },
+        series: [{
+            type: 'pie',
+            name: 'd3: LOC vs QA    ',
+            data: [
+                ['QA',    <%=qad3p%>],
+                {
+                    name: 'Loc',
+                    y: <%=locd3p%>,
+                    sliced: true,
+                    selected: true
+                },
+               
+    
+            ]
+        }]
+    });
+});
+
+    </script>
+
+<table class="table" contenteditable="true">
+  <thead>
+    <tr class="info">
+      <th>ow: LOC vs QA </th>
+      <th>Hours</th>
+      <th>%</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="info">
+      <td>Loc</td>
+      <td><%=locprojects[:locoverwatchtime]%></td>
+      <td><%=locowp%>%</td>
+    </tr>
+    <tr class="info">
+      <td>QA</td>
+      <td><%=qaprojects[:qaoverwatchtime]%></td>
+      <td><%=qaowp%>%</td>
+    </tr>
+  </tbody>
+</table>
+
+<div id="containerowlocqa" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+
+
+
+ <script type="text/javascript">
+$(function () {
+    $('#containerowlocqa').highcharts({
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false
+        },
+        title: {
+            text: 'ow: LOC vs QA    '
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                    style: {
+                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                    }
+                }
+            }
+        },
+        series: [{
+            type: 'pie',
+            name: 'ow: LOC vs QA    ',
+            data: [
+                ['QA',    <%=qaowp%>],
+                {
+                    name: 'Loc',
+                    y: <%=locowp%>,
+                    sliced: true,
+                    selected: true
+                },
+               
+    
+            ]
+        }]
+    });
+});
+
+    </script>
+
+<table class="table" contenteditable="true">
+  <thead>
+    <tr class="info">
+      <th>hs: LOC vs QA </th>
+      <th>Hours</th>
+      <th>%</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="info">
+      <td>Loc</td>
+      <td><%=locprojects[:lochstime]%></td>
+      <td><%=lochsp%>%</td>
+    </tr>
+    <tr class="info">
+      <td>QA</td>
+      <td><%=qaprojects[:qahstime]%></td>
+      <td><%=qahsp%>%</td>
+    </tr>
+  </tbody>
+</table>
+
+<div id="containerhslocqa" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+
+
+
+ <script type="text/javascript">
+$(function () {
+    $('#containerhslocqa').highcharts({
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadhs: false
+        },
+        title: {
+            text: 'hs: LOC vs QA    '
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allhsPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                    style: {
+                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                    }
+                }
+            }
+        },
+        series: [{
+            type: 'pie',
+            name: 'hs: LOC vs QA    ',
+            data: [
+                ['QA',    <%=qahsp%>],
+                {
+                    name: 'Loc',
+                    y: <%=lochsp%>,
+                    sliced: true,
+                    selected: true
+                },
+               
+    
+            ]
+        }]
+    });
+});
+
+    </script>
 
   <table class="table" contenteditable="true">
   <thead>
