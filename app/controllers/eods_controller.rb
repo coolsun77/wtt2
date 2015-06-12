@@ -21,6 +21,7 @@ class EodsController < ApplicationController
        @edate = params[:eod][:date]
  #   end
       if Eod.find_by(date: @edate, user_id: params[:id]) 
+         @games = Game.all
          @eod= Eod.find_by(date: @edate, user_id: params[:id]) 
          @user = @eod.user
        #  @qaeod = Qaeod.find_by(eod_id: @eod.id)
@@ -29,9 +30,11 @@ class EodsController < ApplicationController
       
       
       @user = User.find(params[:id])
+      @games = Game.all
+      count = Game.count
       @eod = @user.eods.new(:user=>@user, :date =>@edate )
-      9.times { @eod.qaeods.build}
-      9.times { @eod.loceods.build}
+      count.times { @eod.qaeods.build}
+      count.times { @eod.loceods.build}
 #      self.create
 #@qaeod = @eod.new
     end
@@ -40,9 +43,12 @@ class EodsController < ApplicationController
   # GET /eods/1/edit
   def edit
      @user = User.find(params[:user_id])
+      @games = Game.all
+      count = Game.count
      @eod = Eod.find_by(params[:id]) 
-     9.times { @eod.qaeods.build}
-      9.times { @eod.loceods.build}
+     count.times { @eod.qaeods.build}
+      count .times { @eod.loceods.build}
+      
   end
 
   # POST /eods

@@ -14,8 +14,15 @@
   <% end %>
 
 
- projects:
-<%  projects = ["web","WoW","SC2","HearthStone","OverWatch","Diablo3","Heroes","Miscellaneous","Absence"]  %>
+ pprojects:
+<%  
+  projects = [] 
+  @games.each do |game|
+    projects.push([game.id,game.objname])
+  end
+
+  
+%>
      <%  i=0  %>
   <ul>
     <%= e.fields_for :qaeods do |f| %>
@@ -80,8 +87,8 @@
 </table>
                 
   <% when 7 %>
-   <DIV style="cursor:hand" onclick="isHidden('<%= projects[i] %>')"><input type="checkbox" /><%= projects[i] %></DIV>
-      <div class="container-fluid" id="<%= projects[i] %>" style="display:none">
+   <DIV style="cursor:hand" onclick="isHidden('<%= projects[i][1] %>')"><input type="checkbox" /><%= projects[i][1] %></DIV>
+      <div class="container-fluid" id="<%= projects[i][1] %>" style="display:none">
     <table class="table table-bordered" contenteditable="true">
       <thead>
         <tr class="warning">
@@ -92,7 +99,7 @@
       </thead>
       <tbody>
         <tr class="warning">
-          <td rowspan="3"><%=projects[i]%><span><input id="eod_qaeods_attributes_<%=i%>_game_id" name="eod[qaeods_attributes][<%=i%>][game_id]" type="hidden" value="<%=i%>" /></span></td>
+          <td rowspan="3"><%=projects[i][1]%><span><input id="eod_qaeods_attributes_<%=i%>_game_id" name="eod[qaeods_attributes][<%=i%>][game_id]" type="hidden" value="<%=i%>" /></span></td>
           <td>Meeting</td>
           <td><%= f.text_field :mis_meeting%></td>
           <td><span style="background-color: rgb(252, 248, 227);"><%= f.text_field :mis_meeting_N%></span></td>
@@ -112,8 +119,8 @@
 
                   
   <% when 8 %>
-    <DIV style="cursor:hand" onclick="isHidden('<%= projects[i] %>')"><input type="checkbox" /><%= projects[i] %></DIV>
-    <div class="container-fluid" id="<%= projects[i] %>" style="display:none">
+    <DIV style="cursor:hand" onclick="isHidden('<%= projects[i][1] %>')"><input type="checkbox" /><%= projects[i][1] %></DIV>
+    <div class="container-fluid" id="<%= projects[i][1] %>" style="display:none">
     <table class="table table-bordered" contenteditable="true">
       <thead>
         <tr class="warning">
@@ -124,7 +131,7 @@
       </thead>
       <tbody>
         <tr class="warning">
-          <td colspan="1" rowspan="5"><%=projects[i]%><span><input id="eod_qaeods_attributes_<%=i%>_game_id" name="eod[qaeods_attributes][<%=i%>][game_id]" type="hidden" value="<%=i%>" /></span></td>
+          <td colspan="1" rowspan="5"><%=projects[i][1]%><span><input id="eod_qaeods_attributes_<%=i%>_game_id" name="eod[qaeods_attributes][<%=i%>][game_id]" type="hidden" value="<%=i%>" /></span></td>
           <td>Sick Leave</td>
           <td><%= f.text_field :ab_sickleave%></td>
           <td><span style="background-color: rgb(252, 248, 227);"><%= f.text_field :ab_sickleave_N%></span></td>
@@ -158,8 +165,8 @@
     <% else %>
 
      
-            <DIV style="cursor:hand" onclick="isHidden('<%= projects[i] %>')"><input type="checkbox" /><%= projects[i] %></DIV>
-      <div class="container-fluid" id="<%= projects[i] %>" style="display:none">
+            <DIV style="cursor:hand" onclick="isHidden('<%= projects[i][1] %>')"><input type="checkbox" /><%= projects[i][1] %></DIV>
+      <div class="container-fluid" id="<%= projects[i][1] %>" style="display:none">
 <table class="table table-bordered" contenteditable="true">
   <thead>
     <tr class="warning">
@@ -171,7 +178,7 @@
   </thead>
   <tbody>
     <tr class="warning">
-      <td rowspan="18"><span><%= projects[i] %><input id="eod_qaeods_attributes_<%=i%>_game_id" name="eod[qaeods_attributes][<%=i%>][game_id]" type="hidden" value="<%=i%>" /></span></td>
+      <td rowspan="18"><span><%= projects[i][1] %><input id="eod_qaeods_attributes_<%=i%>_game_id" name="eod[qaeods_attributes][<%=i%>][game_id]" type="hidden" value="<%=i%>" /></span></td>
       <td rowspan="9"><span>In-game</span></td>
       <td><span>Pre-testing</span></td>
       <td><%= f.text_field :Pre_QA_H %></td>

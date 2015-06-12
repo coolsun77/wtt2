@@ -25,7 +25,14 @@
 
 
   projects:
-<%  projects = ["web","WoW","SC2","HearthStone","OverWatch","Diablo3","Heroes","Miscellaneous","Absence"]  %>
+<%  
+	projects = [] 
+	@games.each do |game|
+		projects.push([game.id,game.objname])
+	end
+
+	
+%>
      <%  i=0  %>
   <ul>
     <%= e.fields_for :qaeods do |f| %>
@@ -46,7 +53,7 @@
 	<tbody>
 		<tr class="warning">
 			<td rowspan="7"><span>Web<input id="eod_qaeods_attributes_0_game_id" name="eod[qaeods_attributes][0][game_id]" type="hidden" value="0" /></span></td>
-			  <input type="hidden" name="eod[qaeods_attributes][<%=i%>][date]" id="eod_qaeods_attributes_<%=i%>_date" value=<%= @eod.date %>> 
+			  <input type="hidden" name="eod[qaeods_attributes][<%=projects[i][0]%>][date]" id="eod_qaeods_attributes_<%=projects[i][0]%>_date" value=<%= @eod.date %>> 
 			<td><span>Pre-testing</span></td>
 			<td><%= f.text_field :Pre_QA_H %></td>
 			<td colspan="2" style="text-align: center;"><%= f.text_field :Pre_QA %></td>
@@ -91,8 +98,8 @@
 </table>
 								
 	<% when 7 %>
-   <DIV style="cursor:hand" onclick="isHidden('<%= projects[i] %>')"><input type="checkbox" /><%= projects[i] %></DIV>
-			<div class="container-fluid" id="<%= projects[i] %>" style="display:none">
+   <DIV style="cursor:hand" onclick="isHidden('<%=projects[i][1]%>')"><input type="checkbox" /><%=projects[i][1]%></DIV>
+			<div class="container-fluid" id="<%=projects[i][1]%>" style="display:none">
 		<table class="table table-bordered" contenteditable="true">
 			<thead>
 				<tr class="warning">
@@ -103,8 +110,8 @@
 			</thead>
 			<tbody>
 				<tr class="warning">
-					<td rowspan="3"><%=projects[i]%><span><input id="eod_qaeods_attributes_<%=i%>_game_id" name="eod[qaeods_attributes][<%=i%>][game_id]" type="hidden" value="<%=i%>" /></span></td>
-					<input type="hidden" name="eod[qaeods_attributes][<%=i%>][date]" id="eod_qaeods_attributes_<%=i%>_date" value=<%= @eod.date %>> 
+					<td rowspan="3"><%=projects[i]%><span><input id="eod_qaeods_attributes_<%=projects[i][0]%>_game_id" name="eod[qaeods_attributes][<%=projects[i][0]%>][game_id]" type="hidden" value="<%=projects[i][0]%>" /></span></td>
+					<input type="hidden" name="eod[qaeods_attributes][<%=projects[i][0]%>][date]" id="eod_qaeods_attributes_<%=projects[i][0]%>_date" value=<%= @eod.date %>> 
 					<td>Meeting</td>
 					<td><%= f.text_field :mis_meeting%></td>
 					<td><span style="background-color: rgb(252, 248, 227);"><%= f.text_field :mis_meeting_N%></span></td>
@@ -124,8 +131,8 @@
 
 									
 	<% when 8 %>
-    <DIV style="cursor:hand" onclick="isHidden('<%= projects[i] %>')"><input type="checkbox" /><%= projects[i] %></DIV>
-		<div class="container-fluid" id="<%= projects[i] %>" style="display:none">
+    <DIV style="cursor:hand" onclick="isHidden('<%=projects[i][1]%>')"><input type="checkbox" /><%=projects[i][1]%></DIV>
+		<div class="container-fluid" id="<%=projects[i][1]%>" style="display:none">
 		<table class="table table-bordered" contenteditable="true">
 			<thead>
 				<tr class="warning">
@@ -136,8 +143,8 @@
 			</thead>
 			<tbody>
 				<tr class="warning">
-					<td colspan="1" rowspan="5"><%=projects[i]%><span><input id="eod_qaeods_attributes_<%=i%>_game_id" name="eod[qaeods_attributes][<%=i%>][game_id]" type="hidden" value="<%=i%>" /></span></td>
-					<input type="hidden" name="eod[qaeods_attributes][<%=i%>][date]" id="eod_qaeods_attributes_<%=i%>_date" value=<%= @eod.date %>> 
+					<td colspan="1" rowspan="5"><%=projects[i]%><span><input id="eod_qaeods_attributes_<%=projects[i][0]%>_game_id" name="eod[qaeods_attributes][<%=projects[i][0]%>][game_id]" type="hidden" value="<%=projects[i][0]%>" /></span></td>
+					<input type="hidden" name="eod[qaeods_attributes][<%=projects[i][0]%>][date]" id="eod_qaeods_attributes_<%=projects[i][0]%>_date" value=<%= @eod.date %>> 
 					<td>Sick Leave</td>
 					<td><%= f.text_field :ab_sickleave%></td>
 					<td><span style="background-color: rgb(252, 248, 227);"><%= f.text_field :ab_sickleave_N%></span></td>
@@ -171,126 +178,126 @@
     <% else %>
 
      
-            <DIV style="cursor:hand" onclick="isHidden('<%= projects[i] %>')"><input type="checkbox" /><%= projects[i] %></DIV>
-			<div class="container-fluid" id="<%= projects[i] %>" style="display:none">
-<table class="table table-bordered" contenteditable="true">
-	<thead>
-		<tr class="warning">
-			<th colspan="3" rowspan="1"><span style="font-weight: normal;">QA</span></th>
-			<th><span style="font-weight: normal;">Hours</span></th>
-			<th colspan="2" style="width: 24%;"><span style="font-weight: normal;">Amount</span></th>
-			<th style="width: 24%;"><span style="font-weight: normal;">Notes</span></th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr class="warning">
-			<td rowspan="18"><span><%= projects[i] %><input id="eod_qaeods_attributes_<%=i%>_game_id" name="eod[qaeods_attributes][<%=i%>][game_id]" type="hidden" value="<%=i%>" /></span></td>
-			<input type="hidden" name="eod[qaeods_attributes][<%=i%>][date]" id="eod_qaeods_attributes_<%=i%>_date" value=<%= @eod.date %>> 
-			<td rowspan="9"><span>In-game</span></td>
-			<td><span>Pre-testing</span></td>
-			<td><%= f.text_field :Pre_QA_H %></td>
-			<td colspan="2" style="text-align: center;"><%= f.text_field :Pre_QA %></td>
-			<td style="text-align: center;"><span style="background-color: rgb(252, 248, 227);"><%= f.text_field :Pre_QA_N %></span></td>
-		</tr>
-		<tr class="warning">
-			<td><span>Review</span></td>
-			<td><%= f.text_field :Review_H %></td>
-			<td colspan="2" style="text-align: center;"><%= f.text_field :Review %></td>
-			<td style="text-align: center;"><span style="background-color: rgb(252, 248, 227);"><%= f.text_field :Review_N %></span></td>
-		</tr>
-		<tr class="warning">
-			<td><span>Testing</span></td>
-			<td><%= f.text_field :QA_H %></td>
-			<td colspan="2" style="text-align: center;"><%= f.text_field :QA %></td>
-			<td style="text-align: center;"><span style="background-color: rgb(252, 248, 227);"><%= f.text_field :QA_N %></span></td>
-		</tr>
-		<tr class="warning">
-			<td><span>Audio Testing</span></td>
-			<td><%= f.text_field :Audio_QA_H %></td>
-			<td colspan="2" style="text-align: center;"><%= f.text_field :Audio_QA %></td>
-			<td style="text-align: center;"><span style="background-color: rgb(252, 248, 227);"><%= f.text_field :Audio_QA_N %></span></td>
-		</tr>
-		<tr class="warning">
-			<td>VPP</td>
-			<td><%= f.text_field :vpp_H%></td>
-			<td colspan="2" style="text-align: center;"><%= f.text_field :vpp%></td>
-			<td style="text-align: center;"><%= f.text_field :vpp_N%></td>
-		</tr>
-		<tr class="warning">
-			<td colspan="1" rowspan="4"><span style="background-color: rgb(252, 248, 227);">Bug Management</span></td>
-			<td>Audio</td>
-			<td colspan="2" style="text-align: center;"><%= f.text_field :bug_audio%></td>
-			<td style="text-align: center;"><span style="text-align: center; background-color: rgb(252, 248, 227);"><%= f.text_field :bug_audio_N%></span></td>
-		</tr>
-		<tr class="warning">
-			<td>Text</td>
-			<td colspan="2" style="text-align: center;"><%= f.text_field :bug_text%></td>
-			<td style="text-align: center;"><span style="text-align: center; background-color: rgb(252, 248, 227);"><%= f.text_field :bug_text_N%></span></td>
-		</tr>
-		<tr class="warning">
-			<td>Fast Fix</td>
-			<td colspan="2" style="text-align: center;"><%= f.text_field :bug_fastfix%></td>
-			<td style="text-align: center;"><span style="text-align: center; background-color: rgb(252, 248, 227);"><%= f.text_field :bug_fastfix_N%></span></td>
-		</tr>
-		<tr class="warning">
-			<td rowspan="1" style="vertical-align: middle;">Functional</td>
-			<td colspan="2" style="text-align: center;"><%= f.text_field :bug_functional%></td>
-			<td rowspan="1" style="text-align: center; vertical-align: middle;"><span style="text-align: center; background-color: rgb(252, 248, 227);"><%= f.text_field :bug_functional_N%></span></td>
-		</tr>
-		<tr class="warning">
-			<td rowspan="7"><span>Non-game</span></td>
-			<td><span>Review</span></td>
-			<td><%= f.text_field :N_Review_H %></td>
-			<td colspan="2" style="text-align: center;"><%= f.text_field :N_Review %></td>
-			<td style="text-align: center;"><span style="background-color: rgb(252, 248, 227);"><%= f.text_field :N_Review_N %></span></td>
-		</tr>
-		<tr class="warning">
-			<td><span>Testing</span></td>
-			<td><%= f.text_field :N_QA_H %></td>
-			<td colspan="2" style="text-align: center;"><%= f.text_field :N_QA %></td>
-			<td style="text-align: center;"><span style="background-color: rgb(252, 248, 227);"><%= f.text_field :N_QA_N %></span></td>
-		</tr>
-		<tr class="warning">
-			<td>VPP</td>
-			<td><%= f.text_field :N_vpp_H%></td>
-			<td colspan="2" style="text-align: center;"><%= f.text_field :N_vpp%></td>
-			<td style="text-align: center;"><span style="text-align: center;"><%= f.text_field :N_vpp_N%></span></td>
-		</tr>
-		<tr class="warning">
-			<td colspan="1" rowspan="4"><span>Bug Management</span></td>
-			<td rowspan="1" style="vertical-align: middle;"><span style="background-color: rgb(252, 248, 227);">Audio</span></td>
-			<td colspan="2" style="text-align: center;"><span style="text-align: center; background-color: rgb(252, 248, 227);"><%= f.text_field :N_bug_audio%></span></td>
-			<td rowspan="1" style="text-align: center; vertical-align: middle;"><span style="text-align: center; background-color: rgb(252, 248, 227);"><%= f.text_field :N_bug_audio_N%></span></td>
-		</tr>
-		<tr class="warning">
-			<td><span style="background-color: rgb(252, 248, 227);">Text</span></td>
-			<td colspan="2" style="text-align: center;"><span style="text-align: center; background-color: rgb(252, 248, 227);"><%= f.text_field :N_bug_text%></span></td>
-			<td style="text-align: center;"><span style="text-align: center; background-color: rgb(252, 248, 227);"><%= f.text_field :N_bug_text_N%></span></td>
-		</tr>
-		<tr class="warning">
-			<td><span style="background-color: rgb(252, 248, 227);">Fast Fix</span></td>
-			<td colspan="2" style="text-align: center;"><span style="text-align: center; background-color: rgb(252, 248, 227);"><%= f.text_field :N_bug_fastfix%></span></td>
-			<td style="text-align: center;"><span style="text-align: center; background-color: rgb(252, 248, 227);"><%= f.text_field :N_bug_fastfix_N%></span></td>
-		</tr>
-		<tr class="warning">
-			<td><span style="background-color: rgb(252, 248, 227);">Functional</span></td>
-			<td colspan="2" style="text-align: center;"><span style="text-align: center; background-color: rgb(252, 248, 227);"><%= f.text_field :N_bug_functional%></span></td>
-			<td style="text-align: center;"><span style="text-align: center; background-color: rgb(252, 248, 227);"><%= f.text_field :N_bug_functional_N%></span></td>
-		</tr>
-		<tr class="warning">
-			<td colspan="2"><span>Project Management</span></td>
-			<td><%= f.text_field :Project_Management_H %></td>
-			<td colspan="2" style="text-align: center;"><%= f.text_field :Project_Management %></td>
-			<td style="text-align: center;"><span style="background-color: rgb(252, 248, 227);"><%= f.text_field :Project_Management_N %></span></td>
-		</tr>
-		<tr class="warning">
-			<td colspan="2"><span>Other</span></td>
-			<td><%= f.text_field :Other_H %></td>
-			<td colspan="2" style="text-align: center;"><%= f.text_field :Other %></td>
-			<td style="text-align: center;"><span style="background-color: rgb(252, 248, 227);"><%= f.text_field :Other_N%></span></td>
-		</tr>
-	</tbody>
-</table>
+            <DIV style="cursor:hand" onclick="isHidden('<%=projects[i][1]%>')"><input type="checkbox" /><%=projects[i][1]%></DIV>
+			<div class="container-fluid" id="<%=projects[i][1]%>" style="display:none">
+			<table class="table table-bordered" contenteditable="true">
+				<thead>
+					<tr class="warning">
+						<th colspan="3" rowspan="1"><span style="font-weight: normal;">QA</span></th>
+						<th><span style="font-weight: normal;">Hours</span></th>
+						<th colspan="2" style="width: 24%;"><span style="font-weight: normal;">Amount</span></th>
+						<th style="width: 24%;"><span style="font-weight: normal;">Notes</span></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="warning">
+						<td rowspan="18"><span><%=projects[i][1]%><input id="eod_qaeods_attributes_<%=projects[i][0]%>_game_id" name="eod[qaeods_attributes][<%=projects[i][0]%>][game_id]" type="hidden" value="<%=projects[i][0]%>" /></span></td>
+						<input type="hidden" name="eod[qaeods_attributes][<%=projects[i][0]%>][date]" id="eod_qaeods_attributes_<%=projects[i][0]%>_date" value=<%= @eod.date %>> 
+						<td rowspan="9"><span>In-game</span></td>
+						<td><span>Pre-testing</span></td>
+						<td><%= f.text_field :Pre_QA_H %></td>
+						<td colspan="2" style="text-align: center;"><%= f.text_field :Pre_QA %></td>
+						<td style="text-align: center;"><span style="background-color: rgb(252, 248, 227);"><%= f.text_field :Pre_QA_N %></span></td>
+					</tr>
+					<tr class="warning">
+						<td><span>Review</span></td>
+						<td><%= f.text_field :Review_H %></td>
+						<td colspan="2" style="text-align: center;"><%= f.text_field :Review %></td>
+						<td style="text-align: center;"><span style="background-color: rgb(252, 248, 227);"><%= f.text_field :Review_N %></span></td>
+					</tr>
+					<tr class="warning">
+						<td><span>Testing</span></td>
+						<td><%= f.text_field :QA_H %></td>
+						<td colspan="2" style="text-align: center;"><%= f.text_field :QA %></td>
+						<td style="text-align: center;"><span style="background-color: rgb(252, 248, 227);"><%= f.text_field :QA_N %></span></td>
+					</tr>
+					<tr class="warning">
+						<td><span>Audio Testing</span></td>
+						<td><%= f.text_field :Audio_QA_H %></td>
+						<td colspan="2" style="text-align: center;"><%= f.text_field :Audio_QA %></td>
+						<td style="text-align: center;"><span style="background-color: rgb(252, 248, 227);"><%= f.text_field :Audio_QA_N %></span></td>
+					</tr>
+					<tr class="warning">
+						<td>VPP</td>
+						<td><%= f.text_field :vpp_H%></td>
+						<td colspan="2" style="text-align: center;"><%= f.text_field :vpp%></td>
+						<td style="text-align: center;"><%= f.text_field :vpp_N%></td>
+					</tr>
+					<tr class="warning">
+						<td colspan="1" rowspan="4"><span style="background-color: rgb(252, 248, 227);">Bug Management</span></td>
+						<td>Audio</td>
+						<td colspan="2" style="text-align: center;"><%= f.text_field :bug_audio%></td>
+						<td style="text-align: center;"><span style="text-align: center; background-color: rgb(252, 248, 227);"><%= f.text_field :bug_audio_N%></span></td>
+					</tr>
+					<tr class="warning">
+						<td>Text</td>
+						<td colspan="2" style="text-align: center;"><%= f.text_field :bug_text%></td>
+						<td style="text-align: center;"><span style="text-align: center; background-color: rgb(252, 248, 227);"><%= f.text_field :bug_text_N%></span></td>
+					</tr>
+					<tr class="warning">
+						<td>Fast Fix</td>
+						<td colspan="2" style="text-align: center;"><%= f.text_field :bug_fastfix%></td>
+						<td style="text-align: center;"><span style="text-align: center; background-color: rgb(252, 248, 227);"><%= f.text_field :bug_fastfix_N%></span></td>
+					</tr>
+					<tr class="warning">
+						<td rowspan="1" style="vertical-align: middle;">Functional</td>
+						<td colspan="2" style="text-align: center;"><%= f.text_field :bug_functional%></td>
+						<td rowspan="1" style="text-align: center; vertical-align: middle;"><span style="text-align: center; background-color: rgb(252, 248, 227);"><%= f.text_field :bug_functional_N%></span></td>
+					</tr>
+					<tr class="warning">
+						<td rowspan="7"><span>Non-game</span></td>
+						<td><span>Review</span></td>
+						<td><%= f.text_field :N_Review_H %></td>
+						<td colspan="2" style="text-align: center;"><%= f.text_field :N_Review %></td>
+						<td style="text-align: center;"><span style="background-color: rgb(252, 248, 227);"><%= f.text_field :N_Review_N %></span></td>
+					</tr>
+					<tr class="warning">
+						<td><span>Testing</span></td>
+						<td><%= f.text_field :N_QA_H %></td>
+						<td colspan="2" style="text-align: center;"><%= f.text_field :N_QA %></td>
+						<td style="text-align: center;"><span style="background-color: rgb(252, 248, 227);"><%= f.text_field :N_QA_N %></span></td>
+					</tr>
+					<tr class="warning">
+						<td>VPP</td>
+						<td><%= f.text_field :N_vpp_H%></td>
+						<td colspan="2" style="text-align: center;"><%= f.text_field :N_vpp%></td>
+						<td style="text-align: center;"><span style="text-align: center;"><%= f.text_field :N_vpp_N%></span></td>
+					</tr>
+					<tr class="warning">
+						<td colspan="1" rowspan="4"><span>Bug Management</span></td>
+						<td rowspan="1" style="vertical-align: middle;"><span style="background-color: rgb(252, 248, 227);">Audio</span></td>
+						<td colspan="2" style="text-align: center;"><span style="text-align: center; background-color: rgb(252, 248, 227);"><%= f.text_field :N_bug_audio%></span></td>
+						<td rowspan="1" style="text-align: center; vertical-align: middle;"><span style="text-align: center; background-color: rgb(252, 248, 227);"><%= f.text_field :N_bug_audio_N%></span></td>
+					</tr>
+					<tr class="warning">
+						<td><span style="background-color: rgb(252, 248, 227);">Text</span></td>
+						<td colspan="2" style="text-align: center;"><span style="text-align: center; background-color: rgb(252, 248, 227);"><%= f.text_field :N_bug_text%></span></td>
+						<td style="text-align: center;"><span style="text-align: center; background-color: rgb(252, 248, 227);"><%= f.text_field :N_bug_text_N%></span></td>
+					</tr>
+					<tr class="warning">
+						<td><span style="background-color: rgb(252, 248, 227);">Fast Fix</span></td>
+						<td colspan="2" style="text-align: center;"><span style="text-align: center; background-color: rgb(252, 248, 227);"><%= f.text_field :N_bug_fastfix%></span></td>
+						<td style="text-align: center;"><span style="text-align: center; background-color: rgb(252, 248, 227);"><%= f.text_field :N_bug_fastfix_N%></span></td>
+					</tr>
+					<tr class="warning">
+						<td><span style="background-color: rgb(252, 248, 227);">Functional</span></td>
+						<td colspan="2" style="text-align: center;"><span style="text-align: center; background-color: rgb(252, 248, 227);"><%= f.text_field :N_bug_functional%></span></td>
+						<td style="text-align: center;"><span style="text-align: center; background-color: rgb(252, 248, 227);"><%= f.text_field :N_bug_functional_N%></span></td>
+					</tr>
+					<tr class="warning">
+						<td colspan="2"><span>Project Management</span></td>
+						<td><%= f.text_field :Project_Management_H %></td>
+						<td colspan="2" style="text-align: center;"><%= f.text_field :Project_Management %></td>
+						<td style="text-align: center;"><span style="background-color: rgb(252, 248, 227);"><%= f.text_field :Project_Management_N %></span></td>
+					</tr>
+					<tr class="warning">
+						<td colspan="2"><span>Other</span></td>
+						<td><%= f.text_field :Other_H %></td>
+						<td colspan="2" style="text-align: center;"><%= f.text_field :Other %></td>
+						<td style="text-align: center;"><span style="background-color: rgb(252, 248, 227);"><%= f.text_field :Other_N%></span></td>
+					</tr>
+				</tbody>
+			</table>
 
 
 
