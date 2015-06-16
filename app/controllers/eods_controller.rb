@@ -43,12 +43,9 @@ class EodsController < ApplicationController
   # GET /eods/1/edit
   def edit
      @user = User.find(params[:user_id])
-      @games = Game.all
-      count = Game.count
+
      @eod = Eod.find_by(params[:id]) 
-     count.times { @eod.qaeods.build}
-      count .times { @eod.loceods.build}
-      
+
   end
 
   # POST /eods
