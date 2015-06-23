@@ -153,6 +153,11 @@
       </tr>
    </thead>
    <tbody>
+     <tr class="info">
+         <td>Total</td>
+         <td><%=qatotal%></td>
+         <td>100%</td>
+      </tr>
       <tr class="info">
          <td>WoW</td>
          <td><%=qaprojects[:qaWoWtime]%></td>
@@ -287,6 +292,11 @@ $(function () {
       </tr>
    </thead>
    <tbody>
+    <tr class="info">
+         <td>Total</td>
+         <td><%=loctotal%></td>
+         <td>100%</td>
+      </tr>
       <tr class="info">
          <td>WoW</td>
          <td><%=locprojects[:locWoWtime]%></td>
@@ -580,6 +590,26 @@ qanongameprojects = { qawebtime: 0, qaWoWtime: 0, qasc2time: 0, qahstime: 0, qao
       <td>Non-game</td>
       <td><%=nongame%></td>
       <td><%=nongamep%>%</td>
+    </tr>
+    <tr class="info">
+      <td>QA-In-game</td>
+      <td><%=qaingame%></td>
+      <td> - </td>
+    </tr>
+    <tr class="info">
+      <td>Loc-In-game</td>
+      <td><%=locingame%></td>
+      <td> - </td>
+    </tr>
+    <tr class="info">
+      <td>QA-Non-game</td>
+      <td><%=qanongame%></td>
+      <td> - </td>
+    </tr>
+    <tr class="info">
+      <td>Loc-Non-game</td>
+      <td><%=locnongame%></td>
+      <td> - </td>
     </tr>
   </tbody>
 </table>
