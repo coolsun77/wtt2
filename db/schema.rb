@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150519100540) do
+ActiveRecord::Schema.define(version: 20150623150638) do
 
   create_table "eods", force: :cascade do |t|
     t.date     "date"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20150519100540) do
     t.datetime "updated_at",                                          null: false
     t.boolean  "miss",       limit: 1,                default: false
     t.decimal  "sumott",               precision: 10, default: 0
+    t.decimal  "milestone",            precision: 10, default: 0
   end
 
   add_index "eods", ["user_id"], name: "index_eods_on_user_id", using: :btree
@@ -97,6 +98,17 @@ ActiveRecord::Schema.define(version: 20150519100540) do
   end
 
   add_index "loceods", ["eod_id"], name: "index_loceods_on_eod_id", using: :btree
+
+  create_table "milestones", force: :cascade do |t|
+    t.string   "milestone",  limit: 255
+    t.date     "startdate"
+    t.date     "enddate"
+    t.integer  "game_id",    limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "milestones", ["game_id"], name: "index_milestones_on_game_id", using: :btree
 
   create_table "qaeods", force: :cascade do |t|
     t.integer  "eod_id",                  limit: 4
@@ -187,5 +199,6 @@ ActiveRecord::Schema.define(version: 20150519100540) do
 
   add_foreign_key "eods", "users"
   add_foreign_key "loceods", "eods"
+  add_foreign_key "milestones", "games"
   add_foreign_key "qaeods", "eods"
 end

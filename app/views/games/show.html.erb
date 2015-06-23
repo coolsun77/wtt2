@@ -1,10 +1,45 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Objects:</strong>
+  <strong>Projects:</strong>
   <%= @game.objname %>
 </p>
 
+<h2>Milestones</h2>
+<% @game.milestones.each do |milestone| %>
+  <p>
+    <strong>Milestone:</strong>
+    <%= milestone.milestone %>
+  </p>
+ 
+  <p>
+    <strong>StartDate:</strong>
+    <%= milestone.startdate %>
+  </p>
+  <p>
+    <strong>EndDate:</strong>
+    <%= milestone.enddate %>
+  </p>
+<% end %>
+
+<h2>Add a Milestone:</h2>
+<%= form_for([@game, @game.milestones.build]) do |f| %>
+  <p>
+    <%= f.label :Milestone %><br>
+    <%= f.text_field :milestone %>
+  </p>
+  <p>
+    <%= f.label :StartDate %><br>
+<input type="Date" name="startdate" id="startdate" />
+  </p>
+  <p>
+    <%= f.label :EndDate %><br>
+<input type="Date" name="enddate" id="enddate" />
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
 
 <%= link_to 'Edit', edit_game_path(@game) %> |
 <%= link_to 'Back', games_path %>

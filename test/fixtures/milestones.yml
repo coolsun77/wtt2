@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  milestone: MyString
+  startdate: 2015-06-23
+  enddate: 2015-06-23
+  game_id: 
+
+two:
+  milestone: MyString
+  startdate: 2015-06-23
+  enddate: 2015-06-23
+  game_id: 

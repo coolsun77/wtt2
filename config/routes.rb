@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
 
 post 'users/login/' => 'users#login' , as: :login
-  resources :games
+  resources :games do
+    resources :milestones 
+  end
  
   resources :users do
     resources :eods do
