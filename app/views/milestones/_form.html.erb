@@ -1,0 +1,19 @@
+<%=   form_for @milestone, url: game_milestone_path(@milestone.game, @milestone), method: :patch do |f| %>
+
+
+  <div class="actions">
+   <p>
+    <%= f.label :Milestone %><br>
+    <%= f.text_field :milestone %>
+  </p>
+  <p>
+    <%= f.label :startdate %><br>
+<input type="Date" name="milestone[startdate]" id="milestone_startdate" />
+  </p>
+  <p>
+    <%= f.label :enddate %><br>
+<input type="Date" name="milestone[enddate]" id="milestone_enddate" />
+  </p>
+    <%= f.submit %>
+  </div>
+<% end %>

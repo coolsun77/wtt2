@@ -20,6 +20,9 @@
     <strong>EndDate:</strong>
     <%= milestone.enddate %>
   </p>
+  <p>
+  <td><%= link_to 'Edit', edit_game_milestone_path(milestone.game,milestone) %></td>
+  </p>
 <% end %>
 
 <h2>Add a Milestone:</h2>
@@ -29,12 +32,12 @@
     <%= f.text_field :milestone %>
   </p>
   <p>
-    <%= f.label :StartDate %><br>
-<input type="Date" name="startdate" id="startdate" />
+    <%= f.label :startdate %><br>
+<input type="Date" name="milestone[startdate]" id="milestone_startdate" />
   </p>
   <p>
-    <%= f.label :EndDate %><br>
-<input type="Date" name="enddate" id="enddate" />
+    <%= f.label :enddate %><br>
+<input type="Date" name="milestone[enddate]" id="milestone_enddate" />
   </p>
   <p>
     <%= f.submit %>

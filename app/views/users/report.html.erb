@@ -103,398 +103,6 @@
 
  
    %>
-
-
-<div class="container-fluid">
-  <div class="row-fluid">
-    <div class="span12">
-
-<table class="table" contenteditable="true">
-  <thead>
-    <tr>
-      <th>Finance Monthly Report</th>
-      <th>WoW</th>
-      <th>Hearthstone</th>
-      <th>SCII</th>
-      <th>heros</th>
-      <th>DIII</th>
-      <th>Overwatch</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr class="info">
-      <td>hours</td>
-      <td><%= wowtime %></td>
-      <td><%= hstime %></td>
-      <td><%= sc2time %></td>
-      <td><%= herotime %></td>
-      <td><%= d3time %></td>
-      <td><%= owtime %></td>
-    </tr>
-    <tr class="info">
-      <td>Percentage</td>
-      <td><%= fwowtimep %>%</td>
-      <td><%= fhstimep %>%</td>
-      <td><%= fsc2timep %>%</td>
-      <td><%= fherotimep %>%</td>
-      <td><%= fd3timep %>%</td>
-      <td><%= fowtimep %>%</td>
-    </tr>
-  </tbody>
-</table>
-
-
-<table class="table" contenteditable="true">
-   <thead>
-      <tr >
-         <th>QA</th>
-         <th><span style="font-weight: normal;">Hours</span></th>
-         <th><span style="font-weight: normal;">%</span></th>
-      </tr>
-   </thead>
-   <tbody>
-     <tr class="info">
-         <td>Total</td>
-         <td><%=qatotal%></td>
-         <td>100%</td>
-      </tr>
-      <tr class="info">
-         <td>WoW</td>
-         <td><%=qaprojects[:qaWoWtime]%></td>
-         <td><%=qawowtimep%>%</td>
-      </tr>
-      <tr class="info">
-         <td>Hearthstone</td>
-         <td><%=qaprojects[:qahstime]%></td>
-         <td><%=qahstimep%>%</td>
-      </tr>
-      <tr class="info">
-         <td>SCII</td>
-         <td><%=qaprojects[:qasc2time]%></td>
-         <td><%=qasc2timep%>%</td>
-      </tr>
-      <tr class="info">
-         <td>heros</td>
-         <td><%=qaprojects[:qaherotime]%></td>
-         <td><%=qaherotimep%>%</td>
-      </tr>
-      <tr class="info">
-         <td>DIII</td>
-         <td><%=qaprojects[:qad3time]%></td>
-         <td><%=qad3timep%>%</td>
-      </tr>
-      <tr class="info">
-         <td>Overwatch</td>
-         <td><%=qaprojects[:qaoverwatchtime]%></td>
-         <td><%=qaowtimep%>%</td>
-      </tr>
-    
-
-
-
-
-      <tr class="info">
-         <td>Web</td>
-         <td><%=qaweb%></td>
-         <td><%=qawebp%>%</td>
-      </tr>
-      <tr class="info">
-         <td>Meeting</td>
-         <td><%=qameeting%></td>
-         <td><%=qameetingp%>%</td>
-      </tr>
-      <tr class="info">
-         <td>Training</td>
-         <td><%=qatraining%></td>
-         <td><%=qatrainingp%>%</td>
-      </tr>
-      <tr class="info">
-         <td>Absence</td>
-         <td><%=qaab%></td>
-         <td><%=qaabp%>%</td>
-      </tr>
-      <tr class="info">
-         <td>Other</td>
-         <td><%=qaothers%></td>
-         <td><%=qaothersp%>%</td>
-      </tr>
-   </tbody>
-</table>
-
-
-
-
-<div id="containerqa" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
-
-  
-    <script type="text/javascript">
-$(function () {
-    $('#containerqa').highcharts({
-        chart: {
-            plotBackgroundColor: null,
-            plotBorderWidth: null,
-            plotShadow: false
-        },
-        title: {
-            text: 'QA Overview'
-        },
-        tooltip: {
-            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-        },
-        plotOptions: {
-            pie: {
-                allowPointSelect: true,
-                cursor: 'pointer',
-                dataLabels: {
-                    enabled: true,
-                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-                    style: {
-                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-                    }
-                }
-            }
-        },
-        series: [{
-            type: 'pie',
-            name: 'QA Overview',
-            data: [
-                 ['web',   <%=qawebp%>],
-                ['Hearthstone',   <%=qahstimep%>],
-                ['SCII',   <%=qasc2timep%>],
-                ['heros',   <%=qaherotimep%>],
-                ['DIII',   <%=qad3timep%>],
-                ['Overwatch',   <%=qaowtimep%>],
-                {
-                    name: 'WoW',
-                    y: <%=qawowtimep%>,
-                    sliced: true,
-                    selected: true
-                },
-                ['Meeting',    <%=qameetingp%>],
-                ['Training',    <%=qatrainingp%>],
-                ['Absence',  <%=qaabp%>],
-                ['Others',  <%=qaothersp%>],
-            ]
-        }]
-    });
-});
-
-    </script>
-
-
-
-<table class="table" contenteditable="true">
-   <thead>
-      <tr >
-         <th>Loc</th>
-         <th><span style="font-weight: normal;">Hours</span></th>
-         <th><span style="font-weight: normal;">%</span></th>
-      </tr>
-   </thead>
-   <tbody>
-    <tr class="info">
-         <td>Total</td>
-         <td><%=loctotal%></td>
-         <td>100%</td>
-      </tr>
-      <tr class="info">
-         <td>WoW</td>
-         <td><%=locprojects[:locWoWtime]%></td>
-         <td><%=locwowtimep%>%</td>
-      </tr>
-      <tr class="info">
-         <td>Hearthstone</td>
-         <td><%=locprojects[:lochstime]%></td>
-         <td><%=lochstimep%>%</td>
-      </tr>
-      <tr class="info">
-         <td>SCII</td>
-         <td><%=locprojects[:locsc2time]%></td>
-         <td><%=locsc2timep%>%</td>
-      </tr>
-      <tr class="info">
-         <td>heros</td>
-         <td><%=locprojects[:locherotime]%></td>
-         <td><%=locherotimep%>%</td>
-      </tr>
-      <tr class="info">
-         <td>DIII</td>
-         <td><%=locprojects[:locd3time]%></td>
-         <td><%=locd3timep%>%</td>
-      </tr>
-      <tr class="info">
-         <td>Overwatch</td>
-         <td><%=locprojects[:locoverwatchtime]%></td>
-         <td><%=locowtimep%>%</td>
-      </tr>
-    
-
-
-
-
-      <tr class="info">
-         <td>Web</td>
-         <td><%=locweb%></td>
-         <td><%=locwebp%>%</td>
-      </tr>
-      <tr class="info">
-         <td>Meeting</td>
-         <td><%=locmeeting%></td>
-         <td><%=locmeetingp%>%</td>
-      </tr>
-      <tr class="info">
-         <td>Training</td>
-         <td><%=loctraining%></td>
-         <td><%=loctrainingp%>%</td>
-      </tr>
-      <tr class="info">
-         <td>Absence</td>
-         <td><%=locab%></td>
-         <td><%=locabp%>%</td>
-      </tr>
-      <tr class="info">
-         <td>Other</td>
-         <td><%=locothers%></td>
-         <td><%=locothersp%>%</td>
-      </tr>
-   </tbody>
-</table>
-<div id="containerloc" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
-
-
-
- <script type="text/javascript">
-$(function () {
-    $('#containerloc').highcharts({
-        chart: {
-            plotBackgroundColor: null,
-            plotBorderWidth: null,
-            plotShadow: false
-        },
-        title: {
-            text: 'Loc Overview'
-        },
-        tooltip: {
-            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-        },
-        plotOptions: {
-            pie: {
-                allowPointSelect: true,
-                cursor: 'pointer',
-                dataLabels: {
-                    enabled: true,
-                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-                    style: {
-                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-                    }
-                }
-            }
-        },
-        series: [{
-            type: 'pie',
-            name: 'Loc Overview',
-            data: [
-                 ['web',   <%=locwebp%>],
-                ['Hearthstone',   <%=lochstimep%>],
-                ['SCII',   <%=locsc2timep%>],
-                ['heros',   <%=locherotimep%>],
-                ['DIII',   <%=locd3timep%>],
-                ['Overwatch',   <%=locowtimep%>],
-                {
-                    name: 'WoW',
-                    y: <%= locwowtimep%>,
-                    sliced: true,
-                    selected: true
-                },
-                ['Meeting',    <%=locmeetingp%>],
-                ['Training',    <%=loctrainingp%>],
-                ['Absence',  <%=locabp%>],
-                ['Others',  <%=locothersp%>],
-            ]
-        }]
-    });
-});
-
-
-    </script>
-
-
-<table class="table" contenteditable="true">
-  <thead>
-    <tr class="info">
-      <th>Project: LOC vs QA </th>
-      <th>Hours</th>
-      <th>%</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr class="info">
-      <td>Loc</td>
-      <td><%=loctotal%></td>
-      <td><%=loctotalp%>%</td>
-    </tr>
-    <tr class="info">
-      <td>QA</td>
-      <td><%=qatotal%></td>
-      <td><%=qatotalp%>%</td>
-    </tr>
-  </tbody>
-</table>
-
-<div id="containerlocqa" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
-
-
-
- <script type="text/javascript">
-$(function () {
-    $('#containerlocqa').highcharts({
-        chart: {
-            plotBackgroundColor: null,
-            plotBorderWidth: null,
-            plotShadow: false
-        },
-        title: {
-            text: 'Project: LOC vs QA    '
-        },
-        tooltip: {
-            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-        },
-        plotOptions: {
-            pie: {
-                allowPointSelect: true,
-                cursor: 'pointer',
-                dataLabels: {
-                    enabled: true,
-                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-                    style: {
-                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-                    }
-                }
-            }
-        },
-        series: [{
-            type: 'pie',
-            name: 'Project: LOC vs QA    ',
-            data: [
-                ['QA',    <%=qatotalp%>],
-                {
-                    name: 'Loc',
-                    y: <%=loctotalp%>,
-                    sliced: true,
-                    selected: true
-                },
-               
-    
-            ]
-        }]
-    });
-});
-
-    </script>
-
-
-
-
 <%
 qaingameprojects = { qawebtime: 0, qaWoWtime: 0, qasc2time: 0, qahstime: 0, qaoverwatchtime: 0, qad3time: 0, qaherotime: 0}
 qanongameprojects = { qawebtime: 0, qaWoWtime: 0, qasc2time: 0, qahstime: 0, qaoverwatchtime: 0, qad3time: 0, qaherotime: 0}
@@ -567,10 +175,110 @@ qanongameprojects = { qawebtime: 0, qaWoWtime: 0, qasc2time: 0, qahstime: 0, qao
     ingame = qaingame + locingame
     nongame = locnongame + qanongame
 
+    pgame = ingame + nongame
+
     ingamep = (ingame / (ingame + nongame)*100).round(1)
     nongamep = (nongame / (ingame + nongame)*100).round(1)
 
+    locingamep = (locingame / (ingame + nongame)*100).round(1)
+    qaingamep = (qaingame / (ingame + nongame)*100).round(1)
+    qanongamep = (qanongame / (ingame + nongame)*100).round(1)
+    locnongamep = (locnongame / (ingame + nongame)*100).round(1)
+
+    locwowingamep = (locingameprojects[:locWoWtime] / pgame*100).round(1)
+
 %>
+
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span12">
+
+
+
+
+
+<table class="table" contenteditable="true">
+  <thead>
+    <tr class="info">
+      <th>Project: LOC vs QA </th>
+      <th>Hours</th>
+      <th>%</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="info">
+      <td>Loc</td>
+      <td><%=loctotal%></td>
+      <td><%=loctotalp%>%</td>
+    </tr>
+    <tr class="info">
+      <td>QA</td>
+      <td><%=qatotal%></td>
+      <td><%=qatotalp%>%</td>
+    </tr>
+    <tr class="info">
+      <td>locWoWtime</td>
+      <td><%=locingameprojects[:locWoWtime]%></td>
+      <td><%=locwowingamep%>%</td>
+    </tr>
+  </tbody>
+</table>
+
+<div id="containerlocqa" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+
+
+
+ <script type="text/javascript">
+$(function () {
+    $('#containerlocqa').highcharts({
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false
+        },
+        title: {
+            text: 'Project: LOC vs QA    '
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                    style: {
+                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                    }
+                }
+            }
+        },
+        series: [{
+            type: 'pie',
+            name: 'Project: LOC vs QA    ',
+            data: [
+                ['QA',    <%=qatotalp%>],
+                {
+                    name: 'Loc',
+                    y: <%=loctotalp%>,
+                    sliced: true,
+                    selected: true
+                },
+               
+    
+            ]
+        }]
+    });
+});
+
+    </script>
+
+
+
+
+
 
   <table class="table" contenteditable="true">
   <thead>
@@ -594,22 +302,22 @@ qanongameprojects = { qawebtime: 0, qaWoWtime: 0, qasc2time: 0, qahstime: 0, qao
     <tr class="info">
       <td>QA-In-game</td>
       <td><%=qaingame%></td>
-      <td> - </td>
+      <td><%=qaingamep%>%</td>
     </tr>
     <tr class="info">
       <td>Loc-In-game</td>
       <td><%=locingame%></td>
-      <td> - </td>
+      <td><%=locingamep%>%</td>
     </tr>
     <tr class="info">
       <td>QA-Non-game</td>
       <td><%=qanongame%></td>
-      <td> - </td>
+      <td><%=qanongamep%>%</td>
     </tr>
     <tr class="info">
       <td>Loc-Non-game</td>
       <td><%=locnongame%></td>
-      <td> - </td>
+      <td><%=locnongamep%>%</td>
     </tr>
   </tbody>
 </table>
@@ -649,10 +357,12 @@ $(function () {
             type: 'pie',
             name: 'In-game vs Non-game',
             data: [
-                ['In-game',    <%=ingamep%>],
+                ['QA-In-game',    <%=qaingamep%>],
+                ['QA-Non-game',    <%=qanongamep%>],
+                ['Loc-In-game',    <%=locingamep%>],
                 {
-                    name: 'Non-game',
-                    y: <%=nongamep%>,
+                    name: 'Loc-Non-game',
+                    y: <%=locnongamep%>,
                     sliced: true,
                     selected: true
                 },

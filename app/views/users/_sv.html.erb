@@ -13,6 +13,15 @@
 
 
 <p>
+<strong>Resource Allocation:</strong>
+<%= form_for :eod, url: resourceallocation_path do |f| %>   
+<input type="Date" name="dateStart" id="dateStart" value="<%= Date.today.beginning_of_month %>"/>
+<input type="Date" name="dateEnd" id="dateEnd" value="<%= Date.today.end_of_month %>"/>
+<input type="submit" name="commit" value="Get Reports" />
+<% end %>
+</p>
+
+<p>
 <strong>Reports:</strong>
 <%= form_for :eod, url: report_path do |f| %>   
 <input type="Date" name="dateStart" id="dateStart" value="<%= Date.today.beginning_of_month %>"/>
@@ -21,3 +30,11 @@
 <% end %>
 </p>
 
+<p>
+<strong>Project Data:</strong>
+<%= form_for :eod, url: projectdata_path do |f| %>   
+<input type="Date" name="dateStart" id="dateStart" value="<%= Date.today.beginning_of_month %>"/>
+<input type="Date" name="dateEnd" id="dateEnd" value="<%= Date.today.end_of_month %>"/>
+<input type="submit" name="commit" value="Get Reports" />
+<% end %>
+</p>

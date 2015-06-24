@@ -50,6 +50,14 @@ class UsersController < ApplicationController
   def report
     #render plain: params[:dateStart].inspect
   end
+
+  def resourceallocation
+    #render plain: params[:dateStart].inspect
+  end
+
+  def projectdata
+    #render plain: params[:dateStart].inspect
+  end
   # POST /users
   # POST /users.json
   def create
