@@ -224,86 +224,93 @@ qanongameprojects = { qawebtime: 0, qaWoWtime: 0, qasc2time: 0, qahstime: 0, qao
 
 <div class="container-fluid">
   <div class="row-fluid">
-    <div class="span12">
+    <div class="span6">
+    
 
 
 
 
 
-<table class="table" contenteditable="true">
-  <thead>
-    <tr class="info">
-      <th>LOC vs QA </th>
-      <th>Hours</th>
-      <th>%</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr class="info">
-      <td>wowLoc</td>
-      <td><%=locprojects[:locWoWtime]%></td>
-      <td><%=locwowp%>%</td>
-    </tr>
-    <tr class="info">
-      <td>wowQA</td>
-      <td><%=qaprojects[:qaWoWtime]%></td>
-      <td><%=qawowp%>%</td>
-    </tr>
-    <tr class="info">
-      <td>sc2Loc</td>
-      <td><%=locprojects[:locsc2time]%></td>
-      <td><%=locsc2p%>%</td>
-    </tr>
-    <tr class="info">
-      <td>sc2QA</td>
-      <td><%=qaprojects[:qasc2time]%></td>
-      <td><%=qasc2p%>%</td>
-    </tr>
-    <tr class="info">
-      <td>heroLoc</td>
-      <td><%=locprojects[:locherotime]%></td>
-      <td><%=locherop%>%</td>
-    </tr>
-    <tr class="info">
-      <td>heroQA</td>
-      <td><%=qaprojects[:qaherotime]%></td>
-      <td><%=qaherop%>%</td>
-    </tr>
-    <tr class="info">
-      <td>d3Loc</td>
-      <td><%=locprojects[:locd3time]%></td>
-      <td><%=locd3p%>%</td>
-    </tr>
-    <tr class="info">
-      <td>d3QA</td>
-      <td><%=qaprojects[:qad3time]%></td>
-      <td><%=qad3p%>%</td>
-    </tr>
-    <tr class="info">
-      <td>owLoc</td>
-      <td><%=locprojects[:locoverwatchtime]%></td>
-      <td><%=locowp%>%</td>
-    </tr>
-    <tr class="info">
-      <td>owQA</td>
-      <td><%=qaprojects[:qaoverwatchtime]%></td>
-      <td><%=qaowp%>%</td>
-    </tr>
-    <tr class="info">
-      <td>hsLoc</td>
-      <td><%=locprojects[:lochstime]%></td>
-      <td><%=lochsp%>%</td>
-    </tr>
-    <tr class="info">
-      <td>hsQA</td>
-      <td><%=qaprojects[:qahstime]%></td>
-      <td><%=qahsp%>%</td>
-    </tr>
-  </tbody>
-</table>
+      <table class="table" contenteditable="true">
+        <thead>
+          <tr class="info">
+            <th>LOC vs QA </th>
+            <th>Hours</th>
+            <th>%</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="info">
+            <td>wowLoc</td>
+            <td><%=locprojects[:locWoWtime]%></td>
+            <td><%=locwowp%>%</td>
+          </tr>
+          <tr class="info">
+            <td>wowQA</td>
+            <td><%=qaprojects[:qaWoWtime]%></td>
+            <td><%=qawowp%>%</td>
+          </tr>
+          <tr class="info">
+            <td>sc2Loc</td>
+            <td><%=locprojects[:locsc2time]%></td>
+            <td><%=locsc2p%>%</td>
+          </tr>
+          <tr class="info">
+            <td>sc2QA</td>
+            <td><%=qaprojects[:qasc2time]%></td>
+            <td><%=qasc2p%>%</td>
+          </tr>
+          <tr class="info">
+            <td>heroLoc</td>
+            <td><%=locprojects[:locherotime]%></td>
+            <td><%=locherop%>%</td>
+          </tr>
+          <tr class="info">
+            <td>heroQA</td>
+            <td><%=qaprojects[:qaherotime]%></td>
+            <td><%=qaherop%>%</td>
+          </tr>
+          <tr class="info">
+            <td>d3Loc</td>
+            <td><%=locprojects[:locd3time]%></td>
+            <td><%=locd3p%>%</td>
+          </tr>
+          <tr class="info">
+            <td>d3QA</td>
+            <td><%=qaprojects[:qad3time]%></td>
+            <td><%=qad3p%>%</td>
+          </tr>
+          <tr class="info">
+            <td>owLoc</td>
+            <td><%=locprojects[:locoverwatchtime]%></td>
+            <td><%=locowp%>%</td>
+          </tr>
+          <tr class="info">
+            <td>owQA</td>
+            <td><%=qaprojects[:qaoverwatchtime]%></td>
+            <td><%=qaowp%>%</td>
+          </tr>
+          <tr class="info">
+            <td>hsLoc</td>
+            <td><%=locprojects[:lochstime]%></td>
+            <td><%=lochsp%>%</td>
+          </tr>
+          <tr class="info">
+            <td>hsQA</td>
+            <td><%=qaprojects[:qahstime]%></td>
+            <td><%=qahsp%>%</td>
+          </tr>
+        </tbody>
+      </table>
+</div>
+    
+   
 
+<div class="span6">
 <div id="containerwowlocqa" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
 
+ </div>
+</div>
 
 
  <script type="text/javascript">
@@ -363,7 +370,9 @@ $(function () {
 
     </script>
 
-
+<div class="row-fluid">
+    <div class="span6">
+    
 
   <table class="table" contenteditable="true">
   <thead>
@@ -406,10 +415,13 @@ $(function () {
     </tr>
   </tbody>
 </table>
+</div>
+    <div class="span6">
+   
 
 <div id="containerinornongame" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
-
-
+ </div>
+  </div>
 
  <script type="text/javascript">
 $(function () {
