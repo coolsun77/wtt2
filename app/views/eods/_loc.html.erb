@@ -100,7 +100,7 @@
             </thead>
             <tbody>
                <tr class="warning">
-                  <td rowspan="3"><%=projects[i]%><span><input id="eod_loceods_attributes_<%=i%>_game_id" name="eod[loceods_attributes][<%=i%>][game_id]" type="hidden" value="<%=i%>" /></span></td>
+                  <td rowspan="3"><%=projects[i][1]%><span><input id="eod_loceods_attributes_<%=i%>_game_id" name="eod[loceods_attributes][<%=i%>][game_id]" type="hidden" value="<%=i%>" /></span></td>
                   <input type="hidden" name="eod[loceods_attributes][<%=i%>][date]" id="eod_loceods_attributes_<%=i%>_date" value=<%= @eod.date %>> 
                   <td>Meeting</td>
                   <td><%= f.text_field :mis_meeting%></td>
@@ -133,7 +133,7 @@
          </thead>
          <tbody>
             <tr class="warning">
-               <td colspan="1" rowspan="5"><%=projects[i]%><span><input id="eod_loceods_attributes_<%=i%>_game_id" name="eod[loceods_attributes][<%=i%>][game_id]" type="hidden" value="<%=i%>" /></span></td>
+               <td colspan="1" rowspan="5"><%=projects[i][1]%><span><input id="eod_loceods_attributes_<%=i%>_game_id" name="eod[loceods_attributes][<%=i%>][game_id]" type="hidden" value="<%=i%>" /></span></td>
                <input type="hidden" name="eod[loceods_attributes][<%=i%>][date]" id="eod_loceods_attributes_<%=i%>_date" value=<%= @eod.date %>> 
                <td>Sick Leave</td>
                <td><%= f.text_field :ab_sickleave%></td>

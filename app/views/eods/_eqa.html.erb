@@ -77,6 +77,12 @@
       <td colspan="2" style="text-align: center;"><%= f.text_field :Project_Management %></td>
       <td style="text-align: center;"><span style="background-color: rgb(252, 248, 227);"><%= f.text_field :Project_Management_N %></span></td>
     </tr>
+    <tr class="warning">
+      <td colspan="1"><span>Other</span></td>
+      <td><%= f.text_field :Other_H %></td>
+      <td colspan="2" style="text-align: center;"><%= f.text_field :Other %></td>
+      <td style="text-align: center;"><span style="background-color: rgb(252, 248, 227);"><%= f.text_field :Other_N %></span></td>
+    </tr>
   </tbody>
 </table>
                 
@@ -93,7 +99,7 @@
       </thead>
       <tbody>
         <tr class="warning">
-          <td rowspan="3"><%=projects[i]%><span><input id="eod_qaeods_attributes_<%=i%>_game_id" name="eod[qaeods_attributes][<%=i%>][game_id]" type="hidden" value="<%=i%>" /></span></td>
+          <td rowspan="3"><%=projects[i][1]%><span><input id="eod_qaeods_attributes_<%=i%>_game_id" name="eod[qaeods_attributes][<%=i%>][game_id]" type="hidden" value="<%=i%>" /></span></td>
           <td>Meeting</td>
           <td><%= f.text_field :mis_meeting%></td>
           <td><span style="background-color: rgb(252, 248, 227);"><%= f.text_field :mis_meeting_N%></span></td>
@@ -125,7 +131,7 @@
       </thead>
       <tbody>
         <tr class="warning">
-          <td colspan="1" rowspan="5"><%=projects[i]%><span><input id="eod_qaeods_attributes_<%=i%>_game_id" name="eod[qaeods_attributes][<%=i%>][game_id]" type="hidden" value="<%=i%>" /></span></td>
+          <td colspan="1" rowspan="5"><%=projects[i][1]%><span><input id="eod_qaeods_attributes_<%=i%>_game_id" name="eod[qaeods_attributes][<%=i%>][game_id]" type="hidden" value="<%=i%>" /></span></td>
           <td>Sick Leave</td>
           <td><%= f.text_field :ab_sickleave%></td>
           <td><span style="background-color: rgb(252, 248, 227);"><%= f.text_field :ab_sickleave_N%></span></td>
@@ -269,6 +275,12 @@
       <td><%= f.text_field :Project_Management_H %></td>
       <td colspan="2" style="text-align: center;"><%= f.text_field :Project_Management %></td>
       <td style="text-align: center;"><span style="background-color: rgb(252, 248, 227);"><%= f.text_field :Project_Management_N %></span></td>
+    </tr>
+    <tr class="warning">
+      <td colspan="2"><span>Other</span></td>
+      <td><%= f.text_field :Other_H %></td>
+      <td colspan="2" style="text-align: center;"><%= f.text_field :Other %></td>
+      <td style="text-align: center;"><span style="background-color: rgb(252, 248, 227);"><%= f.text_field :Other_N%></span></td>
     </tr>
   </tbody>
 </table>
