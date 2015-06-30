@@ -42,6 +42,15 @@
             <% when 0 %>
            <DIV style="cursor:hand" onclick="isHidden('<%=projects[i][1]%>')"><input type="checkbox" /><%=projects[i][1]%></DIV>
                <div class="container-fluid" id="<%=projects[i][1]%>" style="display:none">
+                  Milestone: <select  name="eod[loceods_attributes][<%=projects[i][0]%>][milestone]" id="eod_loceods_attributes_<%=projects[i][0]%>_milestone"> <option value= 0>N/A</option>
+         <% milestones = Milestone.where(game_id: projects[i][0]) 
+            milestones.each do |m|
+         %>
+    
+              <option value="<%=m.id%>"><%=m.milestone%></option>
+
+         <%end%>
+         </select>
                <table class="table table-hover table-striped">
                   <thead>
                      <tr class="warning">
@@ -90,6 +99,15 @@
       <% when 7 %>
    <DIV style="cursor:hand" onclick="isHidden('<%=projects[i][1]%>')"><input type="checkbox" /><%=projects[i][1]%></DIV>
          <div class="container-fluid" id="<%=projects[i][1]%>" style="display:none">
+             Milestone: <select  name="eod[loceods_attributes][<%=projects[i][0]%>][milestone]" id="eod_loceods_attributes_<%=projects[i][0]%>_milestone"> <option value= 0>N/A</option>
+         <% milestones = Milestone.where(game_id: projects[i][0]) 
+            milestones.each do |m|
+         %>
+    
+              <option value="<%=m.id%>"><%=m.milestone%></option>
+
+         <%end%>
+         </select>
               <table class="table table-bordered" contenteditable="true">
             <thead>
                <tr class="warning">
@@ -123,6 +141,15 @@
    <% when 8 %>
     <DIV style="cursor:hand" onclick="isHidden('<%=projects[i][1]%>')"><input type="checkbox" /><%=projects[i][1]%></DIV>
       <div class="container-fluid" id="<%=projects[i][1]%>" style="display:none">
+          Milestone: <select  name="eod[loceods_attributes][<%=projects[i][0]%>][milestone]" id="eod_loceods_attributes_<%=projects[i][0]%>_milestone"> <option value= 0>N/A</option>
+         <% milestones = Milestone.where(game_id: projects[i][0]) 
+            milestones.each do |m|
+         %>
+    
+              <option value="<%=m.id%>"><%=m.milestone%></option>
+
+         <%end%>
+         </select>
       <table class="table table-bordered" contenteditable="true">
          <thead>
             <tr class="warning">
@@ -167,6 +194,15 @@
 
  <DIV style="cursor:hand" onclick="isHidden('<%=projects[i][1]%>')"><input type="checkbox" /><%=projects[i][1]%></DIV>
 <div class="container-fluid" id="<%=projects[i][1]%>" style="display:none">
+    Milestone: <select  name="eod[loceods_attributes][<%=projects[i][0]%>][milestone]" id="eod_loceods_attributes_<%=projects[i][0]%>_milestone"> <option value= 0>N/A</option>
+         <% milestones = Milestone.where(game_id: projects[i][0]) 
+            milestones.each do |m|
+         %>
+    
+              <option value="<%=m.id%>"><%=m.milestone%></option>
+
+         <%end%>
+         </select>
          <table class="table table-hover table-striped">
             <thead>
                <tr class="warning">

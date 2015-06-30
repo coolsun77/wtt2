@@ -1,8 +1,15 @@
  
 
   <%
-      dateStart = params[:dateStart].to_date
-      dateEnd = params[:dateEnd].to_date
+      if params[:milestone].to_i>0
+        milestone = params[:milestone]
+        reportfilter = 0
+      else
+        dateStart = params[:dateStart].to_date
+        dateEnd = params[:dateEnd].to_date
+        reportfilter = 1
+      end
+
   		qaprojects = { qawebtime: 0, qaWoWtime: 0, qasc2time: 0, qahstime: 0, qaoverwatchtime: 0, qad3time: 0, qaherotime: 0, qamis: 0, qaab: 0}
   		qatasks = ["Pre_QA_H","Review_H", "QA_H", "Bug_Management_H","Audio_QA_H","N_Review_H", "N_QA_H", "N_Bug_Management_H", "Project_Management_H", "Other_H","mis_meeting","mis_training","mis_others","ab_sickleave","ab_shiftleave","ab_annualleave","ab_holiday","ab_others","vpp_H","N_vpp_H"]
   	
@@ -10,7 +17,11 @@
     i=0
   		qaprojects.each do |key,value|
   			qatasks.each do |qt|
-  				qaprojects[key] = qaprojects[key] + Qaeod.where(date: dateStart..dateEnd, game_id: i).sum(qt)
+          if reportfilter == 0
+            qaprojects[key] = qaprojects[key] + Qaeod.where(milestone: milestone, game_id: i).sum(qt)  
+          else
+            qaprojects[key] = qaprojects[key] + Qaeod.where(date: dateStart..dateEnd, game_id: i).sum(qt)
+          end
         end
   			i=i+1
   		end
@@ -23,7 +34,12 @@
 		i=0
   		locprojects.each do |key, value|
   			loctasks.each do |lt|
-  				locprojects[key] = locprojects[key] + Loceod.where(date: dateStart..dateEnd, game_id: i).sum(lt) 
+           if reportfilter == 0
+            locprojects[key] = locprojects[key] + Loceod.where(milestone: milestone, game_id: i).sum(lt) 
+          else 
+            locprojects[key] = locprojects[key] + Loceod.where(date: dateStart..dateEnd, game_id: i).sum(lt) 
+          end
+
         end
   			i=i+1
   		end
@@ -130,7 +146,8 @@ qanongameprojects = { qawebtime: 0, qaWoWtime: 0, qasc2time: 0, qahstime: 0, qao
     i=0
       qaingameprojects.each do |key,value|
         qaingametasks.each do |qt|
-          qaingameprojects[key] = qaingameprojects[key] + Qaeod.where(date: dateStart..dateEnd, game_id: i).sum(qt)
+          qaingameprojects[key] = qaingameprojects[key] + Qaeod.where(date: dateStart..dateEnd, game_id: i).sum(qt) if reportfilter == 1
+          qaingameprojects[key] = qaingameprojects[key] + Qaeod.where(milestone: milestone, game_id: i).sum(qt) if reportfilter == 0
         end
         i=i+1
       end
@@ -144,7 +161,8 @@ qanongameprojects = { qawebtime: 0, qaWoWtime: 0, qasc2time: 0, qahstime: 0, qao
     i=0
       qanongameprojects.each do |key,value|
         qanongametasks.each do |qt|
-          qanongameprojects[key] = qanongameprojects[key] + Qaeod.where(date: dateStart..dateEnd, game_id: i).sum(qt)
+          qanongameprojects[key] = qanongameprojects[key] + Qaeod.where(date: dateStart..dateEnd, game_id: i).sum(qt) if reportfilter == 1
+          qanongameprojects[key] = qanongameprojects[key] + Qaeod.where(milestone: milestone, game_id: i).sum(qt) if reportfilter == 0
         end
         i=i+1
       end
@@ -165,7 +183,8 @@ qanongameprojects = { qawebtime: 0, qaWoWtime: 0, qasc2time: 0, qahstime: 0, qao
     i=0
       locingameprojects.each do |key, value|
         locingametasks.each do |lt|
-          locingameprojects[key] = locingameprojects[key] + Loceod.where(date: dateStart..dateEnd, game_id: i).sum(lt) 
+          locingameprojects[key] = locingameprojects[key] + Loceod.where(date: dateStart..dateEnd, game_id: i).sum(lt)  if reportfilter == 1
+          locingameprojects[key] = locingameprojects[key] + Loceod.where(milestone: milestone, game_id: i).sum(lt)  if reportfilter == 0
         end
         i=i+1
       end
@@ -179,7 +198,8 @@ qanongameprojects = { qawebtime: 0, qaWoWtime: 0, qasc2time: 0, qahstime: 0, qao
     i=0
       locnongameprojects.each do |key, value|
         locnongametasks.each do |lt|
-          locnongameprojects[key] = locnongameprojects[key] + Loceod.where(date: dateStart..dateEnd, game_id: i).sum(lt) 
+          locnongameprojects[key] = locnongameprojects[key] + Loceod.where(date: dateStart..dateEnd, game_id: i).sum(lt) if reportfilter == 1
+          locnongameprojects[key] = locnongameprojects[key] + Loceod.where(milestone: milestone, game_id: i).sum(lt) if reportfilter == 0
         end
         i=i+1
       end

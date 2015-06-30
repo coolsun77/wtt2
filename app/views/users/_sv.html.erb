@@ -28,6 +28,7 @@
 <input type="Date" name="dateEnd" id="dateEnd" value="<%= Date.today.end_of_month %>"/>
 <input type="submit" name="commit" value="Get Reports" />
 <% end %>
+
 </p>
 
 <p>
@@ -35,6 +36,20 @@
 <%= form_for :eod, url: projectdata_path do |f| %>   
 <input type="Date" name="dateStart" id="dateStart" value="<%= Date.today.beginning_of_month %>"/>
 <input type="Date" name="dateEnd" id="dateEnd" value="<%= Date.today.end_of_month %>"/>
-<input type="submit" name="commit" value="Get Reports" />
+<input type="submit" name="commit" value="Get Project Data" />
 <% end %>
+
+
+<%= form_for :eod, url: projectdatams_path do |f| %>    
+Milestone: <select  name="milestone" id="milestone"> 
+<% milestones = Milestone.all
+	milestones.each do |m|
+%>
+ 
+     <option value="<%=m.id%>"><%=m.milestone%></option>
+
+<%end%>
+</select>
+<input type="submit" name="commit" value="Get Project Data" />
+<%end%>
 </p>

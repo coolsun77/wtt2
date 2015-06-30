@@ -10,8 +10,9 @@
         reportfilter = 1
       end
 
+    mstone = Milestone.find(milestone) 
+    gameid = mstone.game.id
 
-      polishnames = { "familiarization_H"=> "Familiarization", "Review_H"=>"Review", "translation_H"=>"Translation", "bugfix_H"=>"Bugfix", "audiodelivery_H"=>"Audiodelivery", "audioonsite_H"=>"Audioonsite", "polish_H"=>"Polish", "vpp_H"=>"VPP", "Project_Management_H"=>"Project_Management", "Pre_QA_H"=>"Pre_Test", "QA_H"=>"Testing", "Audio_QA_H"=>"Audio_Test"  }
 
       qaprojects = { qawebtime: 0, qaWoWtime: 0, qasc2time: 0, qahstime: 0, qaoverwatchtime: 0, qad3time: 0, qaherotime: 0, qamis: 0, qaab: 0}
       qatasks = ["Pre_QA_H","Review_H", "QA_H", "Bug_Management_H","Audio_QA_H","N_Review_H", "N_QA_H", "N_Bug_Management_H", "Project_Management_H", "Other_H","mis_meeting","mis_training","mis_others","ab_sickleave","ab_shiftleave","ab_annualleave","ab_holiday","ab_others","vpp_H","N_vpp_H"]
@@ -241,7 +242,8 @@ qanongameprojects = { qawebtime: 0, qaWoWtime: 0, qasc2time: 0, qahstime: 0, qao
 
 %>
 
-
+<% case gameid %>
+ <% when 1 %>
 <%
 
   locingametasks = ["familiarization_H","Review_H","translation_H","bugfix_H","audiodelivery_H", "audioonsite_H" , "polish_H", "vpp_H" ,"Project_Management_H"]
@@ -275,6 +277,7 @@ qanongameprojects = { qawebtime: 0, qaWoWtime: 0, qasc2time: 0, qahstime: 0, qao
   end
 
 %>
+
 <div class="container-fluid">
   <div class="row-fluid">
     <div class="span6">
@@ -292,7 +295,7 @@ qanongameprojects = { qawebtime: 0, qaWoWtime: 0, qasc2time: 0, qahstime: 0, qao
   locingametasks.each do |lt| 
 %>
    <tr class="info">
-      <td><%=polishnames[lt]%></td>
+      <td><%=lt%></td>
       <td><%=wowingameloc[lt]%></td>
       <td><%=wowingamelocp[lt]%>%</td>
     </tr>  
@@ -372,7 +375,173 @@ $(function () {
 
     </script>
 
+<%
 
+  qaingametasks = ["Pre_QA_H","Review_H", "QA_H", "Audio_QA_H","vpp_H","Project_Management_H"]
+  qaingameamounttasks = ["QA","Audio_QA","bug_audio","bug_text","bug_fastfix","bug_functional"]
+
+  wowingameqaamount = {}
+  qaingameamounttasks.each do |qa|
+      wowingameqaamount[qa] = Qaeod.where(date: dateStart..dateEnd, game_id: 1).sum(qa) if reportfilter == 1 
+      wowingameqaamount[qa] = Qaeod.where(milestone: milestone, game_id: 1).sum(qa) if reportfilter == 0 
+  end
+
+  wowqaingameamount = 0
+  wowingameqaamount.each do |key,value|
+    wowqaingameamount += value
+  end
+
+  wowingameqa = {}
+  qaingametasks.each do |qt|
+          wowingameqa[qt] = Qaeod.where(date: dateStart..dateEnd, game_id: 1).sum(qt) if reportfilter == 1 
+          wowingameqa[qt] = Qaeod.where(milestone: milestone, game_id: 1).sum(qt) if reportfilter == 0
+  end
+  
+  wowqaingamet = 0
+ wowingameqa.each do |key,value|
+    wowqaingamet += value
+ end
+
+  wowingameqap = {}
+  qaingametasks.each do |qt|
+          wowingameqap[qt] = (wowingameqa[qt] / wowqaingamet *100).round(1) 
+  end
+
+%>
+
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span6">
+    
+
+  <table class="table" contenteditable="true">
+  <thead>
+    <tr class="info">
+      <th>wowqaingame</th>
+      <th>Hours</th>
+      <th>%</th>
+    </tr>
+  </thead>
+  <tbody>
+<%
+  qaingametasks.each do |qt| 
+%>
+   <tr class="info">
+      <td><%=qt%></td>
+      <td><%=wowingameqa[qt]%></td>
+      <td><%=wowingameqap[qt]%>%</td>
+    </tr>  
+  
+<% end %>
+
+  </tbody>
+</table>
+
+<table class="table" contenteditable="true">
+  <thead>
+    <tr class="info">
+      <th>wowqaingame</th>
+      <th>Amounts</th>
+    </tr>
+  </thead>
+  <tbody>
+<%
+  qaingameamounttasks.each do |qa| 
+%>
+   <tr class="info">
+      <td><%=qa%></td>
+      <td><%=wowingameqaamount[qa]%></td>
+    </tr>  
+  
+<% end %>
+
+  </tbody>
+</table>
+</div>
+    <div class="span6">
+    
+<div id="containerwowqaingame" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+</div>
+  </div>
+</div>
+
+
+ <script type="text/javascript">
+$(function () {
+    $('#containerwowqaingame').highcharts({
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false
+        },
+        title: {
+            text: 'wowqaingame'
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                    style: {
+                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                    }
+                }
+            }
+        },
+        series: [{
+            type: 'pie',
+            name: 'wowlocingame',
+            data: [
+               <%   qaingametasks.each do |qt| %>
+                [  '<%= qt %>',    <%=wowingameqap[qt]%>],
+               
+             <% end %>  
+    
+            ]
+        }]
+    });
+});
+
+    </script>
+ <% when 2 %>
+    <%
+
+  qaingametasks = ["Pre_QA_H","Review_H", "QA_H", "Audio_QA_H","vpp_H","Project_Management_H"]
+  qaingameamounttasks = ["QA","Audio_QA","bug_audio","bug_text","bug_fastfix","bug_functional"]
+
+  sc2ingameqaamount = {}
+  qaingameamounttasks.each do |qa|
+      sc2ingameqaamount[qa] = Qaeod.where(date: dateStart..dateEnd, game_id: 2).sum(qa) if reportfilter == 1 
+      sc2ingameqaamount[qa] = Qaeod.where(milestone: milestone, game_id: 2).sum(qa) if reportfilter == 0
+  end
+
+  sc2qaingameamount = 0
+  sc2ingameqaamount.each do |key,value|
+    sc2qaingameamount += value
+  end
+
+  sc2ingameqa = {}
+  qaingametasks.each do |qt|
+          sc2ingameqa[qt] = Qaeod.where(date: dateStart..dateEnd, game_id: 2).sum(qt) if reportfilter == 1 
+          sc2ingameqa[qt] = Qaeod.where(milestone: milestone, game_id: 2).sum(qt) if reportfilter == 0
+  end
+  
+  sc2qaingamet = 0
+ sc2ingameqa.each do |key,value|
+    sc2qaingamet += value
+ end
+
+  sc2ingameqap = {}
+  qaingametasks.each do |qt|
+          sc2ingameqap[qt] = (sc2ingameqa[qt] / sc2qaingamet *100).round(1) 
+  end
+
+%>
 
 <%
 
@@ -508,6 +677,107 @@ $(function () {
     </script>
 
 
+
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span6">
+   
+
+  <table class="table" contenteditable="true">
+  <thead>
+    <tr class="info">
+      <th>sc2qaingame</th>
+      <th>Hours</th>
+      <th>%</th>
+    </tr>
+  </thead>
+  <tbody>
+<%
+  qaingametasks.each do |qt| 
+%>
+   <tr class="info">
+      <td><%=qt%></td>
+      <td><%=sc2ingameqa[qt]%></td>
+      <td><%=sc2ingameqap[qt]%>%</td>
+    </tr>  
+  
+<% end %>
+
+  </tbody>
+</table>
+ 
+<table class="table" contenteditable="true">
+  <thead>
+    <tr class="info">
+      <th>sc2qaingame</th>
+      <th>Amounts</th>
+    </tr>
+  </thead>
+  <tbody>
+<%
+  qaingameamounttasks.each do |qa| 
+%>
+   <tr class="info">
+      <td><%=qa%></td>
+      <td><%=sc2ingameqaamount[qa]%></td>
+    </tr>  
+  
+<% end %>
+
+  </tbody>
+</table>
+</div>
+    <div class="span6">
+   
+<div id="containersc2qaingame" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+
+ </div>
+  </div>
+</div>
+
+ <script type="text/javascript">
+$(function () {
+    $('#containersc2qaingame').highcharts({
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false
+        },
+        title: {
+            text: 'sc2qaingame'
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                    style: {
+                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                    }
+                }
+            }
+        },
+        series: [{
+            type: 'pie',
+            name: 'sc2locingame',
+            data: [
+               <%   qaingametasks.each do |qt| %>
+                [  '<%= qt %>',    <%=sc2ingameqap[qt]%>],
+               
+             <% end %>  
+    
+            ]
+        }]
+    });
+});
+
+    </script>
+ <% when 3 %>
 <%
 
   locingametasks = ["familiarization_H","Review_H","translation_H","bugfix_H","audiodelivery_H", "audioonsite_H" , "polish_H", "vpp_H" ,"Project_Management_H"]
@@ -642,694 +912,6 @@ $(function () {
 });
 
     </script>
-
-    
-
-<%
-
-  locingametasks = ["familiarization_H","Review_H","translation_H","bugfix_H","audiodelivery_H", "audioonsite_H" , "polish_H", "vpp_H" ,"Project_Management_H"]
-  locingameamounttasks = ["Review","translation","bugfix","polish"]
-
-  owingamelocamount = {}
-  locingameamounttasks.each do |la|
-      owingamelocamount[la] = Loceod.where(date: dateStart..dateEnd, game_id: 4).sum(la)  if reportfilter == 1
-      owingamelocamount[la] = Loceod.where(milestone: milestone, game_id: 4).sum(la)  if reportfilter == 0
-  end
-
-  owingameamount = 0
-  owingamelocamount.each do |key,value|
-    owingameamount += value
-  end
-
-  owingameloc = {}
-  locingametasks.each do |lt|
-          owingameloc[lt] = Loceod.where(date: dateStart..dateEnd, game_id: 4).sum(lt)  if reportfilter == 1
-          owingameloc[lt] = Loceod.where(milestone: milestone, game_id: 4).sum(lt)  if reportfilter == 0
-  end
-  
-  owingamet = 0
- owingameloc.each do |key,value|
-    owingamet += value
- end
-
-  owingamelocp = {}
-  locingametasks.each do |lt|
-          owingamelocp[lt] = (owingameloc[lt] / owingamet *100).round(1) 
-  end
-
-%>
-
-<div class="container-fluid">
-  <div class="row-fluid">
-    <div class="span6">
-    
-
-  <table class="table" contenteditable="true">
-  <thead>
-    <tr class="info">
-      <th>owlocingame</th>
-      <th>Hours</th>
-      <th>%</th>
-    </tr>
-  </thead>
-  <tbody>
-<%
-  locingametasks.each do |lt| 
-%>
-   <tr class="info">
-      <td><%=lt%></td>
-      <td><%=owingameloc[lt]%></td>
-      <td><%=owingamelocp[lt]%>%</td>
-    </tr>  
-  
-<% end %>
-
-  </tbody>
-</table>
-
-<table class="table" contenteditable="true">
-  <thead>
-    <tr class="info">
-      <th>owlocingame</th>
-      <th>Amounts</th>
-    </tr>
-  </thead>
-  <tbody>
-<%
-  locingameamounttasks.each do |la| 
-%>
-   <tr class="info">
-      <td><%=la%></td>
-      <td><%=owingamelocamount[la]%></td>
-    </tr>  
-  
-<% end %>
-
-  </tbody>
-</table>
-</div>
-    <div class="span6">
-    
-<div id="containerowlocingame" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
-
-</div>
-  </div>
-</div>
-
- <script type="text/javascript">
-$(function () {
-    $('#containerowlocingame').highcharts({
-        chart: {
-            plotBackgroundColor: null,
-            plotBorderWidth: null,
-            plotShadow: false
-        },
-        title: {
-            text: 'owlocingame'
-        },
-        tooltip: {
-            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-        },
-        plotOptions: {
-            pie: {
-                allowPointSelect: true,
-                cursor: 'pointer',
-                dataLabels: {
-                    enabled: true,
-                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-                    style: {
-                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-                    }
-                }
-            }
-        },
-        series: [{
-            type: 'pie',
-            name: 'owlocingame',
-            data: [
-               <%   locingametasks.each do |lt| %>
-                [  '<%= lt %>',    <%=owingamelocp[lt]%>],
-               
-             <% end %>  
-    
-            ]
-        }]
-    });
-});
-
-    </script>
-
-    
-
-<%
-
-  locingametasks = ["familiarization_H","Review_H","translation_H","bugfix_H","audiodelivery_H", "audioonsite_H" , "polish_H", "vpp_H" ,"Project_Management_H"]
-  locingameamounttasks = ["Review","translation","bugfix","polish"]
-
-  d3ingamelocamount = {}
-  locingameamounttasks.each do |la|
-      d3ingamelocamount[la] = Loceod.where(date: dateStart..dateEnd, game_id: 5).sum(la) if reportfilter == 1
-      d3ingamelocamount[la] = Loceod.where(milestone: milestone, game_id: 5).sum(la) if reportfilter == 0
-  end
-
-  d3ingameamount = 0
-  d3ingamelocamount.each do |key,value|
-    d3ingameamount += value
-  end
-
-  d3ingameloc = {}
-  locingametasks.each do |lt|
-          d3ingameloc[lt] = Loceod.where(date: dateStart..dateEnd, game_id: 5).sum(lt)  if reportfilter == 1
-          d3ingameloc[lt] = Loceod.where(milestone: milestone, game_id: 5).sum(lt)  if reportfilter == 0
-         
-  end
-  
-  d3ingamet = 0
- d3ingameloc.each do |key,value|
-    d3ingamet += value
- end
-
-  d3ingamelocp = {}
-  locingametasks.each do |lt|
-          d3ingamelocp[lt] = (d3ingameloc[lt] / d3ingamet *100).round(1) 
-  end
-
-%>
-
-<div class="container-fluid">
-  <div class="row-fluid">
-    <div class="span6">
-    
-
-  <table class="table" contenteditable="true">
-  <thead>
-    <tr class="info">
-      <th>d3locingame</th>
-      <th>Hours</th>
-      <th>%</th>
-    </tr>
-  </thead>
-  <tbody>
-<%
-  locingametasks.each do |lt| 
-%>
-   <tr class="info">
-      <td><%=lt%></td>
-      <td><%=d3ingameloc[lt]%></td>
-      <td><%=d3ingamelocp[lt]%>%</td>
-    </tr>  
-  
-<% end %>
-
-  </tbody>
-</table>
-
-<table class="table" contenteditable="true">
-  <thead>
-    <tr class="info">
-      <th>d3locingame</th>
-      <th>Amounts</th>
-    </tr>
-  </thead>
-  <tbody>
-<%
-  locingameamounttasks.each do |la| 
-%>
-   <tr class="info">
-      <td><%=la%></td>
-      <td><%=d3ingamelocamount[la]%></td>
-    </tr>  
-  
-<% end %>
-
-  </tbody>
-</table>
-</div>
-    <div class="span6">
-    
-<div id="containerd3locingame" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
-</div>
-  </div>
-</div>
-
-
- <script type="text/javascript">
-$(function () {
-    $('#containerd3locingame').highcharts({
-        chart: {
-            plotBackgroundColor: null,
-            plotBorderWidth: null,
-            plotShadd3: false
-        },
-        title: {
-            text: 'd3locingame'
-        },
-        tooltip: {
-            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-        },
-        plotOptions: {
-            pie: {
-                alld3PointSelect: true,
-                cursor: 'pointer',
-                dataLabels: {
-                    enabled: true,
-                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-                    style: {
-                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-                    }
-                }
-            }
-        },
-        series: [{
-            type: 'pie',
-            name: 'd3locingame',
-            data: [
-               <%   locingametasks.each do |lt| %>
-                [  '<%= lt %>',    <%=d3ingamelocp[lt]%>],
-               
-             <% end %>  
-    
-            ]
-        }]
-    });
-});
-
-    </script>
-
-<%
-
-  locingametasks = ["familiarization_H","Review_H","translation_H","bugfix_H","audiodelivery_H", "audioonsite_H" , "polish_H", "vpp_H" ,"Project_Management_H"]
-  locingameamounttasks = ["Review","translation","bugfix","polish"]
-
-  heroingamelocamount = {}
-  locingameamounttasks.each do |la|
-      heroingamelocamount[la] = Loceod.where(date: dateStart..dateEnd, game_id: 6).sum(la) if reportfilter == 1
-      heroingamelocamount[la] = Loceod.where(milestone: milestone, game_id: 6).sum(la) if reportfilter == 0
-      
-  end
-
-  heroingameamount = 0
-  heroingamelocamount.each do |key,value|
-    heroingameamount += value
-  end
-
-  heroingameloc = {}
-  locingametasks.each do |lt|
-          heroingameloc[lt] = Loceod.where(date: dateStart..dateEnd, game_id: 6).sum(lt)  if reportfilter == 1
-          heroingameloc[lt] = Loceod.where(milestone: milestone, game_id: 6).sum(lt)  if reportfilter == 0
-  end
-  
-  heroingamet = 0
- heroingameloc.each do |key,value|
-    heroingamet += value
- end
-
-  heroingamelocp = {}
-  locingametasks.each do |lt|
-          heroingamelocp[lt] = (heroingameloc[lt] / heroingamet *100).round(1) 
-  end
-
-%>
-
-<div class="container-fluid">
-  <div class="row-fluid">
-    <div class="span6">
-    
-
-  <table class="table" contenteditable="true">
-  <thead>
-    <tr class="info">
-      <th>herolocingame</th>
-      <th>Hours</th>
-      <th>%</th>
-    </tr>
-  </thead>
-  <tbody>
-<%
-  locingametasks.each do |lt| 
-%>
-   <tr class="info">
-      <td><%=lt%></td>
-      <td><%=heroingameloc[lt]%></td>
-      <td><%=heroingamelocp[lt]%>%</td>
-    </tr>  
-  
-<% end %>
-
-  </tbody>
-</table>
-
-<table class="table" contenteditable="true">
-  <thead>
-    <tr class="info">
-      <th>herolocingame</th>
-      <th>Amounts</th>
-    </tr>
-  </thead>
-  <tbody>
-<%
-  locingameamounttasks.each do |la| 
-%>
-   <tr class="info">
-      <td><%=la%></td>
-      <td><%=heroingamelocamount[la]%></td>
-    </tr>  
-  
-<% end %>
-
-  </tbody>
-</table>
-</div>
-    <div class="span6">
-   
-<div id="containerherolocingame" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
-
- </div>
-  </div>
-</div>
-
- <script type="text/javascript">
-$(function () {
-    $('#containerherolocingame').highcharts({
-        chart: {
-            plotBackgroundColor: null,
-            plotBorderWidth: null,
-            plotShadhero: false
-        },
-        title: {
-            text: 'herolocingame'
-        },
-        tooltip: {
-            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-        },
-        plotOptions: {
-            pie: {
-                allheroPointSelect: true,
-                cursor: 'pointer',
-                dataLabels: {
-                    enabled: true,
-                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-                    style: {
-                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-                    }
-                }
-            }
-        },
-        series: [{
-            type: 'pie',
-            name: 'herolocingame',
-            data: [
-               <%   locingametasks.each do |lt| %>
-                [  '<%= lt %>',    <%=heroingamelocp[lt]%>],
-               
-             <% end %>  
-    
-            ]
-        }]
-    });
-});
-
-    </script>
-
-    </div>
-  </div>
-</div>
-
-
-
-
-
-
-
-
-<%
-
-  qaingametasks = ["Pre_QA_H","Review_H", "QA_H", "Audio_QA_H","vpp_H","Project_Management_H"]
-  qaingameamounttasks = ["QA","Audio_QA","bug_audio","bug_text","bug_fastfix","bug_functional"]
-
-  wowingameqaamount = {}
-  qaingameamounttasks.each do |qa|
-      wowingameqaamount[qa] = Qaeod.where(date: dateStart..dateEnd, game_id: 1).sum(qa) if reportfilter == 1 
-      wowingameqaamount[qa] = Qaeod.where(milestone: milestone, game_id: 1).sum(qa) if reportfilter == 0 
-  end
-
-  wowqaingameamount = 0
-  wowingameqaamount.each do |key,value|
-    wowqaingameamount += value
-  end
-
-  wowingameqa = {}
-  qaingametasks.each do |qt|
-          wowingameqa[qt] = Qaeod.where(date: dateStart..dateEnd, game_id: 1).sum(qt) if reportfilter == 1 
-          wowingameqa[qt] = Qaeod.where(milestone: milestone, game_id: 1).sum(qt) if reportfilter == 0
-  end
-  
-  wowqaingamet = 0
- wowingameqa.each do |key,value|
-    wowqaingamet += value
- end
-
-  wowingameqap = {}
-  qaingametasks.each do |qt|
-          wowingameqap[qt] = (wowingameqa[qt] / wowqaingamet *100).round(1) 
-  end
-
-%>
-
-<div class="container-fluid">
-  <div class="row-fluid">
-    <div class="span6">
-    
-
-  <table class="table" contenteditable="true">
-  <thead>
-    <tr class="info">
-      <th>wowqaingame</th>
-      <th>Hours</th>
-      <th>%</th>
-    </tr>
-  </thead>
-  <tbody>
-<%
-  qaingametasks.each do |qt| 
-%>
-   <tr class="info">
-      <td><%=qt%></td>
-      <td><%=wowingameqa[qt]%></td>
-      <td><%=wowingameqap[qt]%>%</td>
-    </tr>  
-  
-<% end %>
-
-  </tbody>
-</table>
-
-<table class="table" contenteditable="true">
-  <thead>
-    <tr class="info">
-      <th>wowqaingame</th>
-      <th>Amounts</th>
-    </tr>
-  </thead>
-  <tbody>
-<%
-  qaingameamounttasks.each do |qa| 
-%>
-   <tr class="info">
-      <td><%=qa%></td>
-      <td><%=wowingameqaamount[qa]%></td>
-    </tr>  
-  
-<% end %>
-
-  </tbody>
-</table>
-</div>
-    <div class="span6">
-    
-<div id="containerwowqaingame" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
-</div>
-  </div>
-</div>
-
-
- <script type="text/javascript">
-$(function () {
-    $('#containerwowqaingame').highcharts({
-        chart: {
-            plotBackgroundColor: null,
-            plotBorderWidth: null,
-            plotShadow: false
-        },
-        title: {
-            text: 'wowqaingame'
-        },
-        tooltip: {
-            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-        },
-        plotOptions: {
-            pie: {
-                allowPointSelect: true,
-                cursor: 'pointer',
-                dataLabels: {
-                    enabled: true,
-                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-                    style: {
-                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-                    }
-                }
-            }
-        },
-        series: [{
-            type: 'pie',
-            name: 'wowlocingame',
-            data: [
-               <%   qaingametasks.each do |qt| %>
-                [  '<%= qt %>',    <%=wowingameqap[qt]%>],
-               
-             <% end %>  
-    
-            ]
-        }]
-    });
-});
-
-    </script>
-
-    <%
-
-  qaingametasks = ["Pre_QA_H","Review_H", "QA_H", "Audio_QA_H","vpp_H","Project_Management_H"]
-  qaingameamounttasks = ["QA","Audio_QA","bug_audio","bug_text","bug_fastfix","bug_functional"]
-
-  sc2ingameqaamount = {}
-  qaingameamounttasks.each do |qa|
-      sc2ingameqaamount[qa] = Qaeod.where(date: dateStart..dateEnd, game_id: 2).sum(qa) if reportfilter == 1 
-      sc2ingameqaamount[qa] = Qaeod.where(milestone: milestone, game_id: 2).sum(qa) if reportfilter == 0
-  end
-
-  sc2qaingameamount = 0
-  sc2ingameqaamount.each do |key,value|
-    sc2qaingameamount += value
-  end
-
-  sc2ingameqa = {}
-  qaingametasks.each do |qt|
-          sc2ingameqa[qt] = Qaeod.where(date: dateStart..dateEnd, game_id: 2).sum(qt) if reportfilter == 1 
-          sc2ingameqa[qt] = Qaeod.where(milestone: milestone, game_id: 2).sum(qt) if reportfilter == 0
-  end
-  
-  sc2qaingamet = 0
- sc2ingameqa.each do |key,value|
-    sc2qaingamet += value
- end
-
-  sc2ingameqap = {}
-  qaingametasks.each do |qt|
-          sc2ingameqap[qt] = (sc2ingameqa[qt] / sc2qaingamet *100).round(1) 
-  end
-
-%>
-
-<div class="container-fluid">
-  <div class="row-fluid">
-    <div class="span6">
-   
-
-  <table class="table" contenteditable="true">
-  <thead>
-    <tr class="info">
-      <th>sc2qaingame</th>
-      <th>Hours</th>
-      <th>%</th>
-    </tr>
-  </thead>
-  <tbody>
-<%
-  qaingametasks.each do |qt| 
-%>
-   <tr class="info">
-      <td><%=qt%></td>
-      <td><%=sc2ingameqa[qt]%></td>
-      <td><%=sc2ingameqap[qt]%>%</td>
-    </tr>  
-  
-<% end %>
-
-  </tbody>
-</table>
- 
-<table class="table" contenteditable="true">
-  <thead>
-    <tr class="info">
-      <th>sc2qaingame</th>
-      <th>Amounts</th>
-    </tr>
-  </thead>
-  <tbody>
-<%
-  qaingameamounttasks.each do |qa| 
-%>
-   <tr class="info">
-      <td><%=qa%></td>
-      <td><%=sc2ingameqaamount[qa]%></td>
-    </tr>  
-  
-<% end %>
-
-  </tbody>
-</table>
-</div>
-    <div class="span6">
-   
-<div id="containersc2qaingame" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
-
- </div>
-  </div>
-</div>
-
- <script type="text/javascript">
-$(function () {
-    $('#containersc2qaingame').highcharts({
-        chart: {
-            plotBackgroundColor: null,
-            plotBorderWidth: null,
-            plotShadow: false
-        },
-        title: {
-            text: 'sc2qaingame'
-        },
-        tooltip: {
-            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-        },
-        plotOptions: {
-            pie: {
-                allowPointSelect: true,
-                cursor: 'pointer',
-                dataLabels: {
-                    enabled: true,
-                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-                    style: {
-                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-                    }
-                }
-            }
-        },
-        series: [{
-            type: 'pie',
-            name: 'sc2locingame',
-            data: [
-               <%   qaingametasks.each do |qt| %>
-                [  '<%= qt %>',    <%=sc2ingameqap[qt]%>],
-               
-             <% end %>  
-    
-            ]
-        }]
-    });
-});
-
-    </script>
-
     <%
 
   qaingametasks = ["Pre_QA_H","Review_H", "QA_H", "Audio_QA_H","vpp_H","Project_Management_H"]
@@ -1454,6 +1036,141 @@ $(function () {
             data: [
                <%   qaingametasks.each do |qt| %>
                 [  '<%= qt %>',    <%=hsingameqap[qt]%>],
+               
+             <% end %>  
+    
+            ]
+        }]
+    });
+});
+
+    </script>
+    
+ <% when 4 %>
+<%
+
+  locingametasks = ["familiarization_H","Review_H","translation_H","bugfix_H","audiodelivery_H", "audioonsite_H" , "polish_H", "vpp_H" ,"Project_Management_H"]
+  locingameamounttasks = ["Review","translation","bugfix","polish"]
+
+  owingamelocamount = {}
+  locingameamounttasks.each do |la|
+      owingamelocamount[la] = Loceod.where(date: dateStart..dateEnd, game_id: 4).sum(la)  if reportfilter == 1
+      owingamelocamount[la] = Loceod.where(milestone: milestone, game_id: 4).sum(la)  if reportfilter == 0
+  end
+
+  owingameamount = 0
+  owingamelocamount.each do |key,value|
+    owingameamount += value
+  end
+
+  owingameloc = {}
+  locingametasks.each do |lt|
+          owingameloc[lt] = Loceod.where(date: dateStart..dateEnd, game_id: 4).sum(lt)  if reportfilter == 1
+          owingameloc[lt] = Loceod.where(milestone: milestone, game_id: 4).sum(lt)  if reportfilter == 0
+  end
+  
+  owingamet = 0
+ owingameloc.each do |key,value|
+    owingamet += value
+ end
+
+  owingamelocp = {}
+  locingametasks.each do |lt|
+          owingamelocp[lt] = (owingameloc[lt] / owingamet *100).round(1) 
+  end
+
+%>
+
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span6">
+    
+
+  <table class="table" contenteditable="true">
+  <thead>
+    <tr class="info">
+      <th>owlocingame</th>
+      <th>Hours</th>
+      <th>%</th>
+    </tr>
+  </thead>
+  <tbody>
+<%
+  locingametasks.each do |lt| 
+%>
+   <tr class="info">
+      <td><%=lt%></td>
+      <td><%=owingameloc[lt]%></td>
+      <td><%=owingamelocp[lt]%>%</td>
+    </tr>  
+  
+<% end %>
+
+  </tbody>
+</table>
+
+<table class="table" contenteditable="true">
+  <thead>
+    <tr class="info">
+      <th>owlocingame</th>
+      <th>Amounts</th>
+    </tr>
+  </thead>
+  <tbody>
+<%
+  locingameamounttasks.each do |la| 
+%>
+   <tr class="info">
+      <td><%=la%></td>
+      <td><%=owingamelocamount[la]%></td>
+    </tr>  
+  
+<% end %>
+
+  </tbody>
+</table>
+</div>
+    <div class="span6">
+    
+<div id="containerowlocingame" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+
+</div>
+  </div>
+</div>
+
+ <script type="text/javascript">
+$(function () {
+    $('#containerowlocingame').highcharts({
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false
+        },
+        title: {
+            text: 'owlocingame'
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                    style: {
+                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                    }
+                }
+            }
+        },
+        series: [{
+            type: 'pie',
+            name: 'owlocingame',
+            data: [
+               <%   locingametasks.each do |lt| %>
+                [  '<%= lt %>',    <%=owingamelocp[lt]%>],
                
              <% end %>  
     
@@ -1597,7 +1314,142 @@ $(function () {
 });
 
     </script>
+    
+ <% when 5 %>
+<%
 
+  locingametasks = ["familiarization_H","Review_H","translation_H","bugfix_H","audiodelivery_H", "audioonsite_H" , "polish_H", "vpp_H" ,"Project_Management_H"]
+  locingameamounttasks = ["Review","translation","bugfix","polish"]
+
+  d3ingamelocamount = {}
+  locingameamounttasks.each do |la|
+      d3ingamelocamount[la] = Loceod.where(date: dateStart..dateEnd, game_id: 5).sum(la) if reportfilter == 1
+      d3ingamelocamount[la] = Loceod.where(milestone: milestone, game_id: 5).sum(la) if reportfilter == 0
+  end
+
+  d3ingameamount = 0
+  d3ingamelocamount.each do |key,value|
+    d3ingameamount += value
+  end
+
+  d3ingameloc = {}
+  locingametasks.each do |lt|
+          d3ingameloc[lt] = Loceod.where(date: dateStart..dateEnd, game_id: 5).sum(lt)  if reportfilter == 1
+          d3ingameloc[lt] = Loceod.where(milestone: milestone, game_id: 5).sum(lt)  if reportfilter == 0
+         
+  end
+  
+  d3ingamet = 0
+ d3ingameloc.each do |key,value|
+    d3ingamet += value
+ end
+
+  d3ingamelocp = {}
+  locingametasks.each do |lt|
+          d3ingamelocp[lt] = (d3ingameloc[lt] / d3ingamet *100).round(1) 
+  end
+
+%>
+
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span6">
+    
+
+  <table class="table" contenteditable="true">
+  <thead>
+    <tr class="info">
+      <th>d3locingame</th>
+      <th>Hours</th>
+      <th>%</th>
+    </tr>
+  </thead>
+  <tbody>
+<%
+  locingametasks.each do |lt| 
+%>
+   <tr class="info">
+      <td><%=lt%></td>
+      <td><%=d3ingameloc[lt]%></td>
+      <td><%=d3ingamelocp[lt]%>%</td>
+    </tr>  
+  
+<% end %>
+
+  </tbody>
+</table>
+
+<table class="table" contenteditable="true">
+  <thead>
+    <tr class="info">
+      <th>d3locingame</th>
+      <th>Amounts</th>
+    </tr>
+  </thead>
+  <tbody>
+<%
+  locingameamounttasks.each do |la| 
+%>
+   <tr class="info">
+      <td><%=la%></td>
+      <td><%=d3ingamelocamount[la]%></td>
+    </tr>  
+  
+<% end %>
+
+  </tbody>
+</table>
+</div>
+    <div class="span6">
+    
+<div id="containerd3locingame" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+</div>
+  </div>
+</div>
+
+
+ <script type="text/javascript">
+$(function () {
+    $('#containerd3locingame').highcharts({
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadd3: false
+        },
+        title: {
+            text: 'd3locingame'
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                alld3PointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                    style: {
+                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                    }
+                }
+            }
+        },
+        series: [{
+            type: 'pie',
+            name: 'd3locingame',
+            data: [
+               <%   locingametasks.each do |lt| %>
+                [  '<%= lt %>',    <%=d3ingamelocp[lt]%>],
+               
+             <% end %>  
+    
+            ]
+        }]
+    });
+});
+
+    </script>
     <%
 
   qaingametasks = ["Pre_QA_H","Review_H", "QA_H", "Audio_QA_H","vpp_H","Project_Management_H"]
@@ -1732,6 +1584,146 @@ $(function () {
 
     </script>
 
+ <% when 6 %>
+<%
+
+  locingametasks = ["familiarization_H","Review_H","translation_H","bugfix_H","audiodelivery_H", "audioonsite_H" , "polish_H", "vpp_H" ,"Project_Management_H"]
+  locingameamounttasks = ["Review","translation","bugfix","polish"]
+
+  heroingamelocamount = {}
+  locingameamounttasks.each do |la|
+      heroingamelocamount[la] = Loceod.where(date: dateStart..dateEnd, game_id: 6).sum(la) if reportfilter == 1
+      heroingamelocamount[la] = Loceod.where(milestone: milestone, game_id: 6).sum(la) if reportfilter == 0
+      
+  end
+
+  heroingameamount = 0
+  heroingamelocamount.each do |key,value|
+    heroingameamount += value
+  end
+
+  heroingameloc = {}
+  locingametasks.each do |lt|
+          heroingameloc[lt] = Loceod.where(date: dateStart..dateEnd, game_id: 6).sum(lt)  if reportfilter == 1
+          heroingameloc[lt] = Loceod.where(milestone: milestone, game_id: 6).sum(lt)  if reportfilter == 0
+  end
+  
+  heroingamet = 0
+ heroingameloc.each do |key,value|
+    heroingamet += value
+ end
+
+  heroingamelocp = {}
+  locingametasks.each do |lt|
+          heroingamelocp[lt] = (heroingameloc[lt] / heroingamet *100).round(1) 
+  end
+
+%>
+
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span6">
+    
+
+  <table class="table" contenteditable="true">
+  <thead>
+    <tr class="info">
+      <th>herolocingame</th>
+      <th>Hours</th>
+      <th>%</th>
+    </tr>
+  </thead>
+  <tbody>
+<%
+  locingametasks.each do |lt| 
+%>
+   <tr class="info">
+      <td><%=lt%></td>
+      <td><%=heroingameloc[lt]%></td>
+      <td><%=heroingamelocp[lt]%>%</td>
+    </tr>  
+  
+<% end %>
+
+  </tbody>
+</table>
+
+<table class="table" contenteditable="true">
+  <thead>
+    <tr class="info">
+      <th>herolocingame</th>
+      <th>Amounts</th>
+    </tr>
+  </thead>
+  <tbody>
+<%
+  locingameamounttasks.each do |la| 
+%>
+   <tr class="info">
+      <td><%=la%></td>
+      <td><%=heroingamelocamount[la]%></td>
+    </tr>  
+  
+<% end %>
+
+  </tbody>
+</table>
+</div>
+    <div class="span6">
+   
+<div id="containerherolocingame" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+
+ </div>
+  </div>
+</div>
+
+ <script type="text/javascript">
+$(function () {
+    $('#containerherolocingame').highcharts({
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadhero: false
+        },
+        title: {
+            text: 'herolocingame'
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allheroPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                    style: {
+                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                    }
+                }
+            }
+        },
+        series: [{
+            type: 'pie',
+            name: 'herolocingame',
+            data: [
+               <%   locingametasks.each do |lt| %>
+                [  '<%= lt %>',    <%=heroingamelocp[lt]%>],
+               
+             <% end %>  
+    
+            ]
+        }]
+    });
+});
+
+    </script>
+
+    </div>
+  </div>
+</div>
+
     <%
 
   qaingametasks = ["Pre_QA_H","Review_H", "QA_H", "Audio_QA_H","vpp_H","Project_Management_H"]
@@ -1864,3 +1856,5 @@ $(function () {
 });
 
     </script>
+
+  <% end %>

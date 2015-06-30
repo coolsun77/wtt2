@@ -58,6 +58,9 @@ class UsersController < ApplicationController
   def projectdata
     #render plain: params[:dateStart].inspect
   end
+  def projectdatams
+    #render plain: params[:dateStart].inspect
+  end
   # POST /users
   # POST /users.json
   def create

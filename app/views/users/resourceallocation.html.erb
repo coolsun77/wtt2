@@ -418,3 +418,66 @@ $(function () {
 
     </script>
 
+
+<%
+  users = User.where(role: "Loc")
+  locamounttasks = ["translation","N_translation"]
+  users.each do |u|
+      wowingameamount = 0
+     
+      eods = Eod.where(user_id: u.id, date: dateStart..dateEnd )
+
+         
+          eods.each do |e|  
+              wowingamelocamount = {}  
+              locamounttasks.each do |la|
+                  wowingamelocamount[la] = Loceod.where( eod_id: e.id).sum(la) 
+              end
+
+              wowingamelocamount.each do |key,value|
+                wowingameamount += value
+              end
+
+          end
+
+%>     
+ <p>
+  <strong>User:</strong>
+  <%= u.name %>
+</p>
+<p>
+  <strong>amount:</strong>
+  <%= wowingameamount %>
+</p>
+<%          
+  end
+%>
+
+<%
+
+  locamounttasks = ["translation","N_translation"]
+  zhong = []
+
+  users = User.where(role: "Loc")
+  users.each do |u|
+    eods = Eod.where(user_id: u.id, date: dateStart..dateEnd ) 
+    eods.each do |e|  
+      
+        wowingamelocamount = {}  
+        wowingameamount = 0
+        locamounttasks.each do |la|
+                      wowingamelocamount[la] = Loceod.where(date: dateStart..dateEnd, eod_id: e.id).sum(la)
+                  end
+        wowingamelocamount.each do |key,value|
+                wowingameamount += value
+              end
+        if wowingameamount >4000
+          zhong.push ([e.user.name, e.date])
+        else
+
+        end
+      
+    end
+    end
+%>
+<%=zhong%>
