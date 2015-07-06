@@ -11,7 +11,7 @@
       end
 
 
-      polishnames = { "familiarization_H"=> "Familiarization", "Review_H"=>"Review", "translation_H"=>"Translation", "bugfix_H"=>"Bugfix", "audiodelivery_H"=>"Audiodelivery", "audioonsite_H"=>"Audioonsite", "polish_H"=>"Polish", "vpp_H"=>"VPP", "Project_Management_H"=>"Project_Management", "Pre_QA_H"=>"Pre_Test", "QA_H"=>"Testing", "Audio_QA_H"=>"Audio_Test"  }
+      polishnames = { "familiarization_H"=> "Familiarization", "Review_H"=>"Review", "translation_H"=>"Translation", "bugfix_H"=>"Bugfix", "audiodelivery_H"=>"Audiodelivery", "audioonsite_H"=>"Audioonsite", "polish_H"=>"Polish", "vpp_H"=>"VPP", "Project_Management_H"=>"Project_Management", "Pre_QA_H"=>"Pre_Test", "QA_H"=>"Testing", "Audio_QA_H"=>"Audio_Test", "QA"=> "Test","Audio_QA"=> "Audio_Test","bug_audio"=> "audio_bugs","bug_text"=> "text_bugs","bug_fastfix"=> "fastfix_bugs","bug_functional"=> "functional_bugs" }
 
       qaprojects = { qawebtime: 0, qaWoWtime: 0, qasc2time: 0, qahstime: 0, qaoverwatchtime: 0, qad3time: 0, qaherotime: 0, qamis: 0, qaab: 0}
       qatasks = ["Pre_QA_H","Review_H", "QA_H", "Bug_Management_H","Audio_QA_H","N_Review_H", "N_QA_H", "N_Bug_Management_H", "Project_Management_H", "Other_H","mis_meeting","mis_training","mis_others","ab_sickleave","ab_shiftleave","ab_annualleave","ab_holiday","ab_others","vpp_H","N_vpp_H"]
@@ -426,7 +426,7 @@ $(function () {
   locingametasks.each do |lt| 
 %>
    <tr class="info">
-      <td><%=lt%></td>
+      <td><%=polishnames[lt]%></td>
       <td><%=sc2ingameloc[lt]%></td>
       <td><%=sc2ingamelocp[lt]%>%</td>
     </tr>  
@@ -561,7 +561,7 @@ $(function () {
   locingametasks.each do |lt| 
 %>
    <tr class="info">
-      <td><%=lt%></td>
+      <td><%=polishnames[lt]%></td>
       <td><%=hsingameloc[lt]%></td>
       <td><%=hsingamelocp[lt]%>%</td>
     </tr>  
@@ -697,7 +697,7 @@ $(function () {
   locingametasks.each do |lt| 
 %>
    <tr class="info">
-      <td><%=lt%></td>
+      <td><%=polishnames[lt]%></td>
       <td><%=owingameloc[lt]%></td>
       <td><%=owingamelocp[lt]%>%</td>
     </tr>  
@@ -834,7 +834,7 @@ $(function () {
   locingametasks.each do |lt| 
 %>
    <tr class="info">
-      <td><%=lt%></td>
+      <td><%=polishnames[lt]%></td>
       <td><%=d3ingameloc[lt]%></td>
       <td><%=d3ingamelocp[lt]%>%</td>
     </tr>  
@@ -969,7 +969,7 @@ $(function () {
   locingametasks.each do |lt| 
 %>
    <tr class="info">
-      <td><%=lt%></td>
+      <td><%=polishnames[lt]%></td>
       <td><%=heroingameloc[lt]%></td>
       <td><%=heroingamelocp[lt]%>%</td>
     </tr>  
@@ -1114,7 +1114,7 @@ $(function () {
   qaingametasks.each do |qt| 
 %>
    <tr class="info">
-      <td><%=qt%></td>
+      <td><%=polishnames[qt]%></td>
       <td><%=wowingameqa[qt]%></td>
       <td><%=wowingameqap[qt]%>%</td>
     </tr>  
@@ -1136,7 +1136,7 @@ $(function () {
   qaingameamounttasks.each do |qa| 
 %>
    <tr class="info">
-      <td><%=qa%></td>
+      <td><%=polishnames[qa]%></td>
       <td><%=wowingameqaamount[qa]%></td>
     </tr>  
   
@@ -1248,7 +1248,7 @@ $(function () {
   qaingametasks.each do |qt| 
 %>
    <tr class="info">
-      <td><%=qt%></td>
+      <td><%=polishnames[qt]%></td>
       <td><%=sc2ingameqa[qt]%></td>
       <td><%=sc2ingameqap[qt]%>%</td>
     </tr>  
@@ -1270,7 +1270,7 @@ $(function () {
   qaingameamounttasks.each do |qa| 
 %>
    <tr class="info">
-      <td><%=qa%></td>
+      <td><%=polishnames[qa]%></td>
       <td><%=sc2ingameqaamount[qa]%></td>
     </tr>  
   
@@ -1382,7 +1382,7 @@ $(function () {
   qaingametasks.each do |qt| 
 %>
    <tr class="info">
-      <td><%=qt%></td>
+      <td><%=polishnames[qt]%></td>
       <td><%=hsingameqa[qt]%></td>
       <td><%=hsingameqap[qt]%>%</td>
     </tr>  
@@ -1404,7 +1404,7 @@ $(function () {
   qaingameamounttasks.each do |qa| 
 %>
    <tr class="info">
-      <td><%=qa%></td>
+      <td><%=polishnames[qa]%></td>
       <td><%=hsingameqaamount[qa]%></td>
     </tr>  
   
@@ -1516,7 +1516,7 @@ $(function () {
   qaingametasks.each do |qt| 
 %>
    <tr class="info">
-      <td><%=qt%></td>
+      <td><%=polishnames[qt]%></td>
       <td><%=owingameqa[qt]%></td>
       <td><%=owingameqap[qt]%>%</td>
     </tr>  
@@ -1538,7 +1538,7 @@ $(function () {
   qaingameamounttasks.each do |qa| 
 %>
    <tr class="info">
-      <td><%=qa%></td>
+      <td><%=polishnames[qa]%></td>
       <td><%=owingameqaamount[qa]%></td>
     </tr>  
   
@@ -1650,7 +1650,7 @@ $(function () {
   qaingametasks.each do |qt| 
 %>
    <tr class="info">
-      <td><%=qt%></td>
+      <td><%=polishnames[qt]%></td>
       <td><%=d3ingameqa[qt]%></td>
       <td><%=d3ingameqap[qt]%>%</td>
     </tr>  
@@ -1672,7 +1672,7 @@ $(function () {
   qaingameamounttasks.each do |qa| 
 %>
    <tr class="info">
-      <td><%=qa%></td>
+      <td><%=polishnames[qa]%></td>
       <td><%=d3ingameqaamount[qa]%></td>
     </tr>  
   
@@ -1783,7 +1783,7 @@ $(function () {
   qaingametasks.each do |qt| 
 %>
    <tr class="info">
-      <td><%=qt%></td>
+      <td><%=polishnames[qt]%></td>
       <td><%=heroingameqa[qt]%></td>
       <td><%=heroingameqap[qt]%>%</td>
     </tr>  
@@ -1805,7 +1805,7 @@ $(function () {
   qaingameamounttasks.each do |qa| 
 %>
    <tr class="info">
-      <td><%=qa%></td>
+      <td><%=polishnames[qa]%></td>
       <td><%=heroingameqaamount[qa]%></td>
     </tr>  
   
